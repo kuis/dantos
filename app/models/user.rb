@@ -6,8 +6,9 @@ class User < ApplicationRecord
 
   has_many :goomps, dependent: :destroy
   has_many :memberships, dependent: :destroy
-  has_many :joined_goomps, through: :memberships, class_name: "Goomp", source: :goomp
   has_many :posts, dependent: :destroy
+  has_many :joined_goomps, through: :memberships, class_name: "Goomp", source: :goomp
+  has_many :posts_from_joined_goomps, through: :joined_goomps
 
   validates :picture, presence: true
 
