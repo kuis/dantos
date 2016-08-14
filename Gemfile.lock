@@ -177,6 +177,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.3.0)
+    newrelic_rpm (3.16.0.318)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -347,6 +348,7 @@ DEPENDENCIES
   meta_request
   mini_magick
   minitest-reporters
+  newrelic_rpm
   omniauth-facebook
   omniauth-linkedin-oauth2
   omniauth-oauth2 (~> 1.3.1)

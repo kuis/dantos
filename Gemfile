@@ -31,6 +31,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-oauth2', '~> 1.3.1'
 
+gem 'newrelic_rpm'
+
 # gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
