@@ -1,4 +1,4 @@
-= form_for [goomp, post], class: "ui form" do |f|
+= form_for Post.new, url: action_url, html: { class: "ui form" } do |f|
   = f.hidden_field :goomp_id
 
   = fields_for :link do |ff|
@@ -15,5 +15,8 @@
       = ff.text_field :url, placeholder: "or share a link"
 
   .inline.field
-    / = f.select :subtopic_id, Enum.map(@goomp.subtopics, fn(subtopic) -> {subtopic.name, subtopic.id} end), prompt: "Choose Sub Topic.. (Optional)", class: "ui selection dropdown"
+    - if assigns[:goomp]
+      = f.collection_select :subtopic_id, goomp.subtopics, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
+    - else
+      = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
     = f.submit "Submit", class: "ui right floated primary button"

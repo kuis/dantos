@@ -10,7 +10,7 @@
       = @goomp.description
       / = link "Connect Stripe", to: @stripe_url, class: "ui primary button"
 
-      = render "post_form", post: Post.new, goomp: @goomp
+      = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
     .ui.segments
       = render @goomp.posts
   .two.wide.column

@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :goomps
+  has_many :goomps, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   def self.from_omniauth auth
     authdata = case auth.provider

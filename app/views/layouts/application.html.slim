@@ -8,15 +8,14 @@ html
     script src="//api.filestackapi.com/filestack.js" type="text/javascript"
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    - if controller_name != "pages"
-      .ui.borderless.fixed.menu
-        a.header.item href="/"
-          = image_tag "logo.png", alt: "Goomp", class: "ui"
-        .right.menu
-          .item
-            - if user_signed_in?
-              - link_to "Create Goomp", new_goomp_path, class: "ui button"
-              = link_to "Sign out", destroy_user_session_path, method: :delete, class: "ui button"
+    .ui.borderless.fixed.menu
+      a.header.item href="/"
+        = image_tag "logo.png", alt: "Goomp", class: "ui"
+      .right.menu
+        .item
+          - if user_signed_in?
+            - link_to "Create Goomp", new_goomp_path, class: "ui button"
+            = link_to "Sign out", destroy_user_session_path, method: :delete, class: "ui button"
 
     - if @goomp&.persisted?
       = render "layouts/goomp_header"

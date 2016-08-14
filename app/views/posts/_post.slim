@@ -4,12 +4,12 @@
       img src="#{post.user.picture}"
     .content
       .summary
-        = link post.user.email, to: user_path(@conn, :show, post.user), class: "user"
-        | posted to
-        = link_ post.goomp.name, to: goomp_path(@conn, :show, post.goomp)
+        = link_to post.user.first_name, post.user, class: "user"
+        |  posted to
+        = link_to post.goomp.name, post.goomp
       span.date
-        = post.inserted_at
-        | 4 days ago
+        = time_ago_in_words post.created_at
+        | ago
       .extra.text
         = post.body
   .ui.fluid.card
@@ -26,5 +26,5 @@
       a.avatar
         img src="http://semantic-ui.com/images/avatar/small/joe.jpg" /
       .content
-        = form_for @comment_changeset, post_comment_path(@conn, :create, post), class: "ui text authorreply form", "data-remote": true do |f|
-          = f.text_field f, :body
+        = form_for [post, Comment.new], class: "ui text authorreply form", remote: true do |f|
+          = f.text_field :body
