@@ -1,0 +1,56 @@
+div class="ui secondary menu"
+  / a class="sidebar-toggle item"
+  /   i class="typco typco-th-menu icon"
+  /   ' Menu
+
+  .right.menu
+    a.ui.item href="#" data-modal="social-buttons-modal" Sign in
+
+/! Sidebar Menu
+.ui.vertical.inverted.sidebar.menu
+  a.active.item href="/"  Home
+  - if user_signed_in?
+    = link_to "Sign out", destroy_session_path, method: :delete, class: "item"
+    br
+  - else
+    = link_to "Create new account", new_user_registration_path, class: "item"
+    = link_to "Sign in", new_user_session_path, class: "item"
+
+.ui.page.grid style="z-index:999999999;"
+  .sixteen.wide.column
+    h1.ui.center.aligned.header.grabber
+      = image_tag "logo-v.png", alt: "Goomp Logo"
+    h2.ui.icon.header
+      .content style="font-size: 1.3em" A platform for Learning Groups
+  .sixteen.wide.column
+    .center.aligned.one.wide.column
+      .column style="text-align: center"
+        button#call_to_action.ui.basic.button.huge data-modal="social-buttons-modal" Get Started
+        = render "social_buttons_modal", modal_id: "social-buttons-modal"
+.about-content
+  .ui.grid.page
+    .sixteen.wide.column
+      h2.ui.icon.header
+        .content What is Goomp?
+      p.ui.aligned.center "Goomp is an exclusive member only group where creators share network, mentorship and premium content for free or a membership fee"
+.feature-content
+  .ui.grid.page
+    .sixteen.wide.column
+      h2.ui.icon.header
+        .content How does it work?
+      .ui.three.column.grid
+        .column
+          .ui.center.aligned
+            .typcn.typcn-group style="font-size: 80px;line-height:80px"
+          h3.ui.center.aligned.header Create Goomp
+          p.ui.aligned.center Our friendly Goomp Bot will guide you through the process of creating your first goomp
+        .column
+          .ui.center.aligned
+            .typcn.typcn-news style="font-size: 80px;line-height:80px"
+          h3.ui.center.aligned.header Seed Content
+          p.ui.aligned.center Group leaders and content are critical for the success of your learning group. Seed it with the right content that acts as a teaser
+        .column
+          .ui.center.aligned
+            .typcn.typcn-thumbs-up style="font-size: 80px;line-height:80px"
+          h3.ui.center.aligned.header Monetize
+          p.ui.aligned.center Once you set a membership fee, you can grow members by leveraging Goomp's distribution platform. This builds identity and brings lot of traction to your learning group

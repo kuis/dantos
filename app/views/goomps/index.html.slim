@@ -1,0 +1,33 @@
+h1 Listing goomps
+
+table
+  thead
+    tr
+      th Name
+      th Cover
+      th Slug
+      th Price
+      th Description
+      th Memberships count
+      th User
+      th
+      th
+      th
+
+  tbody
+    - @goomps.each do |goomp|
+      tr
+        td = goomp.name
+        td = goomp.cover
+        td = goomp.slug
+        td = goomp.price
+        td = goomp.description
+        td = goomp.memberships_count
+        td = goomp.user
+        td = link_to 'Show', goomp
+        td = link_to 'Edit', edit_goomp_path(goomp)
+        td = link_to 'Destroy', goomp, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Goomp', new_goomp_path

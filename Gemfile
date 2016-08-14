@@ -21,6 +21,8 @@ gem 'meta-tags', github: 'EdwGx/meta-tags'
 gem 'cocoon'
 gem 'skylight'
 
+gem 'semantic-ui-sass'
+
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
@@ -31,6 +33,7 @@ gem 'omniauth-linkedin'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'ffaker'
+  gem 'factory_girl_rails'
 end
 
 group :development do
@@ -50,7 +53,6 @@ group :development do
 end
 
 group :test do
-  gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'webmock'
   gem 'vcr'

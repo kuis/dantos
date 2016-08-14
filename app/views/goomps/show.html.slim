@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @goomp.name
+p
+  strong Cover:
+  = @goomp.cover
+p
+  strong Slug:
+  = @goomp.slug
+p
+  strong Price:
+  = @goomp.price
+p
+  strong Description:
+  = @goomp.description
+p
+  strong Memberships count:
+  = @goomp.memberships_count
+p
+  strong User:
+  = @goomp.user
+
+= link_to 'Edit', edit_goomp_path(@goomp)
+'|
+= link_to 'Back', goomps_path
