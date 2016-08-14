@@ -1,8 +1,8 @@
 .ui.stackable.grid.container
   .two.wide.column
     .ui.secondary.fluid.vertical.menu
-      a.active.item href="/" Home
-      a.item href="/goomps" Goomps
+      = link_to "Home", root_path, class: "item"
+      = link_to "Goomps", goomps_path, class: "item"
   .fourteen.wide.column
     .ui.raised.segments
       .ui.segment

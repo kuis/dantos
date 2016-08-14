@@ -5,14 +5,19 @@
       = render @goomp.subtopics
       .item
         = render "subtopic_form", subtopic: Subtopic.new, goomp: @goomp
-  .twelve.wide.column
-    .ui.segment
-      = @goomp.description
-      / = link "Connect Stripe", to: @stripe_url, class: "ui primary button"
 
-      = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
-    .ui.segments
-      = render @goomp.posts
+  .twelve.wide.column
+    - if @goomp.user == current_user && !@goomp.posts.any?
+      = render "goomp_bot/new_goomp"
+    - else
+      .ui.segment
+        = @goomp.description
+        / = link "Connect Stripe", to: @stripe_url, class: "ui primary button"
+
+        = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
+      .ui.segments
+        = render @goomp.posts
+
   .two.wide.column
     .ui.secondary.fluid.vertical.menu
       a.active.item href="/" Home

@@ -11,11 +11,14 @@ AppView = {
     $(document).on "keyup", "#post_body", @scrapeUrl
     $(document).on "click", ".filepicker", @pickFile
     $(document).on "click", "[data-modal]", @openModal
+    $(document).on "change", "#video-embed", @embedVideo
+    $(document).on "paste", "#video-embed", @embedVideo
     document.addEventListener "turbolinks:before-cache", @preparePageForTurbolinks
 
     @initComponents()
     @initSemanticUI()
     @initChat()
+    @initChatGoomp()
 
   pickFile: (e) ->
     e.preventDefault()
@@ -63,6 +66,78 @@ AppView = {
               prompt : 'Your password must be at least 6 characters'
             }]
     )
+
+  initChatGoomp: (target='#new-goomp-chat') ->
+    if $(target).length > 0
+      name = $(target).data("name")
+      new Chat({
+        greeting: [
+          "Hi #{name}!"
+          'Great work in creating a goomp.'
+          'Take some time to decorate it with a cover photo etc.'
+          'I will guide you through the rest of the set-up. '
+          {
+            type: 'choose',
+            answers: [{
+              'text': "Let's do it",
+              'path': 'video'
+            }]
+          }
+        ],
+
+        video: [
+          'First, let’s create an introductory video so anyone visiting your Goomp page will
+get the preview. ',
+          '<input type="text" id="video-embed" /><div id="video-preview"></div>',
+          {
+            type: 'choose',
+            answers: [{
+              'text': 'I don’t have a video! ',
+              'path': 'companies'
+            },
+            {
+              'text': 'Add',
+              'path': 'write'
+            }]
+          }
+        ],
+
+        write: [
+          'No video?'
+          'Not a problem.'
+          'Let’s publish a detailed introductory post.'
+          'This will be a great chance for you to elaborate details of your group that can be used to promote your Goomp.'
+          # '- <a target="_blank" href="https://medium.com/swlh/the-illusion-of-time-8f321fa2f191">The Illusion of Time</a><br>'+
+          # '- <a target="_blank" href="https://www.smashingmagazine.com/2013/10/smart-transitions-in-user-experience-design/">Smart Transitions in UI Design</a><br>'+
+          # '- <a target="_blank" href="http://azumbrunnen.me/blog/creating-distraction-free-reading-experiences/">Creating distraction-free reading experiences</a><br>',
+          {
+            type: "choose",
+            answers: [{
+              'text': 'What about speaking?',
+              'path': 'speaking'
+            },{
+              'text': 'Let\'s talk!',
+              'path': 'contact'
+            }]
+          }
+        ],
+
+        speaking: [
+          'I love sharing ideas and meeting new people. I occasionally speak at UX conferences about design.',
+          'Just recently, I talked about researching as a freelancer at UX Salon:',
+          '<iframe width="420" height="315" src="https://www.youtube.com/embed/HVr4Cw1BPBc" frameborder="0" allowfullscreen></iframe>',
+          'A great event. If you ever happen to go to Tel-Aviv, make sure you try the Shakshuka! 🍲',
+          {
+            type: "choose",
+            answers: [{
+              'text': 'Cool. Do you work too?',
+              'path': 'companies-realwork'
+            }]
+          }
+        ]
+      }, {
+        targetNode: target
+      })
 
   initChat: (target='#my-chat') ->
     if $(target).length > 0
@@ -292,6 +367,38 @@ AppView = {
     if val == "/images/default-female.png"
       $("#user-avatar").attr("src", url)
       $("#user_picture").val(url)
+
+  embedVideo: (e) ->
+    console.log 'embeding'
+    e.stopPropagation()
+    text = $(e.target).val()
+    url = extractURL(text)
+    youtubeRegex = /(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/
+    vimeoRegex = /([a-z\:\/]*\/\/)(?:www\.)?vimeo\.com\/(?:channels\/[A-Za-z0-9]+\/)?([A-Za-z0-9]+)/
+    loader = """
+      <div class="ui text loader">Loading</div>
+    """
+
+    if url.length > 0
+      youtubeMatch = url.match(youtubeRegex)
+      if youtubeMatch
+        vid = youtubeMatch[youtubeMatch.length-1]
+        console.log youtubeMatch
+        url = """
+          <iframe width="480" height="270" src="https://www.youtube.com/embed/D9_b8W12hpg?feature=oembed" frameborder="0" allowfullscreen></iframe>
+        """
+      else
+        vimeoMatch = url.match(vimeoRegex)
+        vid = vimeoMatch[2]
+        console.log vimeoMatch
+        url = """
+          <iframe src="https://player.vimeo.com/video/#{vid}" width="640" height="360" frameborder="0" title="Valley Of A Thousand Hills" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        """
+        oembed_url = "https://vimeo.com/api/oembed.json?url=#{url}"
+
+      $("#video-preview").html loader
+      $.get oembed_url, (data) ->
+        $("#video-preview").html data.html
 
   scrapeUrl: (e) ->
     e.stopPropagation()

@@ -13,7 +13,15 @@ class GoompsController < ApplicationController
   end
 
   def join
-    Membership.create user: current_user, goomp: goomp
+    membership = Membership.where(user: current_user, goomp: @goomp).first_or_initialize
+
+    if membership.persisted?
+      membership.destroy
+    else
+      membership.save
+    end
+
+    redirect_back fallback_location: @goomp
   end
 
   # GET /goomps/new

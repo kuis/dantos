@@ -4,8 +4,12 @@
       = link_to "Home", root_path, class: "item"
       - @goomps.each do |goomp|
         = link_to goomp.name, goomp, class: "item"
+
   .twelve.wide.column
-    .ui.segment
-      = render "goomps/post_form", action_url: posts_path
-    .ui.segments
-      = render @posts
+    - if @posts.any?
+      .ui.segment
+        = render "goomps/post_form", action_url: posts_path
+      .ui.segments
+        = render @posts
+    - else
+      = render "goomp_bot/new_user"
