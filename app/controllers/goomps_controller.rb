@@ -1,5 +1,5 @@
 class GoompsController < ApplicationController
-  before_action :set_goomp, only: [:show, :edit, :update, :destroy]
+  before_action :set_goomp, only: [:show, :edit, :update, :destroy, :join]
 
   # GET /goomps
   # GET /goomps.json
@@ -10,6 +10,10 @@ class GoompsController < ApplicationController
   # GET /goomps/1
   # GET /goomps/1.json
   def show
+  end
+
+  def join
+    Membership.create user: current_user, goomp: goomp
   end
 
   # GET /goomps/new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160814063210) do
+ActiveRecord::Schema.define(version: 20160814081244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 20160814063210) do
     t.index ["user_id"], name: "index_goomps_on_user_id", using: :btree
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "goomp_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goomp_id", "user_id"], name: "index_memberships_on_goomp_id_and_user_id", unique: true, using: :btree
+    t.index ["goomp_id"], name: "index_memberships_on_goomp_id", using: :btree
+    t.index ["user_id"], name: "index_memberships_on_user_id", using: :btree
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text     "body"
     t.integer  "comments_count"
@@ -115,6 +125,8 @@ ActiveRecord::Schema.define(version: 20160814063210) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "goomps", "users"
+  add_foreign_key "memberships", "goomps"
+  add_foreign_key "memberships", "users"
   add_foreign_key "posts", "goomps"
   add_foreign_key "posts", "subtopics"
   add_foreign_key "posts", "users"

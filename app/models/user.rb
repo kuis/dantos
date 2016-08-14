@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   validates :picture, presence: true
 
+  def joined? goomp
+    Membership.where(user: self, goomp: goomp).exists?
+  end
+
   def self.from_omniauth auth
     authdata = case auth.provider
     when "twitter"

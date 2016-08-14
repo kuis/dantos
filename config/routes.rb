@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :memberships
   root to: "pages#index"
 
   get 'pages/index'
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
     resources :comments, shallow: true
   end
   resources :goomps do
+    post :join, on: :member
     resources :posts, shallow: true
     resources :subtopics, shallow: true
   end

@@ -1,11 +1,10 @@
-- if false
-  = form_tag goomp_path(@conn, :join, @goomp), style: "display: inline", "data-remote": "true" do
-    / script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_ktMbiAhYGulwQ9OsWCSIkdfF6jagV" data-amount="999" data-name="Demo Site" data-description="Widget" data-image="/favicon.ico" data-locale="auto"
-    = if User.following?(@current_user, @goomp) do
-      div class="ui button"
-        span.typcn.typcn-input-checked-outline
-        ' Joined
-    - else
-      div class="ui labeled button"
-        = submit "Join", class: "ui primary button"
-        span class="ui label" $5
+= form_tag join_goomp_path(goomp), style: "display: inline", remote: true do
+  / script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_ktMbiAhYGulwQ9OsWCSIkdfF6jagV" data-amount="999" data-name="Demo Site" data-description="Widget" data-image="/favicon.ico" data-locale="auto"
+  - if current_user.joined?(goomp)
+    div class="ui button"
+      span.typcn.typcn-input-checked-outline
+      ' Joined
+  - else
+    div class="ui labeled button"
+      = submit_tag "Join", class: "ui primary button"
+      span class="ui label" $5
