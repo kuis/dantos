@@ -1,6 +1,6 @@
 .ui.card
-  = link_to goomp, class: "image" do
-    img src="http://semantic-ui.com/images/avatar2/large/kristy.png"
+  - if goomp.cover.present?
+    = link_to image_tag(goomp.cover), goomp, class: "image" do
   .content
     = link_to goomp, class: "header" do
       = goomp.name
@@ -11,7 +11,7 @@
     .description
       p= goomp.description
     .meta.ui
-      span.members-count.left.floated 220 Members
+      span.members-count.left.floated #{goomp.memberships.size} Members
       .right.floated.rating
         | Ratings
         span.ui.star.rating data-rating="3"

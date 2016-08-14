@@ -163,7 +163,7 @@ get the preview. ',
 
         tellmemore: [
           'I feel humbled. 🙂',
-          '<form accept-charset="UTF-8" action="/goomps" class="ui form" method="post"><input name="_csrf_token" type="hidden" value="QVsIEyUncyURU2dFfRowT3hxCDMtAAAA2+jvPhKdI0/72wd554JaBQ=="><input name="_utf8" type="hidden" value="✓"><div class="center aligned field"><div class="center aligned field"><img id="user-avatar" src="/images/default-male.png"></div><a class="filepicker ui primary button" data-dimension="1500,500">Upload Goomp Cover</a><input id="goomp_cover" name="goomp[cover]" type="hidden" value="/images/default-male.png"></div><div class="field"><label for="goomp_name">Name</label><input id="goomp_name" name="goomp[name]" type="text"></div><div class="field"><label for="goomp_description">Description</label><input id="goomp_description" name="goomp[description]" type="text"></div><input class="ui primary button" type="submit" value="Save"></form>',
+          '<form accept-charset="UTF-8" action="/goomps" class="ui form" method="post"><input name="_csrf_token" type="hidden" value="QVsIEyUncyURU2dFfRowT3hxCDMtAAAA2+jvPhKdI0/72wd554JaBQ=="><input name="_utf8" type="hidden" value="✓"><div class="center aligned field"><div class="center aligned field"><img id="user-avatar" src="/assets/default-male.png"></div><a class="filepicker ui primary button" data-dimension="1500,500">Upload Goomp Cover</a><input id="goomp_cover" name="goomp[cover]" type="hidden" value="/images/default-male.png"></div><div class="field"><label for="goomp_name">Name</label><input id="goomp_name" name="goomp[name]" type="text"></div><div class="field"><label for="goomp_description">Description</label><input id="goomp_description" name="goomp[description]" type="text"></div><input class="ui primary button" type="submit" value="Save"></form>',
           {
             type: 'choose',
             answers: [{
@@ -355,16 +355,18 @@ get the preview. ',
       })
 
   setFemaleAvatar: ->
-    url = "/images/default-female.png"
+    console.log 'set female'
+    url = "/assets/default-female.png"
     val = $("#user_picture").val()
-    if val == "/images/default-male.png"
+    if val.indexOf("/assets/default-male") > -1
       $("#user-avatar").attr("src", url)
       $("#user_picture").val(url)
 
   setMaleAvatar: ->
-    url = "/images/default-male.png"
+    console.log 'set male'
+    url = "/assets/default-male.png"
     val = $("#user_picture").val()
-    if val == "/images/default-female.png"
+    if val.indexOf("/assets/default-female") > -1
       $("#user-avatar").attr("src", url)
       $("#user_picture").val(url)
 
@@ -381,24 +383,21 @@ get the preview. ',
 
     if url.length > 0
       youtubeMatch = url.match(youtubeRegex)
-      if youtubeMatch
+      iframe = if youtubeMatch
         vid = youtubeMatch[youtubeMatch.length-1]
         console.log youtubeMatch
-        url = """
+        """
           <iframe width="480" height="270" src="https://www.youtube.com/embed/D9_b8W12hpg?feature=oembed" frameborder="0" allowfullscreen></iframe>
         """
       else
         vimeoMatch = url.match(vimeoRegex)
         vid = vimeoMatch[2]
         console.log vimeoMatch
-        url = """
+        """
           <iframe src="https://player.vimeo.com/video/#{vid}" width="640" height="360" frameborder="0" title="Valley Of A Thousand Hills" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         """
-        oembed_url = "https://vimeo.com/api/oembed.json?url=#{url}"
 
-      $("#video-preview").html loader
-      $.get oembed_url, (data) ->
-        $("#video-preview").html data.html
+      $("#video-preview").html iframe
 
   scrapeUrl: (e) ->
     e.stopPropagation()
@@ -436,6 +435,8 @@ get the preview. ',
   preparePageForTurbolinks: ->
     # Make sure chat board is clear if user go back
     $("#my-chat").html "" if $("#my-chat").length > 0
+    # $(".ui.modals").remove() if $(".ui.modals").length > 0
+    $(".ui.modal").hide()
 }
 
 document.addEventListener "turbolinks:load", ->

@@ -3,6 +3,7 @@ html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title Goomp
+    = render "layouts/meta_tags" if @meta_tags
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     script src="//api.filestackapi.com/filestack.js" type="text/javascript"
@@ -21,5 +22,5 @@ html
     - if @goomp&.persisted?
       = render "layouts/goomp_header"
 
-    .ui.stackable.grid.container style=("margin-top: 20px")
+    .ui.stackable.grid.container style="margin-top: 20px;"
       = yield
