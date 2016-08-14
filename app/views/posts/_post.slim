@@ -24,7 +24,7 @@
     = render post.comments
     .comment
       a.avatar
-        img src="http://semantic-ui.com/images/avatar/small/joe.jpg" /
+        = image_tag current_user.picture
       .content
-        = form_for [post, Comment.new], class: "ui text authorreply form", remote: true do |f|
+        = form_for [post, Comment.new], html: {class: "ui text authorreply form"}, remote: true do |f|
           = f.text_field :body

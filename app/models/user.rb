@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :goomps, dependent: :destroy
   has_many :posts, dependent: :destroy
 
+  validates :picture, presence: true
+
   def self.from_omniauth auth
     authdata = case auth.provider
     when "twitter"

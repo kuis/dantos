@@ -1,8 +1,9 @@
 .row style="max-width: 950px;margin:auto"
   .two.wide.column
     .ui.secondary.fluid.vertical.menu
-      / = link_to "Home", to: root_path, class: "item"
-      / = render @goomps
+      = link_to "Home", root_path, class: "item"
+      - @goomps.each do |goomp|
+        = link_to goomp.name, goomp, class: "item"
   .twelve.wide.column
     .ui.segment
       = render "goomps/post_form", action_url: posts_path
