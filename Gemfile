@@ -20,13 +20,14 @@ gem 'rack-mini-profiler'
 gem 'meta-tags', github: 'EdwGx/meta-tags'
 gem 'cocoon'
 gem 'skylight'
-
+gem 'friendly_id', '~> 5.1.0'
 gem 'semantic-ui-sass'
 
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'omniauth-linkedin'
+gem 'omniauth-linkedin-oauth2'
+gem 'omniauth-oauth2', '~> 1.3.1'
 
 # gem 'bcrypt', '~> 3.1.7'
 

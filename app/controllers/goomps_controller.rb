@@ -24,7 +24,7 @@ class GoompsController < ApplicationController
   # POST /goomps
   # POST /goomps.json
   def create
-    @goomp = Goomp.new(goomp_params)
+    @goomp = current_user.goomps.new(goomp_params)
 
     respond_to do |format|
       if @goomp.save
@@ -64,7 +64,7 @@ class GoompsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_goomp
-      @goomp = Goomp.find(params[:id])
+      @goomp = Goomp.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

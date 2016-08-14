@@ -1,0 +1,30 @@
+.ui.segment.feed
+  .event
+    .label
+      img src="#{post.user.picture}"
+    .content
+      .summary
+        = link post.user.email, to: user_path(@conn, :show, post.user), class: "user"
+        | posted to
+        = link_ post.goomp.name, to: goomp_path(@conn, :show, post.goomp)
+      span.date
+        = post.inserted_at
+        | 4 days ago
+      .extra.text
+        = post.body
+  .ui.fluid.card
+    .image
+      = image_tag current_user.picture, style: "max-height:200px"
+    .content
+      .header Matt Giampietro
+      .meta
+        a Friends
+  .ui.divider
+  .ui.comments
+    = render post.comments
+    .comment
+      a.avatar
+        img src="http://semantic-ui.com/images/avatar/small/joe.jpg" /
+      .content
+        = form_for @comment_changeset, post_comment_path(@conn, :create, post), class: "ui text authorreply form", "data-remote": true do |f|
+          = f.text_field f, :body

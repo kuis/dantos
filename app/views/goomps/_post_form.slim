@@ -1,0 +1,19 @@
+= form_for [goomp, post], class: "ui form" do |f|
+  = f.hidden_field :goomp_id
+
+  = fields_for :link do |ff|
+    = ff.hidden_field :title
+    = ff.hidden_field :description
+    = ff.hidden_field :image
+    = ff.hidden_field :url
+
+  .field
+    = f.text_area :body, placeholder: "Ask a question or share a link", rows: 8
+
+  .field
+    - fields_for :link do |ff|
+      = ff.text_field :url, placeholder: "or share a link"
+
+  .inline.field
+    / = f.select :subtopic_id, Enum.map(@goomp.subtopics, fn(subtopic) -> {subtopic.name, subtopic.id} end), prompt: "Choose Sub Topic.. (Optional)", class: "ui selection dropdown"
+    = f.submit "Submit", class: "ui right floated primary button"

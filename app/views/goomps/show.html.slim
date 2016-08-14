@@ -1,27 +1,19 @@
-p#notice = notice
+.row style="max-width: 950px;margin:auto"
+  .two.wide.column
+    .ui.secondary.fluid.vertical.menu
+      = link_to "Home", @goomp, class: "active item"
+      = render @goomp.subtopics
+      .item
+        = render "subtopic_form", subtopic: Subtopic.new, goomp: @goomp
+  .twelve.wide.column
+    .ui.segment
+      = @goomp.description
+      / = link "Connect Stripe", to: @stripe_url, class: "ui primary button"
 
-p
-  strong Name:
-  = @goomp.name
-p
-  strong Cover:
-  = @goomp.cover
-p
-  strong Slug:
-  = @goomp.slug
-p
-  strong Price:
-  = @goomp.price
-p
-  strong Description:
-  = @goomp.description
-p
-  strong Memberships count:
-  = @goomp.memberships_count
-p
-  strong User:
-  = @goomp.user
-
-= link_to 'Edit', edit_goomp_path(@goomp)
-'|
-= link_to 'Back', goomps_path
+      = render "post_form", post: Post.new, goomp: @goomp
+    .ui.segments
+      = render @goomp.posts
+  .two.wide.column
+    .ui.secondary.fluid.vertical.menu
+      a.active.item href="/" Home
+      a.item href="/goomps" Goomps

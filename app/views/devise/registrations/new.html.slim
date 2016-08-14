@@ -1,0 +1,61 @@
+div class="ui stacked segment" style="width: 100%;max-width: 75%;margin:auto;padding: 51px 224px"
+  = session["devise.oauth_data"]
+  p= resource.inspect
+  = form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui form" } do |f|
+    = devise_error_messages!
+
+    .center.aligned.field
+      .center.aligned.field
+        - if f.object.picture
+          = image_tag f.object.picture, id: "user-avatar"
+        - else
+          = image_tag "default-male.png", id: "user-avatar"
+      a.filepicker.ui.mini.primary.button Change Avatar
+      = f.hidden_field :picture
+
+    .field
+      = f.label :first_name
+      = f.text_field :first_name, placeholder: "First Name"
+
+    .field
+      = f.label :last_name
+      = f.text_field :last_name, placeholder: "Last Name"
+
+    .field
+      = f.label :gender
+      .ui.radio.checkbox
+        = f.radio_button :gender, "male"
+        = f.label :gender, "Male"
+      .ui.radio.checkbox
+        = f.radio_button :gender, "female"
+        = f.label :gender, "Female"
+
+    .field
+      = f.label :headline, "Professional Headline"
+      = f.text_field :headline, placeholder: "Professor @UCSF, Learner, Coder."
+
+    .field
+      = f.label :bio, "Short Bio"
+      = f.text_area :bio, rows: "3", placeholder: "I am a college student majoring in design and business. I am interested in sharing or learning knowledge around these areas. "
+
+    - if resource.email
+      = f.hidden_field :email
+    - else
+      .field
+        = f.label :email, "Primary Email", class: "inline-label"
+        small
+          ' (You will use this to login)
+        = f.text_field :email, placeholder: "Primary Email (Ex: Joe@AppleSeed.com)"
+
+    .field
+      = f.label :password, "Choose Password"
+      = f.password_field :password, placeholder: "***************"
+
+    .field
+      = f.label :password_confirmation, "Confirm Password"
+      = f.password_field :password_confirmation, placeholder: "***************"
+
+    .field
+      = f.submit "Sign Up", class: "ui primary button"
+
+/ = render "devise/shared/links"

@@ -111,6 +111,8 @@ GEM
     ffaker (2.2.0)
     ffi (1.9.14)
     formatador (0.2.5)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     guard (2.14.0)
@@ -194,12 +196,13 @@ GEM
       rack (>= 1.0, < 3)
     omniauth-facebook (4.0.0)
       omniauth-oauth2 (~> 1.2)
-    omniauth-linkedin (0.2.0)
-      omniauth-oauth (~> 1.0)
+    omniauth-linkedin-oauth2 (0.1.5)
+      omniauth (~> 1.0)
+      omniauth-oauth2
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
-    omniauth-oauth2 (1.4.0)
+    omniauth-oauth2 (1.3.1)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     omniauth-twitter (1.2.1)
@@ -332,6 +335,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   ffaker
+  friendly_id (~> 5.1.0)
   guard (>= 2.2.2)
   guard-livereload
   jbuilder (~> 2.5)
@@ -344,7 +348,8 @@ DEPENDENCIES
   mini_magick
   minitest-reporters
   omniauth-facebook
-  omniauth-linkedin
+  omniauth-linkedin-oauth2
+  omniauth-oauth2 (~> 1.3.1)
   omniauth-twitter
   pg (~> 0.18)
   pry-rails

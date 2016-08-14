@@ -1,0 +1,23 @@
+.ui.card
+  = link_to goomp, class: "image" do
+    img src="http://semantic-ui.com/images/avatar2/large/kristy.png"
+  .content
+    = link_to goomp, class: "header" do
+      = goomp.name
+    .meta
+      span.category
+        '  Created by
+        strong = link_to goomp.user.first_name, goomp.user
+    .description
+      p= goomp.description
+    .meta.ui
+      span.members-count.left.floated 220 Members
+      .right.floated.rating
+        | Ratings
+        span.ui.star.rating data-rating="3"
+  .extra.content
+    left.floated.pricing
+      | Subscription:
+      strong Monthly
+    .right.floated.author
+      = render "join_button"

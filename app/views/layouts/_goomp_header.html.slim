@@ -1,0 +1,17 @@
+.goomp-header style="height: 320px;margin-top: 64px"
+  .cover
+    img src=@goomp.cover height=320
+  .info
+    .name
+      = @goomp.name
+      small
+        span.typcn.typcn-group
+        / = @goomp.members_count
+        ' Members
+
+    .action
+      = render "join_button", goomp: @goomp
+      / = @goomp.average_rating
+      span
+        ' Ratings
+        span class="ui star rating" data-rating="3"

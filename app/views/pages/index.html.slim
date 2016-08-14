@@ -10,7 +10,7 @@ div class="ui secondary menu"
 .ui.vertical.inverted.sidebar.menu
   a.active.item href="/"  Home
   - if user_signed_in?
-    = link_to "Sign out", destroy_session_path, method: :delete, class: "item"
+    = link_to "Sign out", destroy_user_session_path, method: :delete, class: "item"
     br
   - else
     = link_to "Create new account", new_user_registration_path, class: "item"

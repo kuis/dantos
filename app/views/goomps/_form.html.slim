@@ -1,4 +1,4 @@
-= form_for @goomp do |f|
+= form_for @goomp, html: { class: "ui form" } do |f|
   - if @goomp.errors.any?
     #error_explanation
       h2 = "#{pluralize(@goomp.errors.count, "error")} prohibited this goomp from being saved:"
@@ -6,25 +6,20 @@
         - @goomp.errors.full_messages.each do |message|
           li = message
 
-  .field
+  div class="center aligned field"
+    div class="center aligned field"
+      - if @goomp.cover
+        = image_tag @goomp.cover, id: "user-avatar"
+
+    a class="filepicker ui primary button" data-dimension="1500,500" Upload Goomp Cover
+    = f.hidden_field :cover
+
+  div class="field"
     = f.label :name
     = f.text_field :name
-  .field
-    = f.label :cover
-    = f.text_field :cover
-  .field
-    = f.label :slug
-    = f.text_field :slug
-  .field
-    = f.label :price
-    = f.text_field :price
-  .field
+
+  div class="field"
     = f.label :description
     = f.text_field :description
-  .field
-    = f.label :memberships_count
-    = f.number_field :memberships_count
-  .field
-    = f.label :user
-    = f.text_field :user
-  .actions = f.submit
+
+  = f.submit "Save", class: "ui primary button"

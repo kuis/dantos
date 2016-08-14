@@ -1,2 +1,14 @@
-h1 Pages#dashboard
-p Find me in app/views/pages/dashboard.html.slim
+.row style="max-width: 950px;margin:auto"
+  .two.wide.column
+    .ui.secondary.fluid.vertical.menu
+      / = link_to "Home", to: root_path, class: "item"
+      / = render @goomps
+  .twelve.wide.column
+    .ui.segment
+      / = render "_post_form.html", changeset: @post_changeset, action: post_path(@conn, :create), goomps: @goomps
+    .ui.segments
+      / = render_many @posts, Fantos.GoompView, "_post.html", conn: @conn, comment_changeset: @comment_changeset, as: :post
+  .two.wide.column
+    .ui.secondary.fluid.vertical.menu
+      a.item href="/" Home
+      a.item href="/goomps" Goomps
