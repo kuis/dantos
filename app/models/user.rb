@@ -4,7 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :goomps, dependent: :destroy
+  has_many :created_goomps, dependent: :destroy, class_name: "Goomp"
+  has_many :memberships, dependent: :destroy
+  has_many :joined_goomps, through: :memberships, class_name: "Goomp", source: :goomp
   has_many :posts, dependent: :destroy
 
   validates :picture, presence: true

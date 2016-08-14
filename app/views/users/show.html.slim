@@ -1,6 +1,15 @@
-p#notice = notice
-
-
-= link_to 'Edit', edit_user_path(@user)
-'|
-= link_to 'Back', users_path
+.ui.stackable.grid.container
+  .two.wide.column
+  .fourteen.wide.column
+    .ui.segments
+      .ui.segment
+        h1 = "#{@user.first_name} #{@user.last_name}"
+        small = @user.headline
+        img src=@user.picture
+      .ui.segment
+        h2 Short Bio
+        = @user.bio
+        h2 Goomps Created
+        = render @user.created_goomps
+        h2 Goomps Joined
+        = render @user.joined_goomps

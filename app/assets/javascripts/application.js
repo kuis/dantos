@@ -15,5 +15,4 @@
 //= require turbolinks
 //= require semantic-ui
 //= require chat
-//= require TimeCircles
 //= require_tree .
