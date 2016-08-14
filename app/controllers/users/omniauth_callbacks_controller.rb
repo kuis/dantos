@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < ApplicationController
 
       if from_omniauth.is_a?(User) && from_omniauth.persisted?
         sign_in_and_redirect from_omniauth, event: :authentication #this will throw if from_omniauth is not activated
-        set_flash_message(:notice, :success, kind: provider) if is_navigational_format?
+        # set_flash_message(:notice, :success, kind: provider) if is_navigational_format?
       else
         session["devise.oauth_data"] = from_omniauth
         redirect_to new_user_registration_url

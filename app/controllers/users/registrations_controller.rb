@@ -17,9 +17,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    authdata = session["devise.oauth_data"]
+
+    super
+
+    if resource.persisted? && authdata
+      resource.authorizations.create!(
+        uid: authdata["uid"],
+        provider: authdata["provider"],
+        token: authdata["token"],
+        refresh_token: authdata["refresh_token"]
+        # expires_at: authdata["expires_at"],
+      )
+    end
+  end
 
   # GET /resource/edit
   # def edit
