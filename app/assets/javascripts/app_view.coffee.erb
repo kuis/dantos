@@ -19,6 +19,7 @@ AppView = {
     @initSemanticUI()
     @initChat()
     @initChatGoomp()
+    @initEditor()
 
   pickFile: (e) ->
     e.preventDefault()
@@ -437,6 +438,12 @@ get the preview. ',
     $("#my-chat").html "" if $("#my-chat").length > 0
     # $(".ui.modals").remove() if $(".ui.modals").length > 0
     $(".ui.modal").hide()
+
+  initEditor: ->
+    editor = new MediumEditor('.editable')
+    $('.editable').mediumInsert(
+      editor: editor
+    )
 }
 
 document.addEventListener "turbolinks:load", ->

@@ -7,8 +7,7 @@
     = ff.hidden_field :image
     = ff.hidden_field :url
 
-  .field
-    = f.text_area :body, placeholder: "Ask a question or share a link", rows: 8
+  = f.text_area :body, placeholder: "Ask a question or share a link", rows: 8, class: "editable"
 
   .field
     - fields_for :link do |ff|

@@ -3,12 +3,17 @@ html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title Goomp
+
     = render "layouts/meta_tags" if @meta_tags
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+
     script src="//api.filestackapi.com/filestack.js" type="text/javascript"
 
+    link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
   body
     .ui.borderless.fixed.menu
       a.header.item href="/"
@@ -22,5 +27,5 @@ html
     - if @goomp&.persisted?
       = render "layouts/goomp_header"
 
-    .ui.stackable.grid.container style="margin-top: 20px;"
+    .ui.stackable.grid.container style="margin-top: 63px;"
       = yield

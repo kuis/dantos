@@ -15,4 +15,15 @@
 //= require turbolinks
 //= require semantic-ui
 //= require chat
+
+//= require medium-editor
+//= require handlebars.runtime.min
+//= require jquery-sortable-min
+//= require jquery.ui.widget
+//= require jquery.iframe-transport
+//= require jquery.fileupload
+//= require medium-editor-insert-plugin.min
+
+// require autofocus
+
 //= require_tree .

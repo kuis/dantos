@@ -11,6 +11,14 @@
  * It is generally better to create a new file per style scope.
  *
  *= require semantic_ui
- *= require_tree .
+ *= require medium-editor.min
+ *= require default
+ *= require medium-editor-insert-plugin.min
+
+ *= require chat
+ *= require app
+ *= require countdown_overrides
+ *= require posts
+
  *= require_self
  */
