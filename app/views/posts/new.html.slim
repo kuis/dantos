@@ -1,19 +1,28 @@
-= form_for Post.new, html: { clxass: "ui form" } do |f|
-  = f.hidden_field :goomp_id
+.ui.secondary.fixed.menu
+  a.header.item href="/"
+    = image_tag "logo.png", alt: "Goomp", class: "ui"
+  .right.menu
+    .item
+      = link_to "Publish", "#", class: "ui button"
 
-  = fields_for :link do |ff|
-    = ff.hidden_field :title
-    = ff.hidden_field :description
-    = ff.hidden_field :image
-    = ff.hidden_field :url
+.ui.stackable.grid.container style="margin-top: 63px;"
+  = form_for Post.new, html: { clxass: "ui form" } do |f|
+    = f.hidden_field :goomp_id
 
-  = current_user.avatar
-  = f.text_field :title, placeholder: "Give me a name"
-  = f.text_area :body, class: "editable"
+    = fields_for :link do |ff|
+      = ff.hidden_field :title
+      = ff.hidden_field :description
+      = ff.hidden_field :image
+      = ff.hidden_field :url
 
-  .inline.field
-    - if assigns[:goomp]
-      = f.collection_select :subtopic_id, goomp.subtopics, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
-    - else
-      = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
-    = f.submit "Submit", class: "ui right floated primary button"
+    = current_user.avatar
+    = f.text_field :title, placeholder: "Give me a name"
+    = f.text_area :body, class: "editable"
+
+    .inline.field
+      - if assigns[:goomp]
+        = f.collection_select :subtopic_id, goomp.subtopics, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
+      - else
+        = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
+      = f.submit "Submit", class: "ui right floated primary button", data: {modal: "social-buttons-modal"}
+      = render "pages/social_buttons_modal", modal_id: "social-buttons-modal"

@@ -1,9 +1,8 @@
 .ui.card
   - if goomp.cover.present?
-    = link_to image_tag(goomp.cover), goomp, class: "image" do
+    = link_to image_tag(goomp.cover), goomp, class: "image"
   .content
-    = link_to goomp, class: "header" do
-      = goomp.name
+    = link_to goomp.name, goomp, class: "header"
     .meta
       span.category
         '  Created by
