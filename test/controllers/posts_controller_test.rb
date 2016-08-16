@@ -2,7 +2,8 @@ require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @post = posts(:one)
+    @post = FactoryGirl.create :post
+    sign_in FactoryGirl.create(:user)
   end
 
   test "should get index" do
@@ -17,7 +18,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference('Post.count') do
-      post posts_url, params: { post: { body: @post.body, comments_count: @post.comments_count, goomp_id: @post.goomp_id, subtopic_id: @post.subtopic_id, user_id: @post.user_id } }
+      post posts_url, params: { post: { body: @post.body, goomp_id: @post.goomp_id } }
     end
 
     assert_redirected_to post_url(Post.last)

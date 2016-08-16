@@ -91,16 +91,16 @@ AppView = {
         video: [
           'First, let’s create an introductory video so anyone visiting your Goomp page will
 get the preview. ',
-          '<input type="text" id="video-embed" /><div id="video-preview"></div>',
+          """
+            <input type="text" name="post[body]" id="video-embed" />
+            <div id="video-preview"></div>
+            <input type="submit" value="Add" class="ui input"></div>
+          """,
           {
             type: 'choose',
             answers: [{
               'text': 'I don’t have a video! ',
               'path': 'companies'
-            },
-            {
-              'text': 'Add',
-              'path': 'write'
             }]
           }
         ],

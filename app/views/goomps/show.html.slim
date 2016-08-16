@@ -9,7 +9,8 @@
   .twelve.wide.column
     - if @goomp.user == current_user && !@goomp.posts.any?
       = @goomp.description
-      = render "goomp_bot/new_goomp"
+      = form_for [@goomp, Post.new] do |f|
+        = render "goomp_bot/new_goomp"
     - else
       .ui.segment
         / = link "Connect Stripe", to: @stripe_url, class: "ui primary button"

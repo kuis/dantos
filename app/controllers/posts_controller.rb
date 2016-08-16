@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.new(post_params)
+    @post.goomp = Goomp.friendly.find params[:goomp_id] if params[:goomp_id].present?
 
     respond_to do |format|
       if @post.save
