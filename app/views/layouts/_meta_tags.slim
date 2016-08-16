@@ -1,31 +1,15 @@
-- if @meta_tags[:title]
-  title = @meta_tags[:title]
-  = content_tag :meta, nil, content: @meta_tags[:title], name: "twitter:title"
-  = content_tag :meta, nil, content: @meta_tags[:title], property: "og:title"
-- else
-  title Goomp
-  = content_tag :meta, nil, content: "Goomp", name: "twitter:image:src"
-  = content_tag :meta, nil, content: "Goomp", property: "og:image"
+title = @meta_tags[:title]
+= content_tag :meta, nil, content: @meta_tags[:title], name: "twitter:title"
+= content_tag :meta, nil, content: @meta_tags[:title], property: "og:title"
 
-- if @meta_tags[:description]
-  = content_tag :meta, nil, content: @meta_tags[:description].truncate(60), name: "description"
-  = content_tag :meta, nil, content: @meta_tags[:description].truncate(60), name: "twitter:description"
-  = content_tag :meta, nil, content: @meta_tags[:description].truncate(60), property: "og:description"
-else
-  = content_tag :meta, nil, content: "Goomp is an exclusive member only group where creators share network, mentorship and premium content for free or a membership fee", name: "description"
-  = content_tag :meta, nil, content: "Goomp is an exclusive member only group where creators share network, mentorship and premium content for free or a membership fee", name: "twitter:description"
-  = content_tag :meta, nil, content: "Goomp is an exclusive member only group where creators share network, mentorship and premium content for free or a membership fee", property: "og:description"
-end
+= content_tag :meta, nil, content: @meta_tags[:description].truncate(60), name: "description"
+= content_tag :meta, nil, content: @meta_tags[:description].truncate(60), name: "twitter:description"
+= content_tag :meta, nil, content: @meta_tags[:description].truncate(60), property: "og:description"
 
-- if @meta_tags[:image]
-  = content_tag :meta, nil, content: @meta_tags[:image], name: "twitter:image:src"
-  = content_tag :meta, nil, content: @meta_tags[:image], property: "og:image"
-- else
-  = content_tag :meta, nil, content: image_url("logo-v.png"), name: "twitter:image:src"
-  = content_tag :meta, nil, content: image_url("logo-v.png"), property: "og:image"
+= content_tag :meta, nil, content: @meta_tags[:image], name: "twitter:image:src"
+= content_tag :meta, nil, content: @meta_tags[:image], property: "og:image"
 
-- if @meta_tags[:url]
-  = content_tag :meta, nil, content: @meta_tags[:url], property: "og:url"
+= content_tag :meta, nil, content: @meta_tags[:og][:url], property: "og:url"
 
 = content_tag :meta, nil, content: "@goomp", name: "twitter:site"
 = content_tag :meta, nil, content: "summary", name: "twitter:card"

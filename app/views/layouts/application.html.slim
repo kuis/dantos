@@ -2,10 +2,9 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title Goomp
 
-    = render "layouts/meta_tags" if @meta_tags
     = csrf_meta_tags
+    = display_meta_tags site: 'Goomp', reverse: true
 
     script src="//api.filestackapi.com/filestack.js" type="text/javascript"
 

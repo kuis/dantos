@@ -10,12 +10,14 @@ class GoompsController < ApplicationController
   # GET /goomps/1
   # GET /goomps/1.json
   def show
-    @meta_tags = {
+    set_meta_tags(
       title: @goomp.name,
       description: @goomp.description,
-      image: @goomp.cover,
+      og: {
+        image: @goomp.cover
+      },
       url: goomp_url(@goomp)
-    }
+    )
   end
 
   def join
