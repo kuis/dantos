@@ -5,11 +5,11 @@
     .content
       .summary
         = link_to post.user.first_name, post.user, class: "user"
-        |  posted to
+        '  posted to
         = link_to post.goomp.name, post.goomp
       span.date
         = time_ago_in_words post.created_at
-        | ago
+        '  ago
       .extra.text
         = post.body
   .ui.fluid.card

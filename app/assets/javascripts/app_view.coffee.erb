@@ -39,9 +39,10 @@ AppView = {
   openModal: (e) ->
     e.preventDefault()
     modal_id = $(this).data('modal')
-    $("[data-modal-id=#{modal_id}]").modal('show',
+    $("[data-modal-id=#{modal_id}]").modal(
       detachable: false
     )
+    $("[data-modal-id=#{modal_id}]").modal('show')
 
   initSemanticUI: ->
     $('.ui.sidebar').sidebar('attach events', '.sidebar-toggle')
@@ -442,7 +443,11 @@ get the preview. ',
     $(".ui.modal").hide()
 
   initEditor: ->
-    editor = new MediumEditor('.editable')
+    editor = new MediumEditor('.editable',
+      placeholder:
+        text: 'Type your text'
+        hideOnClick: false
+    )
     $('.editable').mediumInsert(
       editor: editor
     )

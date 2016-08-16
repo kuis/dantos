@@ -3,9 +3,9 @@
     = image_tag "logo.png", alt: "Goomp", class: "ui"
   .right.menu
     .item
-      = link_to "Publish", "#", class: "ui button"
+      a.ui.button data-modal="post-modal" Publish
 
-.ui.stackable.grid.container style="margin-top: 63px;"
+.ui.container style="margin-top: 63px;"
   = form_for Post.new, html: { clxass: "ui form" } do |f|
     = f.hidden_field :goomp_id
 
@@ -19,10 +19,4 @@
     = f.text_field :title, placeholder: "Give me a name"
     = f.text_area :body, class: "editable"
 
-    .inline.field
-      - if assigns[:goomp]
-        = f.collection_select :subtopic_id, goomp.subtopics, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
-      - else
-        = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
-      = f.submit "Submit", class: "ui right floated primary button", data: {modal: "social-buttons-modal"}
-      = render "pages/social_buttons_modal", modal_id: "social-buttons-modal"
+    = render "submit_modal", modal_id: "post-modal", f: f

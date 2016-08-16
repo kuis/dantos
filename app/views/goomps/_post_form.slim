@@ -1,4 +1,4 @@
-= form_for Post.new, url: action_url, html: { class: "ui form" } do |f|
+= form_for Post.new, url: action_url, html: { class: "ui form" }, remote: true do |f|
   = f.hidden_field :goomp_id
 
   = fields_for :link do |ff|
@@ -6,6 +6,11 @@
     = ff.hidden_field :description
     = ff.hidden_field :image
     = ff.hidden_field :url
+
+  .ui.compact.secondary.pointing.menu
+    = link_to new_post_path, class: "item" do
+      i.gamepad.icon
+      ' Write story
 
   = f.text_area :body, placeholder: "Ask a question or share a link", rows: 8
 

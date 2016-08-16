@@ -1,0 +1,8 @@
+.ui.small.modal data-modal-id=modal_id
+  h1.ui.center.aligned.header Share your post
+  .content
+    .ui.two.column.middle.aligned.very.relaxed.stackable.grid
+      .center.aligned.column
+        = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Goomp"}, {class: "ui selection dropdown"}
+        / = f.collection_select :subtopic_id, goomp.subtopics, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
+        = f.submit "Publish"
