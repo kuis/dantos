@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_goomp, only: [:new]
   before_action :authenticate_user!
 
   # GET /posts
@@ -68,6 +69,10 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    def set_goomp
+      @goomp = Goomp.friendly.find(params[:goomp_id]) if params[:goomp_id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

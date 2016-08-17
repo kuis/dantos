@@ -1,6 +1,8 @@
 .ui.secondary.fixed.menu
-  a.header.item href="/"
-    = image_tag "logo.png", alt: "Goomp", class: "ui"
+  - if @goomp
+    = link_to image_tag("logo.png", alt: "Goomp", class: "ui"), goomp_path(@goomp), class: "header item"
+  - else
+    = link_to image_tag("logo.png", alt: "Goomp", class: "ui"), root_path, class: "header item"
   .right.menu
     .item
       a.ui.button data-modal="post-modal" Publish

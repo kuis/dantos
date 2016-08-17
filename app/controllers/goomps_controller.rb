@@ -10,6 +10,9 @@ class GoompsController < ApplicationController
   # GET /goomps/1
   # GET /goomps/1.json
   def show
+    @subtopics = @goomp.subtopics
+    @posts = @goomp.posts.order(created_at: :desc)
+
     set_meta_tags(
       title: @goomp.name,
       description: @goomp.description,

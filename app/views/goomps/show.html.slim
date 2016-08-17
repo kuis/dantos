@@ -2,12 +2,12 @@
   .two.wide.column
     .ui.secondary.fluid.vertical.menu
       = link_to "Home", @goomp, class: "active item"
-      = render @goomp.subtopics
+      = render @subtopics
       .item
         = render "subtopic_form", subtopic: Subtopic.new, goomp: @goomp
 
   .twelve.wide.column
-    - if @goomp.user == current_user && !@goomp.posts.any?
+    - if @goomp.user == current_user && !@posts.any?
       = @goomp.description
       = form_for [@goomp, Post.new] do |f|
         = render "goomp_bot/new_goomp"
@@ -17,7 +17,7 @@
 
         = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
       .ui.segments
-        = render @goomp.posts
+        = render @posts
 
   .two.wide.column
     .ui.secondary.fluid.vertical.menu

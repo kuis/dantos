@@ -8,9 +8,14 @@
     = ff.hidden_field :url
 
   .ui.compact.secondary.pointing.menu
-    = link_to new_post_path, class: "item" do
-      i.gamepad.icon
-      ' Write story
+    - if assigns["goomp"]
+      = link_to new_goomp_post_path(goomp), class: "item" do
+        i.gamepad.icon
+        ' Write story
+    - else
+      = link_to new_post_path, class: "item" do
+        i.gamepad.icon
+        ' Write story
 
   = f.text_area :body, placeholder: "Ask a question or share a link", rows: 8
 
@@ -19,8 +24,8 @@
       = ff.text_field :url, placeholder: "or share a link"
 
   .inline.field
-    - if assigns[:goomp]
-      = f.collection_select :subtopic_id, goomp.subtopics, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
+    - if assigns["goomp"]
+      = f.collection_select :subtopic_id, goomp.subtopics, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown", "tabindex" => -1}
     - else
-      = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown"}
-    = f.submit "Submit", class: "ui right floated primary button"
+      = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown", "tabindex" => -1}
+    = f.submit "Publish", class: "ui right floated primary button"
