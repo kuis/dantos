@@ -81,7 +81,11 @@ class PostsController < ApplicationController
         :title,
         :body,
         :goomp_id,
-        :subtopic_id
+        :subtopic_id,
+        :link_title,
+        :link_description,
+        :link_image,
+        :link_url,
       )
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816225255) do
+ActiveRecord::Schema.define(version: 20160817010358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,10 +91,14 @@ ActiveRecord::Schema.define(version: 20160816225255) do
     t.integer  "goomp_id"
     t.integer  "user_id"
     t.integer  "subtopic_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "title"
-    t.integer  "likes_count",    default: 0
+    t.integer  "likes_count",      default: 0
+    t.string   "link_title"
+    t.string   "link_url"
+    t.string   "link_image"
+    t.string   "link_description"
     t.index ["goomp_id"], name: "index_posts_on_goomp_id", using: :btree
     t.index ["subtopic_id"], name: "index_posts_on_subtopic_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree

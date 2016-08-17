@@ -1,11 +1,11 @@
 = form_for Post.new, url: action_url, html: { class: "ui form" }, remote: true do |f|
+
   = f.hidden_field :goomp_id
 
-  = fields_for :link do |ff|
-    = ff.hidden_field :title
-    = ff.hidden_field :description
-    = ff.hidden_field :image
-    = ff.hidden_field :url
+  = f.hidden_field :link_title
+  = f.hidden_field :link_description
+  = f.hidden_field :link_image
+  = f.hidden_field :link_url
 
   .ui.compact.secondary.pointing.menu
     - if assigns["goomp"]
@@ -29,3 +29,5 @@
     - else
       = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown", "tabindex" => -1}
     = f.submit "Publish", class: "ui right floated primary button"
+
+#link-card

@@ -11,14 +11,11 @@
         = time_ago_in_words post.created_at
         '  ago
       .extra.text
-        = post.body
-  .ui.fluid.card
-    .image
-      = image_tag current_user.picture, style: "max-height:200px"
-    .content
-      .header Matt Giampietro
-      .meta
-        a Friends
+        = truncate_body_link post.body
+
+  - if post.link_url
+    = render "posts/post_card", title: post.link_title, description: post.link_description, image: post.link_image, url: post.link_url
+
   .ui.divider
   .ui.comments
     = render post.comments

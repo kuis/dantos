@@ -32,8 +32,8 @@ gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-oauth2', '~> 1.3.1'
 
 gem 'newrelic_rpm'
-
-# gem 'bcrypt', '~> 3.1.7'
+gem 'rinku'
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -55,6 +55,9 @@ group :development do
   gem 'rack-livereload'
   gem "guard", ">= 2.2.2"
   gem 'guard-livereload'
+  gem 'guard-minitest'
+  gem 'terminal-notifier'
+  gem 'terminal-notifier-guard'
 end
 
 group :test do

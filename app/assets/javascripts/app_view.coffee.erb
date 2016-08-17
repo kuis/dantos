@@ -8,7 +8,7 @@ AppView = {
   initialize: ->
     $(document).on "change", "#user_gender_female", @setFemaleAvatar
     $(document).on "change", "#user_gender_male", @setMaleAvatar
-    $(document).on "keyup", "#post_body", @scrapeUrl
+    $(document).on "input", "#post_body", @scrapeUrl
     $(document).on "click", ".filepicker", @pickFile
     $(document).on "click", "[data-modal]", @openModal
     $(document).on "change", "#video-embed", @embedVideo
@@ -405,33 +405,35 @@ get the preview. ',
 
   scrapeUrl: (e) ->
     e.stopPropagation()
-    text = $("#post_body").val()
     $form = $("#post_body").parents("form")
 
-    url = extractURL(text)
+    unless $("#post_link_url", $form).val().length > 0
+      text = $("#post_body").val()
 
-    if url.length > 0
-      text = text.replace(url, '')
-      $("#post_body").val(text)
-      csrf = $("input[name=_csrf_token]").val()
-      $.ajax(
-        url: "/scrapes"
-        type: "post"
-        data:
-          url: url
-        headers:
-          "X-CSRF-TOKEN": csrf
-        dataType: "json",
-        success: (resp) ->
-          link = resp.data
-          console.log 'suc', link
-          $("#post_link_title", $form).val link.title
-          $("#post_link_description", $form).val link.description
-          $("#post_link_url", $form).val link.url
-        error: (resp) ->
-          link = resp.data
-          console.log 'err', link
-      )
+      url = extractURL(text)
+      $("#post_link_url", $form).val url
+
+      if url.length > 0
+        # text = text.replace(url, '')
+        # $("#post_body").val(text)
+        # csrf = $("input[name=_csrf_token]").val()
+        $.ajax(
+          url: "/scrapes.json"
+          type: "post"
+          data:
+            url: url
+          # headers:
+          #   "X-CSRF-TOKEN": csrf
+          # dataType: "json",
+          success: (link) ->
+            $("#post_link_title", $form).val link.title
+            $("#post_link_image", $form).val link.image
+            $("#post_link_description", $form).val link.description
+            $("#link-card").html link.card
+          error: (resp) ->
+            link = resp.data
+            console.log 'err', link
+        )
 
   initComponents: ->
     filepicker?.setKey("Akt6oZj2YRamLQYtKyrhzz")
