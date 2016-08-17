@@ -1,25 +1,26 @@
-.row style="max-width: 950px;margin:auto"
-  .two.wide.column
-    .ui.secondary.fluid.vertical.menu
-      = link_to "Home", @goomp, class: "active item"
-      = render @subtopics
-      .item
-        = render "subtopic_form", subtopic: Subtopic.new, goomp: @goomp
+.left.sidebar
+  .ui.secondary.fluid.vertical.menu
+    = link_to "Home", @goomp, class: "active item"
+    = render @subtopics
 
-  .twelve.wide.column
-    - if @goomp.user == current_user && !@posts.any?
-      = @goomp.description
-      = form_for [@goomp, Post.new] do |f|
-        = render "goomp_bot/new_goomp"
-    - else
-      .ui.segment
-        / = link "Connect Stripe", to: @stripe_url, class: "ui primary button"
+  .ui.text.fluid.vertical.menu
+    a.item Add Sub Topic
+    / = render "subtopic_form", subtopic: Subtopic.new, goomp: @goomp
 
-        = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
-      .ui.segments
-        = render @posts
+.right.sidebar
+  .ui.text.fluid.vertical.menu
+    a.item href="/" Write a review
+    a.item href="/goomps" Invite Members
 
-  .two.wide.column
-    .ui.secondary.fluid.vertical.menu
-      a.active.item href="/" Home
-      a.item href="/goomps" Goomps
+.main
+  - if @goomp.user == current_user && !@posts.any?
+    = @goomp.description
+    = form_for [@goomp, Post.new] do |f|
+      = render "goomp_bot/new_goomp"
+  - else
+    .ui.segment
+      = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
+
+    .ui.segments
+      = render @posts
+

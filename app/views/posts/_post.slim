@@ -4,14 +4,14 @@
       img src="#{post.user.picture}"
     .content
       .summary
-        = link_to post.user.first_name, post.user, class: "user"
+        = link_to post.user.full_name, post.user, class: "user"
         '  posted to
-        = link_to post.goomp.name, post.goomp
+        = link_to post.goomp.name, post.goomp, class: "goomp-primary"
       span.date
         = time_ago_in_words post.created_at
         '  ago
-      .extra.text
-        = truncate_body_link post.body
+  .extra.text
+    = truncate_body_link post.body
 
   - if post.link_url
     = render "posts/post_card", title: post.link_title, description: post.link_description, image: post.link_image, url: post.link_url

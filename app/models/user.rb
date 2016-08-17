@@ -11,7 +11,11 @@ class User < ApplicationRecord
   has_many :joined_goomps, through: :memberships, class_name: "Goomp", source: :goomp
   has_many :posts_from_joined_goomps, through: :joined_goomps, source: :posts
 
-  validates :picture, presence: true
+  validates :first_name, :last_name, :picture, presence: true
+
+  def full_name
+    [first_name, last_name].join(' ')
+  end
 
   def joined? goomp
     Membership.where(user: self, goomp: goomp).exists?
