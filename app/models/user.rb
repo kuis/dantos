@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :picture, presence: true
 
+  def is_founder_of? goomp
+    goomp.user == self
+  end
+
   def full_name
     [first_name, last_name].join(' ')
   end

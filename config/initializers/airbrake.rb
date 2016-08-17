@@ -12,6 +12,8 @@ Airbrake.configure do |c|
   # project_key navigate to your project's General Settings and copy the values
   # from the right sidebar.
   # https://github.com/airbrake/airbrake-ruby#project_id--project_key
+
+  c.host = 'https://fantos-errbit.herokuapp.com'
   c.project_id = Rails.application.secrets.airbrake_project_id
   c.project_key = Rails.application.secrets.airbrake_api_key
 

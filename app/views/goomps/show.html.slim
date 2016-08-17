@@ -4,7 +4,8 @@
     = render @subtopics
 
   .ui.text.fluid.vertical.menu
-    a.item Add Sub Topic
+    - if current_user.is_founder_of?(@goomp)
+      a.item Add Sub Topic
     / = render "subtopic_form", subtopic: Subtopic.new, goomp: @goomp
 
 .right.sidebar
