@@ -10,6 +10,7 @@ class GoompsController < ApplicationController
   # GET /goomps/1
   # GET /goomps/1.json
   def show
+    sleep 3
     @subtopics = @goomp.subtopics
     @posts = @goomp.posts.order(created_at: :desc)
 

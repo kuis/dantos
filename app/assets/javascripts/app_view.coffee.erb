@@ -14,6 +14,7 @@ AppView = {
     $(document).on "change", "#video-embed", @embedVideo
     $(document).on "paste", "#video-embed", @embedVideo
     document.addEventListener "turbolinks:before-cache", @preparePageForTurbolinks
+    $(document).on "submit", 'form[method="get"][data-remote="true"]', @remoteSubmitGetForm
 
     @initComponents()
     @initSemanticUI()
@@ -443,6 +444,11 @@ get the preview. ',
     $("#my-chat").html "" if $("#my-chat").length > 0
     # $(".ui.modals").remove() if $(".ui.modals").length > 0
     $(".ui.modal").hide()
+
+  remoteSubmitGetForm: (e) ->
+    separator = if this.action.indexOf('?') == -1 then '?' else '&'
+    Turbolinks.visit(this.action+separator+$(this).serialize())
+    return false
 
   initEditor: ->
     editor = new MediumEditor('.editable',
