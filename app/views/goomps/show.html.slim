@@ -15,7 +15,7 @@
     a.item href="/" Write a review
     a.item href="/goomps" Invite Members
 
-.main.js-infinite
+.main
   - if @goomp.user == current_user && !@posts.any?
     = @goomp.description
     = form_for [@goomp, Post.new] do |f|

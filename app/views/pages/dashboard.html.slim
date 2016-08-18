@@ -1,10 +1,10 @@
-.row style="max-width: 950px;margin:auto"
-  .two.wide.column
-    .ui.secondary.fluid.vertical.menu
-      = link_to "Home", root_path, class: "item"
-      - @goomps.each do |goomp|
-        = link_to goomp.name, goomp, class: "item"
+.sidebar.sidebar--left
+  .ui.secondary.fluid.vertical.menu
+    = link_to "Home", root_path, class: "item"
+    - @goomps.each do |goomp|
+      = link_to goomp.name, goomp, class: "item"
 
+.main
   .twelve.wide.column
     - if @goomps.any?
       .ui.segment
