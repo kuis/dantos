@@ -1,4 +1,4 @@
-.left.sidebar
+.sidebar.sidebar--left
   .ui.secondary.fluid.vertical.menu
     = link_to "Home", @goomp, class: "active item"
     = render @subtopics
@@ -8,7 +8,7 @@
       a.item Add Sub Topic
     / = render "subtopic_form", subtopic: Subtopic.new, goomp: @goomp
 
-.right.sidebar
+.sidebar.sidebar--right
   .ui.text.fluid.vertical.menu
     a.item href="/" Write a review
     a.item href="/goomps" Invite Members

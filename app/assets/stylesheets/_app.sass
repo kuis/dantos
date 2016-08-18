@@ -1,22 +1,6 @@
-/* This file is for your main application css. */
-$twitter_color: #55acee
-$linkedin_color: #0077b5
-$facebook_color: #3b5998
-$primary-color: #1CB5AC
-$dark-font-color: #888
-
-$sidebar-width: 124px
-$main-content-width: 660px
-
 .site-container
   width: $main-content-width + 2 * $sidebar-width + 40px
   margin: 62px auto 0 auto
-
-  .left.sidebar
-    float: left
-    width: $sidebar-width
-    padding: 0
-    text-align: center
 
   .main
     .ui.segment
@@ -27,12 +11,6 @@ $main-content-width: 660px
     padding: 0
     margin: 0 auto
 
-  .right.sidebar
-    float: right
-    width: $sidebar-width
-    padding: 0
-    text-align: center
-
 .ui.aligned.center
   text-align: center
 
@@ -41,7 +19,6 @@ $main-content-width: 660px
   line-height: 1.1em
   margin-top: 1.5em
   margin-bottom: 0.75em
-
 
 .ui.header.center.pitch
   font-weight: bold
@@ -66,7 +43,6 @@ $main-content-width: 660px
 .about-content h2 .content, .feature-content h2 .content
   font-size: 1.3em
   margin-bottom: 1em
-
 
 .about-content
   background: #fff
@@ -130,10 +106,6 @@ $main-content-width: 660px
 
 .ui.icon.header
   display: block
-
-
-body
-  background-color: #fafafa
 
 .ui.feed > .event > .content
   .summary
@@ -221,29 +193,27 @@ body
 .footer.segment
   padding: 5em 0em
 
-
 .menu.bar
   padding: 2em 0
 
+// @media only screen and (max-width 700px)
+//   .ui.fixed.menu
+//     display: none !important
 
-@media only screen and (max-width 700px)
-  .ui.fixed.menu
-    display: none !important
+//   .secondary.pointing.menu .item,
+//   .secondary.pointing.menu .menu
+//     display: none
 
-  .secondary.pointing.menu .item,
-  .secondary.pointing.menu .menu
-    display: none
+//   .masthead.segment
+//     min-height: 350px
 
-  .masthead.segment
-    min-height: 350px
+//   .masthead h1.ui.header
+//     font-size: 2em
+//     margin-top: 1.5em
 
-  .masthead h1.ui.header
-    font-size: 2em
-    margin-top: 1.5em
-
-  .masthead h2
-    margin-top: 0.5em
-    font-size: 1.5em
+//   .masthead h2
+//     margin-top: 0.5em
+//     font-size: 1.5em
 
 .ui.radio.checkbox
   margin-right: 19px

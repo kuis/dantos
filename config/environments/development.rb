@@ -52,4 +52,8 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+
+  # For sassc-rails
+  config.sass.inline_source_maps = true
+  config.sass.line_comments = false
 end

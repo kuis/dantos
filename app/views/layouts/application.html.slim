@@ -19,6 +19,10 @@ html
         = image_tag "logo.png", alt: "Goomp", class: "ui"
       .right.menu
         .item
+          = image_tag "logo.png", alt: "Goomp", class: "ui"
+
+        .item
+
           - if user_signed_in?
             - link_to "Create Goomp", new_goomp_path, class: "ui button"
             = link_to "Sign out", destroy_user_session_path, method: :delete, class: "ui button"
