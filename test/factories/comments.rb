@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :comment do
-    body "MyString"
-    post nil
-    user nil
+    body { Faker::Lorem.sentence }
+    post
+    user
   end
 end

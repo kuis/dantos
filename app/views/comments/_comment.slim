@@ -1,0 +1,12 @@
+.comment
+  a.avatar
+    img src="<%= comment.user.picture %>"
+
+  .content
+    a.author = comment.user.email
+    div class="metadata"
+      span class="date" = comment.created_at
+    div class="text"
+      = comment.body
+    div class="actions"
+      a class="reply" Like
