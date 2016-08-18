@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :goomp do
-    name "MyString"
-    cover "MyString"
-    description "MyString"
+    name { Faker::Commerce.product_name }
+    cover { Faker::Placeholdit.image }
+    description { Faker::Lorem.paragraph }
     user
   end
 end

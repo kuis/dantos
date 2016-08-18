@@ -13,14 +13,25 @@ AppView = {
     $(document).on "click", "[data-modal]", @openModal
     $(document).on "change", "#video-embed", @embedVideo
     $(document).on "paste", "#video-embed", @embedVideo
-    document.addEventListener "turbolinks:before-cache", @preparePageForTurbolinks
     $(document).on "submit", 'form[method="get"][data-remote="true"]', @remoteSubmitGetForm
+    $(document).on "click", "[data-toggler]", @toggleToggler
+
+    document.addEventListener "turbolinks:before-cache", @preparePageForTurbolinks
 
     @initComponents()
     @initSemanticUI()
     @initChat()
     @initChatGoomp()
     @initEditor()
+
+  toggleToggler: (e) ->
+    console.log 'why'
+    e.preventDefault()
+    toggler_id = $(e.target).data("toggler")
+    console.log toggler_id
+    $(e.target).remove()
+    $("[data-toggle-id=#{toggler_id}]").show()
+    $("[data-toggle-id=#{toggler_id}] input").focus()
 
   pickFile: (e) ->
     e.preventDefault()

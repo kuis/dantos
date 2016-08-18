@@ -1,5 +1,5 @@
 class GoompsController < ApplicationController
-  before_action :set_goomp, only: [:show, :edit, :update, :destroy, :join]
+  before_action :set_goomp, only: [:edit, :update, :destroy, :join]
 
   # GET /goomps
   # GET /goomps.json
@@ -10,9 +10,10 @@ class GoompsController < ApplicationController
   # GET /goomps/1
   # GET /goomps/1.json
   def show
-    sleep 3
+    @goomp = Goomp.friendly.find(params[:id])
+
     @subtopics = @goomp.subtopics
-    @posts = @goomp.posts.order(created_at: :desc)
+    @posts = @goomp.posts.includes(:user, comments: :user).page(params[:page])
 
     set_meta_tags(
       title: @goomp.name,

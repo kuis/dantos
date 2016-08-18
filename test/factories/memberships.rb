@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :membership do
-    goomp nil
-    user nil
+    goomp
+    user
   end
 end

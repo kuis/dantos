@@ -1,7 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
+Goomp.destroy_all
+
+goomps = FactoryGirl.create_list :goomp, 5
+goomps.each do |goomp|
+  FactoryGirl.create_list :membership, 20, goomp: goomp
+  users = goomp.members
+  40.times { FactoryGirl.create :post, goomp: goomp, user: users.sample }
+end
+
+FactoryGirl.create :user, email: 'cqpanxu@gmail.com'

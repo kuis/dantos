@@ -38,7 +38,7 @@ gem 'rails_autolink'
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'ffaker'
+  gem 'faker'
   gem 'factory_girl_rails'
 end
 
