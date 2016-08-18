@@ -36,10 +36,10 @@ gem 'newrelic_rpm'
 gem 'rinku'
 gem 'rails_autolink'
 
+gem 'factory_girl_rails'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'faker'
-  gem 'factory_girl_rails'
 end
 
 group :development do
