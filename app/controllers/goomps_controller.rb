@@ -13,7 +13,7 @@ class GoompsController < ApplicationController
     @goomp = Goomp.friendly.find(params[:id])
 
     @subtopics = @goomp.subtopics
-    @posts = @goomp.posts.includes(:user, comments: :user).page(params[:page])
+    @posts = @goomp.posts.includes(:user, comments: :user).page(params[:page]).per(5)
 
     set_meta_tags(
       title: @goomp.name,
