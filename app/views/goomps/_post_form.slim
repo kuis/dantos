@@ -27,7 +27,7 @@
     - if assigns["goomp"]
       = f.collection_select :subtopic_id, goomp.subtopics, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown", "tabindex" => -1}
     - else
-      = f.collection_select :goomp_id, Goomp.all, :id, :name, {prompt: "Choose Sub Topic.. (Optional)"}, {class: "ui selection dropdown", "tabindex" => -1}
+      = f.collection_select :goomp_id, current_user.joined_goomps.all, :id, :name, {prompt: "Choose Goomp"}, {class: "ui selection dropdown", "tabindex" => -1}
     = f.submit "Publish", class: "ui right floated primary button"
 
 #link-card

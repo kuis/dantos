@@ -10,9 +10,8 @@ AppView = {
     $(document).on "change", "#user_gender_male", @setMaleAvatar
     $(document).on "input", "#post_body", @scrapeUrl
     $(document).on "click", ".filepicker", @pickFile
-    $(document).on "click", "[data-modal]", @openModal
-    $(document).on "change", "#video-embed", @embedVideo
-    $(document).on "paste", "#video-embed", @embedVideo
+    $(document).on "click", "[data-modal]", @openModal.bind(this)
+    $(document).on "input", "#video-embed", @embedVideo
     $(document).on "submit", 'form[method="get"][data-remote="true"]', @remoteSubmitGetForm
     $(document).on "click", "[data-toggler]", @toggleToggler
     $(document).on "ajax:error", (event, xhr, status, error) ->
@@ -62,11 +61,19 @@ AppView = {
 
   openModal: (e) ->
     e.preventDefault()
-    modal_id = $(this).data('modal')
+
+    modal_id = $(e.target).data('modal')
     $("[data-modal-id=#{modal_id}]").modal(
       detachable: false
     )
     $("[data-modal-id=#{modal_id}]").modal('show')
+
+    if modal_id == "post-modal"
+      cleanContent = ""
+      for k,v in @editor.serialize()
+        cleanContent = v.value
+      console.log cleanContent
+
 
   initSemanticUI: ->
     $('.ui.sidebar').sidebar('attach events', '.sidebar-toggle')
@@ -474,13 +481,13 @@ get the preview. ',
     return false
 
   initEditor: ->
-    editor = new MediumEditor('.editable',
+    @editor = new MediumEditor('.editable',
       placeholder:
         text: 'Type your text'
         hideOnClick: false
     )
     $('.editable').mediumInsert(
-      editor: editor
+      editor: @editor
     )
 }
 

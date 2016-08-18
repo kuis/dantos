@@ -38,6 +38,8 @@ gem 'rails_autolink'
 
 gem 'factory_girl_rails'
 gem 'faker'
+gem 'addressable'
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end

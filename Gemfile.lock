@@ -332,6 +332,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   airbrake
   better_errors
   binding_of_caller
