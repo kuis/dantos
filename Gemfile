@@ -37,9 +37,9 @@ gem 'rinku'
 gem 'rails_autolink'
 
 gem 'factory_girl_rails'
+gem 'faker'
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'faker'
 end
 
 group :development do
