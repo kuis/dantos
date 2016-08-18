@@ -18,7 +18,7 @@
 
   .ui.divider
   .ui.comments
-    = render post.comments
+    = render partial: "posts/comment", collection: post.comments, cached: true
     .comment
       a.avatar
         = image_tag current_user.picture
