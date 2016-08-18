@@ -1,4 +1,3 @@
-User.destroy_all
 Goomp.destroy_all
 
 goomps = FactoryGirl.create_list :goomp, 5
