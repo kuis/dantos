@@ -13,7 +13,7 @@ class GoompsController < ApplicationController
     @goomp = Goomp.friendly.find(params[:id])
 
     @subtopics = @goomp.subtopics
-    @posts = @goomp.posts.includes(:user, comments: :user).page(params[:page]).per(5)
+    @posts = InfinitePostsQuery.new(@goomp.posts)
 
     respond_to do |f|
       f.html do
