@@ -15,6 +15,9 @@ AppView = {
     $(document).on "paste", "#video-embed", @embedVideo
     $(document).on "submit", 'form[method="get"][data-remote="true"]', @remoteSubmitGetForm
     $(document).on "click", "[data-toggler]", @toggleToggler
+    $(document).on "ajax:error", (event, xhr, status, error) ->
+      console.log xhr.responseText
+      console.log error
 
     document.addEventListener "turbolinks:before-cache", @preparePageForTurbolinks
 
@@ -23,6 +26,15 @@ AppView = {
     @initChat()
     @initChatGoomp()
     @initEditor()
+    @initInfinitePage()
+
+  initInfinitePage: ->
+    $('.js-infinite').infinitePages
+      debug: true
+      loading: ->
+        $(this).text('Loading next page...')
+      error: ->
+        $(this).button('There was an error, please try again')
 
   toggleToggler: (e) ->
     console.log 'why'

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require semantic-ui
+//= require jquery.infinite-pages
 //= require chat
 
 //= require medium-editor
@@ -24,6 +25,5 @@
 //= require jquery.fileupload
 //= require medium-editor-insert-plugin.min
 
-// require autofocus
 
 //= require_tree .

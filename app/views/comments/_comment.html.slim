@@ -1,6 +1,6 @@
 .comment
   a.avatar
-    img src="<%= comment.user.picture %>"
+    = image_tag comment.user.picture
 
   .content
     a.author = comment.user.email

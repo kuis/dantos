@@ -15,14 +15,19 @@ class GoompsController < ApplicationController
     @subtopics = @goomp.subtopics
     @posts = @goomp.posts.includes(:user, comments: :user).page(params[:page]).per(5)
 
-    set_meta_tags(
-      title: @goomp.name,
-      description: @goomp.description,
-      og: {
-        image: @goomp.cover
-      },
-      url: goomp_url(@goomp)
-    )
+    respond_to do |f|
+      f.html do
+        set_meta_tags(
+          title: @goomp.name,
+          description: @goomp.description,
+          og: {
+            image: @goomp.cover
+          },
+          url: goomp_url(@goomp)
+        )
+      end
+      f.js { render "posts/infinite_posts" }
+    end
   end
 
   def join
