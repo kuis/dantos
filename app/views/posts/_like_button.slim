@@ -2,7 +2,7 @@
   .ui.labeled.button
     - if likable.liked_by? current_user
       = button_tag class: "ui primary button" do
-        span.typcn.typcn-heart-full-outline
+        span.typcn.typcn-heart-outline
         ' Liked
       .ui.basic.goomp-primary-color.label = likable.likes_count
 
