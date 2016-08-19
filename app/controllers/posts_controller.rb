@@ -32,7 +32,14 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post.goomp, notice: 'Post was successfully created.' }
+        format.html do
+          # It's a full-size story
+          if @post.content
+            redirect_to @post.goomp, notice: 'Post was successfully created.'
+          else
+            redirect_back fallback_location: @post.goomp, notice: 'Post was successfully created.'
+          end
+        end
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -80,6 +87,7 @@ class PostsController < ApplicationController
       params.require(:post).permit(
         :title,
         :body,
+        :content,
         :goomp_id,
         :subtopic_id,
         :link_title,

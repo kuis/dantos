@@ -38,8 +38,6 @@ class GoompsController < ApplicationController
     else
       membership.save
     end
-
-    redirect_back fallback_location: @goomp
   end
 
   # GET /goomps/new
@@ -56,14 +54,10 @@ class GoompsController < ApplicationController
   def create
     @goomp = current_user.goomps.new(goomp_params)
 
-    respond_to do |format|
-      if @goomp.save
-        format.html { redirect_to @goomp, notice: 'Goomp was successfully created.' }
-        format.json { render :show, status: :created, location: @goomp }
-      else
-        format.html { render :new }
-        format.json { render json: @goomp.errors, status: :unprocessable_entity }
-      end
+    if @goomp.save
+      redirect_to @goomp, notice: 'Goomp was successfully created.'
+    else
+      render :new
     end
   end
 

@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-ruby "2.3.1"
-
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 0.18', platform: :mri
+gem 'activerecord-jdbc-adapter', platform: :jruby
+gem 'jdbc-postgres', platform: :jruby
 gem 'puma', '~> 3.0'
-# gem 'sass-rails', '~> 5.0'
-gem 'sassc-rails'
+gem 'sass-rails', '~> 5.0', platform: :jruby
+gem 'sassc-rails', platform: :mri
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
@@ -22,7 +22,7 @@ gem 'dalli'
 gem 'rack-mini-profiler'
 gem 'meta_tags-rails'
 gem 'cocoon'
-gem 'skylight'
+gem 'skylight', platform: :mri
 gem 'friendly_id', '~> 5.1.0'
 gem 'semantic-ui-sass'
 
@@ -33,7 +33,7 @@ gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-oauth2', '~> 1.3.1'
 
 gem 'newrelic_rpm'
-gem 'rinku'
+# gem 'rinku', platform: :mri
 gem 'rails_autolink'
 
 gem 'factory_girl_rails'
@@ -47,13 +47,13 @@ end
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring', platform: :mri
+  gem 'spring-watcher-listen', '~> 2.0.0', platform: :mri
 
-  gem 'pry-rails'
+  # gem 'pry-rails'
   gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request'
+  gem 'binding_of_caller', platform: :mri
+  gem 'meta_request', platform: :mri
 
   gem 'rack-livereload'
   gem "guard", ">= 2.2.2"

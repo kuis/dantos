@@ -1,4 +1,4 @@
-= form_tag join_goomp_path(goomp), style: "display: inline", remote: true do
+= form_tag join_goomp_path(goomp), style: "display: inline", remote: true, data: { "join-button": dom_id(goomp) } do
   / script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_ktMbiAhYGulwQ9OsWCSIkdfF6jagV" data-amount="999" data-name="Demo Site" data-description="Widget" data-image="/favicon.ico" data-locale="auto"
   - if current_user&.joined?(goomp)
     = submit_tag "Joined", class: "ui diabled button"

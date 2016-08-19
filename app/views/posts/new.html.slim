@@ -19,6 +19,6 @@
 
     = current_user.avatar
     = f.text_field :title, placeholder: "Give me a name", autofocus: true
-    = f.text_area :body, class: "editable"
+    = f.text_area :content, class: "editable"
 
     = render "submit_modal", modal_id: "post-modal", f: f
