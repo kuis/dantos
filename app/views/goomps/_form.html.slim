@@ -8,8 +8,7 @@
 
   div class="center aligned field"
     div class="center aligned field"
-      - if @goomp.cover
-        = image_tag @goomp.cover, id: "user-avatar"
+      img#user-avatar src=@goomp.cover
 
     a class="filepicker ui primary button" data-dimension="1500,500" Upload Goomp Cover
     = f.hidden_field :cover
@@ -21,5 +20,13 @@
   div class="field"
     = f.label :description
     = f.text_field :description
+
+  .inline.field
+    = f.label :price, "Monthly Subscription"
+    br
+    div class="ui right labeled input"
+      div class="ui label" $
+      = f.number_field :price, placeholder: "Amount"
+      div class="ui basic label" .00
 
   = f.submit "Save", class: "ui primary button"

@@ -2,7 +2,9 @@ require 'test_helper'
 
 class GoompsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @goomp = goomps(:one)
+    @goomp = create :goomp
+    @user = create :user
+    sign_in @user
   end
 
   test "should get index" do
@@ -15,12 +17,14 @@ class GoompsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create goomp" do
+  test "should create and auto-join goomp" do
     assert_difference('Goomp.count') do
-      post goomps_url, params: { goomp: { cover: @goomp.cover, description: @goomp.description, memberships_count: @goomp.memberships_count, name: @goomp.name, price: @goomp.price, slug: @goomp.slug, user_id: @goomp.user_id } }
+      post goomps_url, params: { goomp: attributes_for(:goomp) }
     end
+    new_goomp = Goomp.last
 
-    assert_redirected_to goomp_url(Goomp.last)
+    assert @user.joined? new_goomp
+    assert_redirected_to goomp_url(new_goomp)
   end
 
   test "should show goomp" do
@@ -34,7 +38,7 @@ class GoompsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update goomp" do
-    patch goomp_url(@goomp), params: { goomp: { cover: @goomp.cover, description: @goomp.description, memberships_count: @goomp.memberships_count, name: @goomp.name, price: @goomp.price, slug: @goomp.slug, user_id: @goomp.user_id } }
+    patch goomp_url(@goomp), params: { goomp: attributes_for(:goomp) }
     assert_redirected_to goomp_url(@goomp)
   end
 

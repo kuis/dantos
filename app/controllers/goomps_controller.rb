@@ -1,5 +1,6 @@
 class GoompsController < ApplicationController
   before_action :set_goomp, only: [:edit, :update, :destroy, :join]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /goomps
   # GET /goomps.json
@@ -31,13 +32,7 @@ class GoompsController < ApplicationController
   end
 
   def join
-    membership = Membership.where(user: current_user, goomp: @goomp).first_or_initialize
-
-    if membership.persisted?
-      membership.destroy
-    else
-      membership.save
-    end
+    current_user.join @goomp
   end
 
   # GET /goomps/new
@@ -55,6 +50,7 @@ class GoompsController < ApplicationController
     @goomp = current_user.goomps.new(goomp_params)
 
     if @goomp.save
+      current_user.join @goomp
       redirect_to @goomp, notice: 'Goomp was successfully created.'
     else
       render :new

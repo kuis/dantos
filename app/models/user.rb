@@ -30,6 +30,21 @@ class User < ApplicationRecord
     Membership.where(user: self, goomp: goomp).exists?
   end
 
+  def join goomp
+    membership = Membership.where(user: self, goomp: goomp).first_or_initialize
+
+    if membership.persisted?
+      if goomp.user_id == self.id
+        # Founder can't unjoin his own group
+        return false
+      else
+        membership.destroy
+      end
+    else
+      membership.save
+    end
+  end
+
   def self.from_omniauth auth
     authdata = case auth.provider
     when "twitter"

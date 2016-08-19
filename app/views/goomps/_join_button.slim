@@ -3,6 +3,9 @@
   - if current_user&.joined?(goomp)
     = submit_tag "Joined", class: "ui diabled button"
   - else
-    div class="ui labeled button"
+    - if goomp.price
+      div class="ui labeled button"
+        = submit_tag "Join", class: "ui primary button"
+        span class="ui label" = number_to_currency goomp.price, precision: 0
+    - else
       = submit_tag "Join", class: "ui primary button"
-      span class="ui label" $5
