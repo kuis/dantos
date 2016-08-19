@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 
   def like
     @post.liked_by current_user
+    @post.reload
   end
 
   # GET /posts/new

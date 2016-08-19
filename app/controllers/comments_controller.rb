@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
 
   def like
     @comment.liked_by current_user
+    @comment.reload
   end
 
   # GET /comments/1/edit
