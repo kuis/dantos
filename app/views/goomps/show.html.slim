@@ -10,10 +10,10 @@
         div class="field"
           = f.text_field :name, placeholder: "Chapter name"
 
-.sidebar.sidebar--right
-  .ui.text.fluid.vertical.menu
-    a.item href="/" Write a review
-    a.item href="/goomps" Invite Members
+/ .sidebar.sidebar--right
+/   .ui.text.fluid.vertical.menu
+/     a.item href="/" Write a review
+/     a.item href="/goomps" Invite Members
 
 .main
   - if @goomp.user == current_user && !@posts.any?
