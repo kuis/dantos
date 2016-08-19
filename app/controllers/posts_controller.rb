@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
   before_action :set_goomp, only: [:new]
   before_action :authenticate_user!
 
@@ -12,6 +12,10 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+  end
+
+  def like
+    @post.liked_by current_user
   end
 
   # GET /posts/new

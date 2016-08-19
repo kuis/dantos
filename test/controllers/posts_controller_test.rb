@@ -2,12 +2,13 @@ require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @post = FactoryGirl.create :post
-    sign_in FactoryGirl.create(:user)
+    @post = create :post
+    @user = create :user
+    sign_in @user
   end
 
-  test "should get index" do
-    get posts_url
+  test "should like" do
+    post like_post_url(@post), xhr: true
     assert_response :success
   end
 
@@ -21,7 +22,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       post posts_url, params: { post: { body: @post.body, goomp_id: @post.goomp_id } }
     end
 
-    assert_redirected_to post_url(Post.last)
+    assert_redirected_to goomp_url(Post.last.goomp)
   end
 
   test "should show post" do

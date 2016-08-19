@@ -10,8 +10,13 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :joined_goomps, through: :memberships, class_name: "Goomp", source: :goomp
   has_many :posts_from_joined_goomps, through: :joined_goomps, source: :posts
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :first_name, :last_name, :picture, presence: true
+
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
 
   def is_founder_of? goomp
     goomp.user == self

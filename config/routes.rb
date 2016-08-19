@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get 'pages/index'
 
   resources :posts, shallow: true do
-    resources :comments, shallow: true
+    post :like, on: :member
+    resources :comments, only: [:create, :destroy, :update, :edit], shallow: true do
+      post :like, on: :member
+    end
   end
   resources :goomps do
     post :join, on: :member

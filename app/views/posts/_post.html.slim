@@ -13,12 +13,14 @@
   .extra.text
     = truncate_body_link post.body
 
-  - if post.link_url
+  - if post.link_url.present?
     = render "posts/post_card", title: post.link_title, description: post.link_description, image: post.link_image, url: post.link_url
+  = render "posts/like_button", likable: post
 
   .ui.divider
+
   .ui.comments
-    = render partial: "comments/comment", collection: post.comments, cached: true
+    = render partial: "comments/comment", collection: post.comments, cached: false
 
     - if user_signed_in?
       .comment

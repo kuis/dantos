@@ -7,13 +7,14 @@
       span.category
         '  Created by
         strong = link_to goomp.user.first_name, goomp.user
+    .ui.divider
     .description
       p= goomp.description
     .meta.ui
       span.members-count.left.floated #{goomp.memberships.size} Members
       .right.floated.rating
         | Ratings
-        span.ui.star.rating data-rating="3"
+        span.ui.star.rating data-rating="5" data-ratable="false"
   .extra.content
     left.floated.pricing
       | Subscription:

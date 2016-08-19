@@ -63,22 +63,23 @@ AppView = {
     e.preventDefault()
 
     modal_id = $(e.target).data('modal')
-    $("[data-modal-id=#{modal_id}]").modal(
-      detachable: false
-    )
-    $("[data-modal-id=#{modal_id}]").modal('show')
-
     if modal_id == "post-modal"
+      $("[data-modal-id=#{modal_id}]").modal(
+        detachable: false
+      )
+
       cleanContent = ""
       for k,v in @editor.serialize()
         cleanContent = v.value
       console.log cleanContent
 
+    $("[data-modal-id=#{modal_id}]").modal('show')
 
   initSemanticUI: ->
     $('.ui.sidebar').sidebar('attach events', '.sidebar-toggle')
     $('.ui.checkbox').checkbox()
-    $('.ui.rating').rating()
+    $('.ui.rating').rating(maxRating: 5)
+    $('[data-ratable=false]').rating('disable')
     $('.ui.dropdown').dropdown(on: 'hover')
     $('.ui.form').form(
       fields:

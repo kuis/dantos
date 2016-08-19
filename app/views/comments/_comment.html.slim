@@ -5,8 +5,10 @@
   .content
     a.author = comment.user.email
     div class="metadata"
-      span class="date" = comment.created_at
+      span class="date"
+        = time_ago_in_words comment.created_at
+        '  ago
     div class="text"
       = comment.body
     div class="actions"
-      a class="reply" Like
+      = render "comments/like_button", likable: comment
