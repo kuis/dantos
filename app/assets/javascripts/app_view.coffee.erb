@@ -26,6 +26,32 @@ AppView = {
     @initChatGoomp()
     @initEditor()
     @initInfinitePage()
+    @initStripe()
+
+  initStripe: ->
+    key = $("meta[name=stripePublishableKey]").attr("content")
+    goomp_id = -1
+    handler = StripeCheckout.configure(
+      key: key
+      image: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+      locale: 'auto',
+      token: (token) ->
+        console.log token
+        $.post "/goomps/#{goomp_id}/join", token: token
+        # You can access the token ID with `token.id`.
+        # Get the token ID to your server-side code for use.
+    )
+
+    $(window).on 'popstate', -> handler.close()
+    $(".stripe-button").click (e) ->
+      e.preventDefault()
+      $button = $(e.target)
+      goomp_id = $button.data("id")
+      handler.open(
+        name: $button.data("name")
+        description: $button.data("description")
+        amount: $button.data("amount")
+      )
 
   initInfinitePage: ->
     $('.js-infinite').infinitePages
@@ -36,7 +62,6 @@ AppView = {
         $(this).button('There was an error, please try again')
 
   toggleToggler: (e) ->
-    console.log 'why'
     e.preventDefault()
     toggler_id = $(e.target).data("toggler")
     console.log toggler_id

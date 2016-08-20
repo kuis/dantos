@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820073819) do
+ActiveRecord::Schema.define(version: 20160820130018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,13 +56,14 @@ ActiveRecord::Schema.define(version: 20160820073819) do
     t.string   "name"
     t.string   "cover"
     t.string   "slug"
-    t.string   "price"
     t.string   "description"
     t.integer  "memberships_count", default: 0
     t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "logo"
+    t.integer  "price_cents"
+    t.string   "price_currency",    default: "USD", null: false
     t.index ["slug"], name: "index_goomps_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_goomps_on_user_id", using: :btree
   end
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(version: 20160820073819) do
     t.string   "gender",                 default: "male"
     t.string   "avatar"
     t.string   "slug"
+    t.string   "stipe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

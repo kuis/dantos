@@ -39,6 +39,8 @@ gem 'factory_girl_rails'
 gem 'faker'
 gem 'addressable'
 # gem 'database_rewinder'
+gem 'stripe'
+gem 'money-rails'
 
 group :development, :test do
   gem 'byebug'

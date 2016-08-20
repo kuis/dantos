@@ -26,10 +26,6 @@ class User < ApplicationRecord
     [first_name, last_name].join(' ')
   end
 
-  def joined? goomp
-    Membership.where(user: self, goomp: goomp).exists?
-  end
-
   def join goomp
     membership = Membership.where(user: self, goomp: goomp).first_or_initialize
 

@@ -1,11 +1,10 @@
 = form_tag join_goomp_path(goomp), style: "display: inline", remote: true, data: { "join-button": dom_id(goomp) } do
-  / script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_ktMbiAhYGulwQ9OsWCSIkdfF6jagV" data-amount="999" data-name="Demo Site" data-description="Widget" data-image="/favicon.ico" data-locale="auto"
-  - if current_user&.joined?(goomp)
+  - if goomp.has_member? current_user
     = submit_tag "Joined", class: "ui diabled button"
   - else
-    - if goomp.price
+    - if goomp.price > 0
       div class="ui labeled button"
-        = submit_tag "Join", class: "ui primary button"
-        span class="ui label" = number_to_currency goomp.price, precision: 0
+        = submit_tag "Join", class: "ui primary button stripe-button", data: { id: goomp.id, name: goomp.name, description: goomp.description, amount: goomp.price*100 }
+        span class="ui label" = humanized_money_with_symbol goomp.price
     - else
       = submit_tag "Join", class: "ui primary button"

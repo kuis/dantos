@@ -5,7 +5,7 @@ class GoompsController < ApplicationController
   # GET /goomps
   # GET /goomps.json
   def index
-    @goomps = Goomp.all
+    @goomps = Goomp.includes(:memberships, :user).page(params[:page])
   end
 
   # GET /goomps/1
@@ -32,6 +32,7 @@ class GoompsController < ApplicationController
   end
 
   def join
+    StripeService.subscribe current_user, @goomp, params[:token]
     current_user.join @goomp
   end
 
@@ -51,6 +52,7 @@ class GoompsController < ApplicationController
 
     if @goomp.save
       current_user.join @goomp
+      StripeService.create_plan_for @goomp
       redirect_to @goomp, notice: 'Goomp was successfully created.'
     else
       render :new
