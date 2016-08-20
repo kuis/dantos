@@ -3,6 +3,9 @@ require 'test_helper'
 class CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @comment = create :comment
+    @post = create :post
+    @user = create :user
+    sign_in @user
   end
 
   test "should like" do
@@ -10,13 +13,13 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-#   test "should create comment" do
-#     assert_difference('Comment.count') do
-#       post comments_url, params: { comment: { body: @comment.body, post_id: @comment.post_id, user_id: @comment.user_id } }
-#     end
+  test "should create comment" do
+    assert_difference('Comment.count') do
+      post post_comments_url(@post), params: { comment: attributes_for(:comment) }
+    end
 
-#     assert_redirected_to comment_url(Comment.last)
-#   end
+    assert_equal @post, Comment.last.post
+  end
 
 #   test "should show comment" do
 #     get comment_url(@comment)

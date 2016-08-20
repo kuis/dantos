@@ -1,5 +1,7 @@
 class SubtopicsController < ApplicationController
   before_action :set_subtopic, only: [:show, :edit, :update, :destroy]
+  before_action :set_goomp, only: [:create]
+  before_action :authenticate_user!
 
   # GET /subtopics
   # GET /subtopics.json
@@ -24,11 +26,11 @@ class SubtopicsController < ApplicationController
   # POST /subtopics
   # POST /subtopics.json
   def create
-    @subtopic = Subtopic.new(subtopic_params)
+    @subtopic = @goomp.subtopics.new(subtopic_params)
 
     respond_to do |format|
       if @subtopic.save
-        format.html { redirect_to @subtopic, notice: 'Subtopic was successfully created.' }
+        format.html { redirect_back fallback_location: @goomp, notice: 'Subtopic was successfully created.' }
         format.json { render :show, status: :created, location: @subtopic }
       else
         format.html { render :new }
@@ -65,6 +67,10 @@ class SubtopicsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_subtopic
       @subtopic = Subtopic.find(params[:id])
+    end
+
+    def set_goomp
+      @goomp = Goomp.friendly.find(params[:goomp_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
