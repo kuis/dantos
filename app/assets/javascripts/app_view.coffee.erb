@@ -415,18 +415,16 @@ get the preview. ',
       })
 
   setFemaleAvatar: ->
-    console.log 'set female'
-    url = "/assets/default-female.png"
+    url = "<%= ActionController::Base.helpers.asset_path("default-female.png") %>"
     val = $("#user_picture").val()
-    if val.indexOf("/assets/default-male") > -1
+    if val.length == 0 || val.indexOf("default-male") > -1
       $("#user-avatar").attr("src", url)
       $("#user_picture").val(url)
 
   setMaleAvatar: ->
-    console.log 'set male'
-    url = "/assets/default-male.png"
+    url = "<%= ActionController::Base.helpers.asset_path("default-male.png") %>"
     val = $("#user_picture").val()
-    if val.indexOf("/assets/default-female") > -1
+    if val.length == 0 || val.indexOf("default-female") > -1
       $("#user-avatar").attr("src", url)
       $("#user_picture").val(url)
 
