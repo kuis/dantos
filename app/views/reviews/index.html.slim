@@ -1,7 +1,7 @@
 .sidebar.sidebar--left
   .ui.secondary.fluid.vertical.menu
     = link_to "Home", @goomp, class: "active item"
-    - @subtopics.each do |subtopic|
+    - @goomp.subtopics.each do |subtopic|
       = link_to subtopic.name, subtopic, class: "item"
 
   .ui.text.fluid.vertical.menu
@@ -17,12 +17,10 @@
 /     a.item href="/goomps" Invite Members
 
 .main
-  - if @posts.any?
-    .ui.segment
-      = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
-    = render partial: "posts/infinite_posts", locals: { posts: @posts }
-  - elsif @goomp.user == current_user
-    = form_for [@goomp, Post.new] do |f|
-      = render "goomp_bot/new_goomp"
-  - else
-    = @goomp.description
+  .ui.segment
+    = render "reviews/form", action_url: goomp_reviews_path(@goomp), goomp: @goomp
+
+  .js-infinite
+    .ui.segments.js-infinite--list
+      = render partial: "reviews/review", collection: @reviews, cached: false
+    .js-infinite--pagination = link_to_next_page @reviews, 'Next Page', remote: true

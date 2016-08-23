@@ -1,22 +1,27 @@
 Rails.application.routes.draw do
-  resources :scrapes, only: [:create]
-  resources :likes
-  resources :memberships
   root to: "pages#index"
 
   get 'pages/index'
 
   resources :posts, shallow: true do
     post :like, on: :member
+
     resources :comments, only: [:create, :destroy, :update, :edit], shallow: true do
       post :like, on: :member
     end
   end
-  resources :goomps do
+
+  resources :goomps, shallow: true do
     post :join, on: :member
-    resources :posts, shallow: true
-    resources :subtopics, shallow: true
+
+    resources :reviews
+    resources :posts
+    resources :subtopics
   end
+
+  resources :scrapes, only: [:create]
+  resources :likes
+  resources :memberships
 
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",

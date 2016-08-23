@@ -8,6 +8,7 @@ class Goomp < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :members, through: :memberships, source: :user
+  has_many :reviews, dependent: :destroy
 
   validates :name, :cover, :description, :user, presence: true
 

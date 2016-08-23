@@ -103,7 +103,12 @@ AppView = {
   initSemanticUI: ->
     $('.ui.sidebar').sidebar('attach events', '.sidebar-toggle')
     $('.ui.checkbox').checkbox()
-    $('.ui.rating').rating(maxRating: 5)
+    $('.ui.rating').rating(
+      maxRating: 5
+      onRate: (val) ->
+        ratable_id = $(this).data("ratable")
+        $("[data-ratable-id=#{ratable_id}]").val val
+    )
     $('[data-ratable=false]').rating('disable')
     $('.ui.dropdown').dropdown(on: 'hover')
     $('.ui.form').form(
