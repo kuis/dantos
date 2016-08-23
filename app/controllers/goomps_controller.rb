@@ -32,8 +32,7 @@ class GoompsController < ApplicationController
   end
 
   def join
-    StripeService.subscribe current_user, @goomp, params[:token]
-    current_user.join @goomp
+    current_user.join @goomp, params[:token]
   end
 
   # GET /goomps/new
@@ -51,7 +50,7 @@ class GoompsController < ApplicationController
     @goomp = current_user.goomps.new(goomp_params)
 
     if @goomp.save
-      current_user.join @goomp
+      current_user.memberships.create goomp: @goomp
       StripeService.create_plan_for @goomp
       redirect_to @goomp, notice: 'Goomp was successfully created.'
     else

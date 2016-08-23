@@ -152,13 +152,13 @@ get the preview. ',
           """
             <input type="text" name="post[body]" id="video-embed" />
             <div id="video-preview"></div>
-            <input type="submit" value="Add" class="ui input"></div>
+            <input type="submit" value="Add" class="ui button"></div>
           """,
           {
             type: 'choose',
             answers: [{
               'text': 'I don’t have a video! ',
-              'path': 'companies'
+              'path': 'write'
             }]
           }
         ],
@@ -172,13 +172,10 @@ get the preview. ',
           # '- <a target="_blank" href="https://www.smashingmagazine.com/2013/10/smart-transitions-in-user-experience-design/">Smart Transitions in UI Design</a><br>'+
           # '- <a target="_blank" href="http://azumbrunnen.me/blog/creating-distraction-free-reading-experiences/">Creating distraction-free reading experiences</a><br>',
           {
-            type: "choose",
+            type: 'visit',
             answers: [{
-              'text': 'What about speaking?',
-              'path': 'speaking'
-            },{
-              'text': 'Let\'s talk!',
-              'path': 'contact'
+              'text': 'Write Story',
+              'path': '/posts/new'
             }]
           }
         ],

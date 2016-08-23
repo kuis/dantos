@@ -26,7 +26,7 @@ class User < ApplicationRecord
     [first_name, last_name].join(' ')
   end
 
-  def join goomp
+  def join goomp, token = nil
     membership = Membership.where(user: self, goomp: goomp).first_or_initialize
 
     if membership.persisted?
@@ -37,6 +37,10 @@ class User < ApplicationRecord
         membership.destroy
       end
     else
+      if goomp.price > 0
+        StripeService.subscribe self, @goomp, token
+      end
+
       membership.save
     end
   end

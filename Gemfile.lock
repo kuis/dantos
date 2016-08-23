@@ -200,7 +200,7 @@ GEM
     multipart-post (2.0.0)
     nenv (0.3.0)
     netrc (0.11.0)
-    newrelic_rpm (3.16.1.320)
+    newrelic_rpm (3.16.2.321)
     nio4r (1.2.1)
     nio4r (1.2.1-java)
     nokogiri (1.6.8)
@@ -306,7 +306,7 @@ GEM
       sprockets (> 2.11)
       sprockets-rails
       tilt
-    semantic-ui-sass (2.2.2.2)
+    semantic-ui-sass (2.2.3.0)
       sass (>= 3.2)
     shellany (0.0.1)
     sixarm_ruby_unaccent (1.1.1)

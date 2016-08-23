@@ -12,14 +12,12 @@ class StripeService
   end
 
   def self.subscribe user, goomp, token
-    if goomp.price > 0
-      customer = Stripe::Customer.create(
-        :source => token["id"],
-        :plan => goomp.slug,
-        :email => token["email"]
-      )
+    customer = Stripe::Customer.create(
+      :source => token["id"],
+      :plan => goomp.slug,
+      :email => token["email"]
+    )
 
-      user.update stipe_customer_id: customer.id
-    end
+    user.update stipe_customer_id: customer.id
   end
 end
