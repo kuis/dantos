@@ -111,26 +111,55 @@ AppView = {
     )
     $('[data-ratable=false]').rating('disable')
     $('.ui.dropdown').dropdown(on: 'hover')
-    $('.ui.form').form(
+    $("#new_post").form(
+      on: 'blur'
       fields:
-        email:
-          identifier  : 'email',
+        body:
+          identifier: 'post[body]'
           rules: [{
-              type   : 'empty',
-              prompt : 'Please enter your e-mail'
-            },{
-              type   : 'email',
-              prompt : 'Please enter a valid e-mail'
-            }]
-        password:
-          identifier  : 'password',
+            type   : 'empty',
+            prompt : 'Please enter content'
+          }]
+        goomp_id:
+          identifier: 'dropdown'
           rules: [{
-              type   : 'empty',
-              prompt : 'Please enter your password'
-            },{
-              type   : 'length[6]',
-              prompt : 'Your password must be at least 6 characters'
-            }]
+            type   : 'empty',
+            prompt : 'Please choose a goomp'
+          }]
+        # title:
+        #   identifier: 'post[title]'
+        #   rules: [{
+        #     type   : 'empty',
+        #     prompt : 'Please enter a title'
+        #   }]
+        # content:
+        #   identifier: 'post[content]'
+        #   rules: [{
+        #     type   : 'empty',
+        #     prompt : 'Please enter a content'
+        #   }]
+    )
+    $("#new_goomp").form(
+      on: 'blur'
+      fields:
+        cover:
+          identifier: 'goomp[cover]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please upload cover'
+          }]
+        name:
+          identifier: 'goomp[name]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please enter name'
+          }]
+        description:
+          identifier: 'goomp[description]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please enter description'
+          }]
     )
 
   initChatGoomp: (target='#new-goomp-chat') ->
@@ -152,8 +181,7 @@ AppView = {
         ],
 
         video: [
-          'First, let’s create an introductory video so anyone visiting your Goomp page will
-get the preview. ',
+          'First, let’s create an introductory video so anyone visiting your Goomp page will get the preview. ',
           """
             <input type="text" name="post[body]" id="video-embed" />
             <div id="video-preview"></div>
