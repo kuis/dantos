@@ -20,16 +20,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     authdata = session["devise.oauth_data"]
 
-    super
+    super do |user|
+      if authdata
+        resource.password = SecureRandom.hex(10)
+        resource.password_confirmation = resource.password
+        resource.save
+      end
 
-    if resource.persisted? && authdata
-      resource.authorizations.create!(
-        uid: authdata["uid"],
-        provider: authdata["provider"],
-        token: authdata["token"],
-        refresh_token: authdata["refresh_token"]
-        # expires_at: authdata["expires_at"],
-      )
+      if resource.persisted? && authdata
+        resource.authorizations.create!(
+          uid: authdata["uid"],
+          provider: authdata["provider"],
+          token: authdata["token"],
+          refresh_token: authdata["refresh_token"]
+          # expires_at: authdata["expires_at"],
+        )
+      end
     end
   end
 
