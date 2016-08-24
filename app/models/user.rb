@@ -64,9 +64,10 @@ class User < ApplicationRecord
       {
         email: auth.info.email,
         first_name: auth.info.first_name,
-        picture: auth.info.image,
+        picture: auth.extra.raw_info.pictureUrls.values.last.last,
         last_name: auth.info.last_name,
         uid: auth.uid,
+        headline: auth.info.description,
         token: auth.credentials.token,
         refresh_token: auth.credentials.refresh_token,
         expires_at: auth.credentials.expires_at,

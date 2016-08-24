@@ -7,10 +7,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do |user|
       authdata = session["devise.oauth_data"]
       if authdata
-        user.email = authdata["email"]
         user.first_name = authdata["first_name"]
         user.last_name = authdata["last_name"]
         user.picture = authdata["picture"]
+        user.headline = authdata["headline"]
         user.gender = "male"
       end
     end
@@ -22,6 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     super do |user|
       if authdata
+        resource.email = authdata["email"]
         resource.password = SecureRandom.hex(10)
         resource.password_confirmation = resource.password
         resource.save
