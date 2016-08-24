@@ -161,6 +161,53 @@ AppView = {
             prompt : 'Please enter description'
           }]
     )
+    $("#new_user").form(
+      on: 'blur'
+      fields:
+        cover:
+          identifier: 'user[picture]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please upload avatar'
+          }]
+        firstName:
+          identifier: 'user[first_name]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please enter first name'
+          }]
+        lastName:
+          identifier: 'user[last_name]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please enter last name'
+          }]
+        gender:
+          identifier: 'user[gender]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please choose gender'
+          }]
+        email:
+          identifier: 'user[email]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please enter email'
+          }]
+        password:
+          identifier: 'user[password]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please enter password'
+          }]
+        passwordConfirmation:
+          identifier: 'user[password_confirmation]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please confirm password'
+          }]
+    )
+
 
   initChatGoomp: (target='#new-goomp-chat') ->
     if $(target).length > 0
