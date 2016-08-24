@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :first_name, :last_name, :picture, presence: true
+  validates :first_name, :last_name, :picture, :headline, presence: true
 
   extend FriendlyId
   friendly_id :full_name, use: :slugged

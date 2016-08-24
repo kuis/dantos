@@ -126,18 +126,6 @@ AppView = {
             type   : 'empty',
             prompt : 'Please choose a goomp'
           }]
-        # title:
-        #   identifier: 'post[title]'
-        #   rules: [{
-        #     type   : 'empty',
-        #     prompt : 'Please enter a title'
-        #   }]
-        # content:
-        #   identifier: 'post[content]'
-        #   rules: [{
-        #     type   : 'empty',
-        #     prompt : 'Please enter a content'
-        #   }]
     )
     $("#new_goomp").form(
       on: 'blur'
@@ -193,6 +181,12 @@ AppView = {
           rules: [{
             type   : 'empty',
             prompt : 'Please enter email'
+          }]
+        headline:
+          identifier: 'user[headline]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please enter headline'
           }]
         password:
           identifier: 'user[password]'

@@ -11,6 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         user.last_name = authdata["last_name"]
         user.picture = authdata["picture"]
         user.headline = authdata["headline"]
+        user.email = authdata["email"]
         user.gender = "male"
       end
     end
@@ -22,7 +23,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     super do |user|
       if authdata
-        resource.email = authdata["email"]
+        resource.email ||= authdata["email"]
         resource.password = SecureRandom.hex(10)
         resource.password_confirmation = resource.password
         resource.save
