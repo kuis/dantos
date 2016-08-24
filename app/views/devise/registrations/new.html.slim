@@ -34,13 +34,14 @@ div class="ui stacked segment" style="width: 100%;max-width: 75%;margin:auto;pad
 
     .field
       = f.label :bio, "Short Bio"
-      = f.text_area :bio, rows: "3", placeholder: "I am a college student majoring in design and business. I am interested in sharing or learning knowledge around these areas. "
+      = f.text_area :bio, rows: "5", placeholder: "I am a college student majoring in design and business. I am interested in sharing or learning knowledge around these areas. "
 
-    - unless session["devise.oauth_data"]
+    - unless session["devise.oauth_data"] && session["devise.oauth_data"]["email"]
       .field
         = f.label :email, "Primary Email", class: "inline-label"
         = f.text_field :email, placeholder: "Primary Email (Ex: Joe@AppleSeed.com)"
 
+    - unless session["devise.oauth_data"]
       .field
         = f.label :password, "Choose Password"
         = f.password_field :password, placeholder: "***************"
