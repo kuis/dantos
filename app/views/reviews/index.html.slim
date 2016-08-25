@@ -6,14 +6,14 @@
 
   .ui.text.fluid.vertical.menu
     - if true || current_user&.is_founder_of?(@goomp)
-      a.item data-toggler="new-chapter" Add Chapter
+      a.item.blue-ink data-toggler="new-chapter" Add Chapter
       = form_for [@goomp, Subtopic.new], html: { class: "ui form", data: {"toggle-id" => "new-chapter"} } do |f|
         div class="field"
           = f.text_field :name, placeholder: "Chapter name"
 
 .sidebar.sidebar--right
   .ui.text.fluid.vertical.menu
-    = link_to "Write a review", goomp_reviews_path(@goomp), class: "item"
+    = link_to "Write a review", goomp_reviews_path(@goomp), class: "item blue-ink"
 /     a.item href="/goomps" Invite Members
 
 .main
