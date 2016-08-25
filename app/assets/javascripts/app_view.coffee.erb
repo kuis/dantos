@@ -8,15 +8,15 @@ filepickerKey = "Akt6oZj2YRamLQYtKyrhzz"
 
 AppView = {
   initialize: ->
-    $(document).on "change", "#user_gender_female", @setFemaleAvatar
-    $(document).on "change", "#user_gender_male", @setMaleAvatar
-    $(document).on "input", "#post_body", @scrapeUrl
-    $(document).on "click", ".filepicker", @pickFile
-    $(document).on "click", "[data-modal]", @openModal.bind(this)
-    $(document).on "input", "#video-embed", @embedVideo
-    $(document).on "submit", 'form[method="get"][data-remote="true"]', @remoteSubmitGetForm
-    $(document).on "click", "[data-toggler]", @toggleToggler
-    $(document).on "ajax:error", (event, xhr, status, error) ->
+    $("#user_gender_female").off("change").on "change", @setFemaleAvatar
+    $("#user_gender_male").off("change").on "change", @setMaleAvatar
+    $("#post_body").off("input").on "input", @scrapeUrl
+    $(".filepicker").off("click").on "click", @pickFile
+    $("[data-modal]").off("click").on "click", @openModal.bind(this)
+    $("#video-embed").off("input").on "input", @embedVideo
+    $('form[method="get"][data-remote="true"]').off("submit").on "submit", @remoteSubmitGetForm
+    $("[data-toggler]").off("click").on "click", @toggleToggler
+    $(document).off("ajax:error").on "ajax:error", (event, xhr, status, error) ->
       console.log xhr.responseText
       console.log error
 
