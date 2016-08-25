@@ -7,6 +7,8 @@
           = image_tag goomp.cover if goomp.cover
         = goomp.name
 
+    = link_to 'Create Goomp', new_goomp_path, class: 'item'
+
 .main
   .twelve.wide.column
     - if @joined_goomps.any?
