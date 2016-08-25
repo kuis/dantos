@@ -23,7 +23,7 @@
         = link_to subtopic.name, params.merge(subtopic_id: subtopic.id).permit(:subtopic_id), class: "item"
 
     .ui.text.fluid.vertical.menu
-      - if true || current_user&.is_founder_of?(@goomp)
+      - if current_user&.is_founder_of?(@goomp)
 
         a.item.blue-ink data-toggler="new-chapter" Add Chapter
         = form_for [@goomp, Subtopic.new], html: { class: "ui form", data: {"toggle-id" => "new-chapter"} }, remote: true do |f|
