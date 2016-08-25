@@ -1,6 +1,6 @@
 .sidebar.sidebar--left
   .ui.secondary.fluid.vertical.menu
-    = link_to "Home", root_path, class: "item"
+    = link_to "Home", root_path, class: "item active"
     - @joined_goomps.each do |goomp|
       = link_to goomp, class: "item" do
         .cover-box
