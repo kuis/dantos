@@ -15,3 +15,29 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+.idea/workspace.xml
+
+.idea/vcs.xml
+
+.idea/runConfigurations/test__fantos.xml
+
+.idea/runConfigurations/spec__fantos.xml
+
+.idea/runConfigurations/Production__fantos.xml
+
+.idea/runConfigurations/Development__fantos.xml
+
+.idea/modules.xml
+
+.idea/misc.xml
+
+.idea/fantos.iml
+
+.idea/encodings.xml
+
+.idea/.rakeTasks
+
+.idea/.name
+
+.idea/.generators
