@@ -9,7 +9,7 @@
         strong = link_to goomp.user.first_name, goomp.user
     .ui.divider
     .description
-      p= goomp.description
+      p = truncate(goomp.description, length: 100)
     .meta.ui
       span.members-count.left.floated #{goomp.memberships.size} Members
       .right.floated.rating
@@ -18,6 +18,6 @@
   .extra.content
     left.floated.pricing
       | Subscription:
-      strong Monthly
+      strong  Monthly
     .right.floated.author
       = render "goomps/join_button", goomp: goomp
