@@ -1,21 +1,22 @@
-p#notice = notice
+.author-box
+  = image_tag current_user.picture, class: 'ui avatar image'
+  span = current_user.full_name
 
-p
-  strong Body:
-  = @post.body
-p
-  strong Comments count:
-  = @post.comments_count
+h1 = @post.title
+
+= @post.content.html_safe
+
+/ = @post.comments_count
+
 p
   strong Goomp:
-  = @post.goomp
-p
-  strong User:
-  = @post.user
-p
-  strong Subtopic:
-  = @post.subtopic
+  = @post.goomp.name
 
-= link_to 'Edit', edit_post_path(@post)
-'|
-= link_to 'Back', posts_path
+/ = @post.subtopic
+
+= render "posts/like_button", likable: @post
+
+.ui.hidden.divider
+
+- if current_user == @post.user
+  = link_to 'Edit', edit_post_path(@post), class: 'ui button basic blue'
