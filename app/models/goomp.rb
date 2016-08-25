@@ -13,6 +13,6 @@ class Goomp < ApplicationRecord
   validates :name, :logo, :description, :user, presence: true
 
   def has_member? user
-    memberships.any? { |m| m.user_id == user.id }
+    user && memberships.any? { |m| m.user_id == user.id }
   end
 end
