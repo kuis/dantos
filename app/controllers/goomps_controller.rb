@@ -15,6 +15,7 @@ class GoompsController < ApplicationController
 
     @subtopics = @goomp.subtopics
     @posts = FeedQuery.new(posts: @goomp.posts, page: params[:page]).posts
+    @posts = @posts.where(subtopic_id: params[:subtopic_id]) if params[:subtopic_id]
 
     respond_to do |f|
       f.html do

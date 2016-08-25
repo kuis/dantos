@@ -20,12 +20,12 @@
     .ui.secondary.fluid.vertical.menu
       = link_to "Home", @goomp, class: "active item"
       - @subtopics.each do |subtopic|
-        = link_to subtopic.name, subtopic, class: "item"
+        = link_to subtopic.name, params.merge(subtopic_id: subtopic.id).permit(:subtopic_id), class: "item"
 
     .ui.text.fluid.vertical.menu
       - if true || current_user&.is_founder_of?(@goomp)
         a.item data-toggler="new-chapter" Add Chapter
-        = form_for [@goomp, Subtopic.new], html: { class: "ui form", data: {"toggle-id" => "new-chapter"} } do |f|
+        = form_for [@goomp, Subtopic.new], html: { class: "ui form", data: {"toggle-id" => "new-chapter"} }, remote: true do |f|
           div class="field"
             = f.text_field :name, placeholder: "Chapter name"
 
@@ -36,15 +36,13 @@
 
   .main
     - if @goomp.has_member? current_user
-      - if @posts.any?
-        .ui.segment
-          = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
-        = render partial: "posts/infinite_posts", locals: { posts: @posts }
-      - elsif @goomp.user == current_user
+      - if @goomp.user == current_user && !@posts.any?
         = form_for [@goomp, Post.new] do |f|
           = render "goomp_bot/new_goomp"
       - else
-        = @goomp.description
+        .ui.segment
+          = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
+        = render partial: "posts/infinite_posts", locals: { posts: @posts }
 
     - else
       h2 Description
