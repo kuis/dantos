@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825000744) do
+ActiveRecord::Schema.define(version: 20160825172825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(version: 20160825000744) do
     t.integer  "likes_count", default: 0
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "followable_type"
+    t.integer  "followable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id", using: :btree
+    t.index ["user_id"], name: "index_follows_on_user_id", using: :btree
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -152,6 +162,7 @@ ActiveRecord::Schema.define(version: 20160825000744) do
     t.string   "avatar"
     t.string   "slug"
     t.string   "stipe_customer_id"
+    t.integer  "follows_count",          default: 0
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -159,6 +170,7 @@ ActiveRecord::Schema.define(version: 20160825000744) do
   add_foreign_key "authorizations", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "follows", "users"
   add_foreign_key "goomps", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "memberships", "goomps"

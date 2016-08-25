@@ -1,10 +1,16 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :follow]
+  before_action :authenticate_user!, only: [:follow]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+  end
+
+  def follow
+    @user.followed_by current_user
+    @user.reload
   end
 
   # GET /users/1

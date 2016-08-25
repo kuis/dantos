@@ -5,4 +5,5 @@
     .header = user.full_name
     .meta = user.bio
   .extra.content
-    / = render 'user/follow_button'
+    - if user_signed_in?
+      = render 'users/follow_button', followable: user

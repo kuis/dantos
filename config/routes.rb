@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
+  resources :follows
   root to: "pages#index"
 
-  get 'pages/index'
-
-  resources :posts, shallow: true do
+  concern :likable do
     post :like, on: :member
+  end
 
-    resources :comments, only: [:create, :destroy, :update, :edit], shallow: true do
-      post :like, on: :member
-    end
+  concern :followable do
+    post :follow, on: :member
+  end
+
+  resources :posts, shallow: true, concerns: :likable do
+    resources :comments, only: [:create, :destroy, :update, :edit], shallow: true, concerns: :likable
   end
 
   resources :goomps, shallow: true do
@@ -27,6 +30,6 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks",
     registrations: 'users/registrations'
   }
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show], concerns: :followable
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
