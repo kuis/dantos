@@ -40,7 +40,7 @@ class GoompsController < ApplicationController
 
   # GET /goomps/new
   def new
-    @goomp = Goomp.new
+    @goomp = Goomp.new logo: ActionController::Base.helpers.asset_path("logo-v.png")
   end
 
   # GET /goomps/1/edit
