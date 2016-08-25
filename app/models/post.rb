@@ -6,4 +6,12 @@ class Post < ApplicationRecord
   include Likable
 
   validates :goomp, :user, presence: true
+
+  def generate_link_for_story!
+    self.update(
+      link_description: Nokogiri::HTML(self.content).at_css("p").text,
+      link_url: Rails.application.routes.url_helpers.post_path(self),
+      link_title: self.title
+    )
+  end
 end

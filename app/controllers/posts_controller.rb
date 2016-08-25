@@ -40,6 +40,7 @@ class PostsController < ApplicationController
         format.html do
           # It's a full-size story
           if @post.content
+            @post.generate_link_for_story!
             redirect_to @post.goomp, notice: 'Post was successfully created.'
           else
             redirect_back fallback_location: @post.goomp, notice: 'Post was successfully created.'
