@@ -10,7 +10,7 @@ class Goomp < ApplicationRecord
   has_many :members, through: :memberships, source: :user
   has_many :reviews, dependent: :destroy
 
-  validates :name, :cover, :description, :user, presence: true
+  validates :name, :logo, :description, :user, presence: true
 
   def has_member? user
     memberships.any? { |m| m.user_id == user.id }

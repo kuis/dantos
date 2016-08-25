@@ -499,33 +499,45 @@ AppView = {
       $("#user-avatar").attr("src", url)
       $("#user_picture").val(url)
 
+  youtubeIframe: (vid) ->
+    """
+      <iframe width="480" height="270" src="https://www.youtube.com/embed/#{vid}?feature=oembed" frameborder="0" allowfullscreen></iframe>
+    """
+
+  vimeoIframe: (vid) ->
+    """
+      <iframe src="https://player.vimeo.com/video/#{vid}" width="640" height="360" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    """
+
+  extractVideoID: (url) ->
+    youtubeRegex = /(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/
+    vimeoRegex = /([a-z\:\/]*\/\/)(?:www\.)?vimeo\.com\/(?:channels\/[A-Za-z0-9]+\/)?([A-Za-z0-9]+)/
+    iframe = null
+
+    if url.length > 0
+      youtubeMatch = url.match(youtubeRegex)
+
+      iframe = if youtubeMatch
+        vid = youtubeMatch[youtubeMatch.length-1]
+        youtubeIframe(vid)
+      else
+        vimeoMatch = url.match(vimeoRegex)
+        vid = vimeoMatch[2]
+        vimeoIframe(vid)
+
+    return iframe
+
   embedVideo: (e) ->
     e.stopPropagation()
     text = $(e.target).val()
     url = extractURL(text)
-    youtubeRegex = /(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/
-    vimeoRegex = /([a-z\:\/]*\/\/)(?:www\.)?vimeo\.com\/(?:channels\/[A-Za-z0-9]+\/)?([A-Za-z0-9]+)/
+
     loader = """
       <div class="ui text loader">Loading</div>
     """
 
     if url.length > 0
-      youtubeMatch = url.match(youtubeRegex)
-      iframe = if youtubeMatch
-        vid = youtubeMatch[youtubeMatch.length-1]
-        console.log youtubeMatch
-        """
-          <iframe width="480" height="270" src="https://www.youtube.com/embed/#{vid}?feature=oembed" frameborder="0" allowfullscreen></iframe>
-        """
-      else
-        vimeoMatch = url.match(vimeoRegex)
-        vid = vimeoMatch[2]
-        console.log vimeoMatch
-        """
-          <iframe src="https://player.vimeo.com/video/#{vid}" width="640" height="360" frameborder="0" title="Valley Of A Thousand Hills" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        """
-
-      $("#video-preview").html iframe
+      $("#video-preview").html extractVideoID(url)
 
   scrapeUrl: (e) ->
     e.stopPropagation()
@@ -540,15 +552,12 @@ AppView = {
       if url.length > 0
         # text = text.replace(url, '')
         # $("#post_body").val(text)
-        # csrf = $("input[name=_csrf_token]").val()
+
         $.ajax(
           url: "/scrapes.json"
           type: "post"
           data:
             url: url
-          # headers:
-          #   "X-CSRF-TOKEN": csrf
-          # dataType: "json",
           success: (link) ->
             $("#post_link_title", $form).val link.title
             $("#post_link_image", $form).val link.image

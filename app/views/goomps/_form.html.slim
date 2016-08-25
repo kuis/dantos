@@ -8,10 +8,10 @@
 
   div class="center aligned field"
     div class="center aligned field"
-      img#user-avatar src=@goomp.cover
+      img#user-avatar src=@goomp.logo
 
-    a class="filepicker ui primary button" data-dimension="1500,500" Upload logo
-    = f.hidden_field :cover
+    a class="filepicker ui primary button" data-dimension="200,200" Upload logo
+    = f.hidden_field :logo
 
   div class="field"
     = f.label :name
@@ -26,7 +26,7 @@
     br
     div class="ui right labeled input"
       div class="ui label" $
-      = f.number_field :price, placeholder: "Amount"
+      = f.number_field :price, placeholder: "Amount", value: 0
       div class="ui basic label" .00
 
   = f.submit "Save", class: "ui primary button"
