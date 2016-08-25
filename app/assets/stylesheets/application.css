@@ -13,6 +13,7 @@
  *= require medium-editor.min
  *= require default
  *= require medium-editor-insert-plugin.min
+ *= require semantic
  *= require itcss
  *= require_self
  */
