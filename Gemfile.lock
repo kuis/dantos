@@ -110,6 +110,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.14)
     ffi (1.9.14-java)
+    font-awesome-sass (4.6.2)
+      sass (>= 3.2)
     formatador (0.2.5)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
@@ -295,17 +297,12 @@ GEM
     ruby-progressbar (1.8.1)
     safe_yaml (1.0.4)
     sass (3.4.22)
-    sassc (1.10.0)
-      bundler
-      ffi (~> 1.9.6)
-      sass (>= 3.3.0)
-    sassc-rails (1.3.0)
-      railties (>= 4.0.0)
-      sass
-      sassc (~> 1.9)
-      sprockets (> 2.11)
-      sprockets-rails
-      tilt
+    sass-rails (5.0.6)
+      railties (>= 4.0.0, < 6)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (>= 1.1, < 3)
     semantic-ui-sass (2.2.3.0)
       sass (>= 3.2)
     shellany (0.0.1)
@@ -392,6 +389,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  font-awesome-sass (~> 4.6.2)
   friendly_id (~> 5.1.0)
   guard (>= 2.2.2)
   guard-livereload
@@ -417,7 +415,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_autolink
-  sassc-rails
+  sass-rails
   semantic-ui-sass
   skylight
   slim-rails

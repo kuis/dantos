@@ -4,6 +4,8 @@ extractURL = (textval) ->
   textval.replace(urlRegex, (url) -> urlFinal = url)
   urlFinal
 
+filepickerKey = "Akt6oZj2YRamLQYtKyrhzz"
+
 AppView = {
   initialize: ->
     $(document).on "change", "#user_gender_female", @setFemaleAvatar
@@ -572,7 +574,7 @@ AppView = {
         )
 
   initComponents: ->
-    filepicker?.setKey("Akt6oZj2YRamLQYtKyrhzz")
+    filepicker?.setKey filepickerKey
 
   preparePageForTurbolinks: ->
     # Make sure chat board is clear if user go back
@@ -593,6 +595,13 @@ AppView = {
     )
     $('.editable').mediumInsert(
       editor: @editor
+      addons:
+        images:
+          # label: '<span class="typcn typcn-camera"></span>'
+          fileUploadOptions:
+            url: "https://www.filestackapi.com/api/store/S3?key=#{filepickerKey}"
+        # embeds:
+          # label: '<span class="typcn typcn-media-play"></span>'
     )
 }
 

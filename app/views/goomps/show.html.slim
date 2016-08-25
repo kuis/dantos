@@ -1,39 +1,56 @@
-.sidebar.sidebar--left
-  .ui.secondary.fluid.vertical.menu
-    = link_to "Home", @goomp, class: "active item"
-    - @subtopics.each do |subtopic|
-      = link_to subtopic.name, subtopic, class: "item"
+.ui.borderless.fixed.menu
+  a.header.item href=goomp_path(@goomp)
+  = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 58px")
+  - if user_signed_in?
+    .right.menu
+      div class="ui pointing dropdown link item"
+        = image_tag current_user.picture, size: "45x45", class: "ui"
+        i class="dropdown icon"
+        .menu
+          = link_to "Create Goomp", new_goomp_path, class: "ui item"
+          = link_to "Sign out", destroy_user_session_path, method: :delete, class: "ui item"
 
-  .ui.text.fluid.vertical.menu
-    - if true || current_user&.is_founder_of?(@goomp)
-      a.item data-toggler="new-chapter" Add Chapter
-      = form_for [@goomp, Subtopic.new], html: { class: "ui form", data: {"toggle-id" => "new-chapter"} } do |f|
-        div class="field"
-          = f.text_field :name, placeholder: "Chapter name"
+- if @goomp&.persisted?
+  = render "layouts/goomp_header"
 
-.sidebar.sidebar--right
-  .ui.text.fluid.vertical.menu
-    = link_to "Write a review", goomp_reviews_path(@goomp), class: "item"
-/     a.item href="/goomps" Invite Members
+.site-container.small
+  .sidebar.sidebar--left
+    .ui.secondary.fluid.vertical.menu
+      = link_to "Home", @goomp, class: "active item"
+      - @subtopics.each do |subtopic|
+        = link_to subtopic.name, subtopic, class: "item"
 
-.main
-  - if @goomp.has_member? current_user
-    - if @posts.any?
-      .ui.segment
-        = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
-      = render partial: "posts/infinite_posts", locals: { posts: @posts }
-    - elsif @goomp.user == current_user
-      = form_for [@goomp, Post.new] do |f|
-        = render "goomp_bot/new_goomp"
-    - else
-      = @goomp.description
-  - else
-    h2 Description
-    .ui.card.fluid
-      .content
+    .ui.text.fluid.vertical.menu
+      - if true || current_user&.is_founder_of?(@goomp)
+        a.item data-toggler="new-chapter" Add Chapter
+        = form_for [@goomp, Subtopic.new], html: { class: "ui form", data: {"toggle-id" => "new-chapter"} } do |f|
+          div class="field"
+            = f.text_field :name, placeholder: "Chapter name"
+
+  .sidebar.sidebar--right
+    .ui.text.fluid.vertical.menu
+      = link_to "Write a review", goomp_reviews_path(@goomp), class: "item"
+  /     a.item href="/goomps" Invite Members
+
+  .main
+    - if @goomp.has_member? current_user
+      - if @posts.any?
+        .ui.segment
+          = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
+        = render partial: "posts/infinite_posts", locals: { posts: @posts }
+      - elsif @goomp.user == current_user
+        = form_for [@goomp, Post.new] do |f|
+          = render "goomp_bot/new_goomp"
+      - else
         = @goomp.description
-    h2 Creators & Leaders
-    = render "users/user_card", user: @goomp.user
 
-    - if @posts.any?
-      = render partial: "posts/infinite_posts", locals: { posts: @posts }
+    - else
+      h2 Description
+      .ui.card.fluid
+        .content
+          = @goomp.description
+      h2 Creators & Leaders
+      = render "users/user_card", user: @goomp.user
+
+      - if @posts.any?
+        = render partial: "posts/infinite_posts", locals: { posts: @posts }

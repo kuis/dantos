@@ -26,7 +26,7 @@ class GoompsController < ApplicationController
           },
           url: goomp_url(@goomp)
         )
-        render layout: 'small_margin'
+        render layout: 'pages'
 
       end
       f.js { render "posts/infinite_posts" }
