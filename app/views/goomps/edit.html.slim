@@ -1,8 +1,34 @@
 h1 Editing goomp
 
-== render 'form'
+= form_for @goomp, html: { class: "ui form" } do |f|
+  - if @goomp.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@goomp.errors.count, "error")} prohibited this goomp from being saved:"
+      ul
+        - @goomp.errors.full_messages.each do |message|
+          li = message
 
-= link_to 'Show', @goomp
-'|
-= link_to 'Back', goomps_path
+  div class="center aligned field"
+    div class="center aligned field"
+      img#user-avatar src=@goomp.logo
 
+    a class="filepicker ui primary button" data-ratio="1" Upload logo
+    = f.hidden_field :logo
+
+  div class="center aligned field"
+    div class="center aligned field"
+      img#user-avatar src=@goomp.cover
+
+    a class="filepicker ui primary button" data-ratio="1" Upload cover
+    = f.hidden_field :cover
+
+  div class="field"
+    = f.label :name
+    = f.text_field :name
+
+  div class="field"
+    = f.label :description
+    = f.text_field :description
+
+  = f.submit "Save", class: "ui primary button"
+  div class="ui error message"
