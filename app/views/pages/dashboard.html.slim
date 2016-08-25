@@ -2,7 +2,10 @@
   .ui.secondary.fluid.vertical.menu
     = link_to "Home", root_path, class: "item"
     - @joined_goomps.each do |goomp|
-      = link_to goomp.name, goomp, class: "item"
+      = link_to goomp, class: "item" do
+        .cover-box
+          = image_tag goomp.cover if goomp.cover
+        = goomp.name
 
 .main
   .twelve.wide.column
