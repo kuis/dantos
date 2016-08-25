@@ -1,6 +1,8 @@
 = link_to user, class: "ui card", target: "_blank" do
-  .img
-    = image_tag user.picture, style: "height: 200px;width: auto;display: inline"
+  .image
+    = image_tag user.picture, style: "height: auto; width: 100%;"
   .content
     .header = user.full_name
     .meta = user.bio
+  .extra.content
+    / = render 'user/follow_button'
