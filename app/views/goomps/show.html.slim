@@ -1,7 +1,10 @@
 .ui.borderless.fixed.menu
   a.header.item href=goomp_path(@goomp)
-  - if @goomp.logo
-    = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 58px")
+  - if user_signed_in?
+    = link_to image_tag("logo.png", alt: "Goomp", class: "ui", style: "height: 54px"), root_path
+
+  - elsif @goomp.logo
+    = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 54px"), @goomp
 
   - if user_signed_in?
     .right.menu

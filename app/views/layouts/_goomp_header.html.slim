@@ -3,6 +3,9 @@
     = image_tag @goomp.cover.present? ? @goomp.cover : "http://placehold.it/1500x320", height: 320
   .info
     .name
+      - if user_signed_in? && @goomp.logo
+        = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 24px")
+
       = @goomp.name
       small
         span.typcn.typcn-group
@@ -17,4 +20,3 @@
       = render "goomps/join_button", goomp: @goomp
 
       / = @goomp.average_rating
-
