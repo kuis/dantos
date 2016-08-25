@@ -17,12 +17,23 @@
 /     a.item href="/goomps" Invite Members
 
 .main
-  - if @posts.any?
-    .ui.segment
-      = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
-    = render partial: "posts/infinite_posts", locals: { posts: @posts }
-  - elsif @goomp.user == current_user
-    = form_for [@goomp, Post.new] do |f|
-      = render "goomp_bot/new_goomp"
+  - if @goomp.has_member? current_user
+    - if @posts.any?
+      .ui.segment
+        = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
+      = render partial: "posts/infinite_posts", locals: { posts: @posts }
+    - elsif @goomp.user == current_user
+      = form_for [@goomp, Post.new] do |f|
+        = render "goomp_bot/new_goomp"
+    - else
+      = @goomp.description
   - else
-    = @goomp.description
+    h2 Description
+    .ui.card.fluid
+      .content
+        = @goomp.description
+    h2 Creators & Leaders
+    = render "users/user_card", user: @goomp.user
+
+    - if @posts.any?
+      = render partial: "posts/infinite_posts", locals: { posts: @posts }
