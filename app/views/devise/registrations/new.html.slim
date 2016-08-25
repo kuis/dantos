@@ -38,9 +38,6 @@ div class="ui stacked segment" style="width: 100%;max-width: 75%;margin:auto;pad
 
     .field
       = f.label :email, "Primary Email", class: "inline-label"
-      - unless session["devise.oauth_data"] && session["devise.oauth_data"]["email"]
-        small
-          ' (You will use this to login)
       = f.text_field :email, placeholder: "Primary Email (Ex: Joe@AppleSeed.com)"
 
     - unless session["devise.oauth_data"]

@@ -500,7 +500,6 @@ AppView = {
       $("#user_picture").val(url)
 
   embedVideo: (e) ->
-    console.log 'embeding'
     e.stopPropagation()
     text = $(e.target).val()
     url = extractURL(text)
@@ -516,7 +515,7 @@ AppView = {
         vid = youtubeMatch[youtubeMatch.length-1]
         console.log youtubeMatch
         """
-          <iframe width="480" height="270" src="https://www.youtube.com/embed/D9_b8W12hpg?feature=oembed" frameborder="0" allowfullscreen></iframe>
+          <iframe width="480" height="270" src="https://www.youtube.com/embed/#{vid}?feature=oembed" frameborder="0" allowfullscreen></iframe>
         """
       else
         vimeoMatch = url.match(vimeoRegex)
