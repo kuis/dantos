@@ -1,6 +1,8 @@
 .ui.borderless.fixed.menu
   a.header.item href=goomp_path(@goomp)
-  = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 58px")
+  - if @goomp.logo
+    = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 58px")
+
   - if user_signed_in?
     .right.menu
       div class="ui pointing dropdown link item"
