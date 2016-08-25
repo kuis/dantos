@@ -3,9 +3,26 @@
   .fourteen.wide.column
     .ui.segments
       .ui.segment
-        h1 = "#{@user.first_name} #{@user.last_name}"
-        small = @user.headline
-        img src=@user.picture
+        .left-box
+          h1 = @user.full_name
+          p.text-gray = @user.headline
+
+          / = render 'users/follow_button'
+
+          .socials
+            = link_to 'http://facebook.com', rel: 'nofollow', target: '_blank' do
+              i.fa.fa-facebook
+
+            = link_to 'http://facebook.com', rel: 'nofollow', target: '_blank' do
+              i.fa.fa-twitter
+
+            = link_to 'http://facebook.com', rel: 'nofollow', target: '_blank' do
+              i.fa.fa-linkedin
+
+
+        .right-box
+          img src = @user.picture
+
       .ui.segment
         h2 Short Bio
         = @user.bio
