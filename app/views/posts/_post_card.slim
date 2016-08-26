@@ -1,7 +1,7 @@
 - if post.content.present?
-  - options = class: "ui fluid card"
+  - options = {class: "ui fluid card"}
 - else
-  - options = class: "ui fluid card", target: "_blank", rel: "nofollow"
+  - options = {class: "ui fluid card", target: "_blank", rel: "nofollow"}
 
 = link_to post.link_url, options do
   - if post.link_image

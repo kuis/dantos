@@ -4,7 +4,7 @@
   - else
     - if goomp.price > 0
       div class="ui labeled button"
-        = submit_tag "Join", class: "ui primary button stripe-button", data: { id: goomp.id, name: goomp.name, description: goomp.description, amount: goomp.price*100 }
+        = submit_tag "Join", class: "ui primary button stripe-button", data: { id: goomp.id, name: goomp.name, description: goomp.description, amount: goomp.price*100, logo: goomp.logo }
         span class="ui label" = humanized_money_with_symbol goomp.price
     - else
       = submit_tag "Join", class: "ui primary button"
