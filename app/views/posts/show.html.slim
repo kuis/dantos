@@ -1,6 +1,8 @@
 .author-box
   = image_tag current_user.picture, class: 'ui avatar image'
   span = current_user.full_name
+  span = time_ago_in_words @post.created_at
+  '  ago
 
 h1 = @post.title
 
@@ -10,7 +12,7 @@ h1 = @post.title
 
 p
   strong Goomp:
-  = @post.goomp.name
+  = link_to @post.goomp.name, @post.goomp, class: "goomp-primary"
 
 / = @post.subtopic
 

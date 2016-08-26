@@ -45,7 +45,7 @@
         = form_for [@goomp, Post.new] do |f|
           = render "goomp_bot/new_goomp"
       - else
-        .ui.segment
+        .ui.segment.narrow
           = render "post_form", action_url: goomp_posts_path(@goomp), goomp: @goomp
         = render partial: "posts/infinite_posts", locals: { posts: @posts }
 
