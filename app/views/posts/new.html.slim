@@ -1,4 +1,4 @@
-.ui.secondary.fixed.menu
+.ui.borderless.fixed.menu
   - if @goomp
     = link_to image_tag("logo.png", alt: "Goomp", class: "ui"), goomp_path(@goomp), class: "header item"
   - else
@@ -12,7 +12,7 @@
     = image_tag current_user.picture, class: 'ui avatar image'
     span = current_user.full_name
 
-  = form_for Post.new, html: { clxass: "ui form" } do |f|
+  = form_for Post.new, html: { class: "ui form", autocomplete: "off" } do |f|
     = f.hidden_field :goomp_id
 
     = fields_for :link do |ff|
