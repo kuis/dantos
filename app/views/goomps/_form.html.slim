@@ -22,11 +22,11 @@
     = f.text_area :description, rows: "3"
 
   div class="field"
-    = label_tag :leaders, 'Group Leaders(You can change this later)'
+    = label_tag :leaders, 'Group Leaders (You can change this later)'
 
     .ui.radio.checkbox
       = radio_button_tag :leaders, "single"
-      = label_tag 'Single(Only Me)'
+      = label_tag 'Single (Only Me)'
 
     .ui.radio.checkbox
       = radio_button_tag :leaders, "multiple"
@@ -44,7 +44,7 @@
         = text_field_tag :email, nil, placeholder: 'Email'
 
   .field
-    = label_tag :charge, 'Charge Members(Members who join your goomp)'
+    = label_tag :charge, 'Charge Members (Members who join your goomp)'
 
     .ui.radio.checkbox
       = radio_button_tag :free, "free"
@@ -52,7 +52,7 @@
 
     .ui.radio.checkbox
       = radio_button_tag :paid, 'paid'
-      = label_tag 'Paid(Monthly)'
+      = label_tag 'Paid (Monthly)'
 
   .inline.field
     = f.label :price, "Monthly Subscription"
