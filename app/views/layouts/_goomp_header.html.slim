@@ -1,6 +1,6 @@
 - if controller_name == "reviews" || (controller_name == "goomps" && action_name.in?(%w(show)))
   .goomp-header style="height: 320px;margin-top: 56px"
-     - if current_user.is_manager_of? @goomp
+    - if current_user.is_manager_of? @goomp
       .add-cover-button
         = link_to edit_goomp_path(@goomp), class: 'ui button basic blue' do
           - if @goomp.cover.present?
