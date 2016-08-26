@@ -20,10 +20,10 @@
         '  Members
 
     .action
-      - if @goomp.reviews.any?
+      - if @goomp.reviews.size > 0
         .ratings
           ' Ratings
-          span class="ui star rating" data-rating="5" data-ratable="false"
+          span class="ui star rating" data-rating=@goomp.rating.to_i data-unratable=true
 
       = render "goomps/join_button", goomp: @goomp
 

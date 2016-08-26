@@ -116,6 +116,7 @@ AppView = {
         $("[data-ratable-id=#{ratable_id}]").val val
     )
     $('[data-ratable=false]').rating('disable')
+    $('[data-unratable]').rating('disable')
     $('.ui.dropdown').dropdown(on: 'hover')
     $("#new_post").form(
       fields:
