@@ -8,18 +8,18 @@
 
   div class="center aligned field"
     div class="center aligned field"
-      img#user-avatar src=@goomp.logo
+      = image_tag 'empty-image.png', id: 'user-avatar'
 
     a class="filepicker ui primary button" data-ratio="1" Upload logo
     = f.hidden_field :logo
 
   div class="field"
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, placeholder: 'Goomp Name'
 
   div class="field"
     = f.label :description
-    = f.text_area :description, rows: "3"
+    = f.text_area :description, rows: "3", placeholder: 'Goomp Description'
 
   div class="field"
     = label_tag :leaders, 'Group Leaders (You can change this later)'
