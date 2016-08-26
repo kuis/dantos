@@ -3,7 +3,7 @@
     = link_to "Home", root_path, class: "item active"
     - @joined_goomps.each do |goomp|
       = link_to goomp, class: "item" do
-        = image_tag goomp.logo if goomp.logo
+        / = image_tag goomp.logo if goomp.logo
         = goomp.name
 
     = link_to 'Create Goomp', new_goomp_path, class: 'item blue-ink'
