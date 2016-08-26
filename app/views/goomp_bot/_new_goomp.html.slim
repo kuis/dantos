@@ -5,5 +5,25 @@ div class="ui segment feed"
     div class="content"
       div class="summary" Goomp Bot
       span class="date" Just Now
-      #new-goomp-chat data-name=current_user.first_name
+      #chat
       div class="extra text"
+
+javascript:
+  new Chat(
+    {
+      greeting: [
+        "Hi #{current_user.first_name}!",
+        'Great work in creating a goomp.',
+        'Take some time to decorate it with a cover photo etc. I will guide you through the rest of the set-up. ',
+        {
+          type: 'visit',
+          answers: [{
+            'text': "Add cover",
+            'path': '#{edit_goomp_path(goomp)}'
+          }]
+        }
+      ]
+    }, {
+      targetNode: '#chat'
+    }
+  )

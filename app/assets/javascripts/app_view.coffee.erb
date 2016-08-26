@@ -20,7 +20,7 @@ AppView = {
       console.log xhr.responseText
       console.log error
 
-    document.addEventListener "turbolinks:before-cache", @preparePageForTurbolinks
+    $(document).off("turbolinks:before-cache").on("turbolinks:before-cache", @preparePageForTurbolinks)
 
     @initComponents()
     @initSemanticUI()
@@ -208,7 +208,6 @@ AppView = {
           }]
     )
 
-
   initChatGoomp: (target='#new-goomp-chat') ->
     if $(target).length > 0
       name = $(target).data("name")
@@ -276,7 +275,7 @@ AppView = {
         targetNode: target
       })
 
-  initChat: (target='#my-chat') ->
+  initChat: (target='#chat') ->
     if $(target).length > 0
       name = $(target).data("name")
       new Chat({
@@ -578,7 +577,8 @@ AppView = {
 
   preparePageForTurbolinks: ->
     # Make sure chat board is clear if user go back
-    $("#my-chat").html "" if $("#my-chat").length > 0
+    $("#chat").html "" if $("#chat").length > 0
+
     # $(".ui.modals").remove() if $(".ui.modals").length > 0
     $(".ui.modal").hide()
 
