@@ -14,7 +14,7 @@
     = truncate_body_link post.body
 
   - if post.link_url.present?
-    = render "posts/post_card", title: post.link_title, description: post.link_description, image: post.link_image, url: post.link_url
+    = render "posts/post_card", post: post
   = render "posts/like_button", likable: post
 
   .ui.divider
