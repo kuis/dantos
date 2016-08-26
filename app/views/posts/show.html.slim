@@ -1,24 +1,35 @@
-.author-box
-  = image_tag current_user.picture, class: 'ui avatar image'
-  span = current_user.full_name
-  span = time_ago_in_words @post.created_at
-  '  ago
+.ui.borderless.fixed.menu
+  - if @goomp
+    = link_to image_tag("logo.png", alt: "Goomp", class: "ui"), goomp_path(@goomp), class: "header item"
+  - else
+    = link_to image_tag("logo.png", alt: "Goomp", class: "ui"), root_path, class: "header item"
 
-h1 = @post.title
+  - if current_user == @post.user
+    .right.menu
+      .item
+        = link_to 'Edit', edit_post_path(@post), class: 'ui button basic blue'
 
-= @post.content.html_safe
+.ui.container.new-post
+  .author-box-show
+    .left
+      = image_tag current_user.picture, class: 'ui avatar image'
+    .right
+      = link_to @post.user.full_name, @post.user, class: "user"
+      '  posted to
+      = link_to @post.goomp.name, @post.goomp, class: "goomp-primary"
 
-/ = @post.comments_count
+      .date
+        = time_ago_in_words @post.created_at
+        '  ago
 
-p
-  strong Goomp:
-  = link_to @post.goomp.name, @post.goomp, class: "goomp-primary"
+  h1 = @post.title
 
-/ = @post.subtopic
+  = @post.content.html_safe
 
-= render "posts/like_button", likable: @post
+  / = @post.comments_count
+  / = @post.subtopic
+  .ui.hidden.divider
+  = render "posts/like_button", likable: @post
 
-.ui.hidden.divider
 
-- if current_user == @post.user
-  = link_to 'Edit', edit_post_path(@post), class: 'ui button basic blue'
+
