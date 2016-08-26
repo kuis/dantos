@@ -8,3 +8,25 @@ div class="ui segment feed"
 
       #chat data-name=current_user.first_name
       div class="extra text"
+
+javascript:
+  new Chat({
+    greeting: [
+      "Hi #{current_user.first_name}!"
+      'Welcome to Goomp. We are so excited to have you here.'
+      'Goomp is still in beta, so feel free to create a goomp or join existing ones!'
+      {
+        type: 'visit',
+        answers: [{
+          'text': 'Create Goomp',
+          'path': '/goomps/new'
+        },
+        {
+          'text': 'Explore Goomps',
+          'path': '/goomps'
+        }]
+      }
+    ]
+  }, {
+    targetNode: "#chat"
+  })
