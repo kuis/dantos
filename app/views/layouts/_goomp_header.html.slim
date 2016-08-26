@@ -1,11 +1,12 @@
 - if controller_name == "reviews" || (controller_name == "goomps" && action_name.in?(%w(show)))
   .goomp-header style="height: 320px;margin-top: 56px"
-    .add-cover-button
-      = link_to edit_goomp_path(@goomp), class: 'ui button basic blue' do
-        - if @goomp.cover.present?
-          ' Change Cover Image
-        - else
-          ' Add Cover Image
+     - if current_user.is_manager_of? @goomp
+      .add-cover-button
+        = link_to edit_goomp_path(@goomp), class: 'ui button basic blue' do
+          - if @goomp.cover.present?
+            ' Change Cover Image
+          - else
+            ' Add Cover Image
 
     .cover
       = image_tag @goomp.cover.present? ? @goomp.cover : "http://placehold.it/1500x320", height: 320

@@ -17,7 +17,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
-  def is_founder_of? goomp
+  def is_manager_of? goomp
     goomp.user == self
   end
 
