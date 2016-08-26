@@ -1,10 +1,17 @@
 .goomp-header style="height: 320px;margin-top: 56px"
+  .add-cover-button
+    - if @goomp.cover.present?
+      = link_to 'Change Cover Image', "", class: 'ui button basic blue'
+    - else
+      = link_to 'Add Cover Image', "", class: 'ui button basic blue'
+
   .cover
     = image_tag @goomp.cover.present? ? @goomp.cover : "http://placehold.it/1500x320", height: 320
+
   .info
     .name
-      - if user_signed_in? && @goomp.logo
-        = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 24px")
+      / - if user_signed_in? && @goomp.logo
+      /   = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 24px")
 
       = @goomp.name
       small
@@ -13,9 +20,10 @@
         '  Members
 
     .action
-      .ratings
-        ' Ratings
-        span class="ui star rating" data-rating="5" data-ratable="false"
+      - if @goomp.reviews.any?
+        .ratings
+          ' Ratings
+          span class="ui star rating" data-rating="5" data-ratable="false"
 
       = render "goomps/join_button", goomp: @goomp
 
