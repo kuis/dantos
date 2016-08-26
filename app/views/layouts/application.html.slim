@@ -14,8 +14,7 @@ html
               = link_to "Create Goomp", new_goomp_path, class: "ui item"
               = link_to "Sign out", destroy_user_session_path, method: :delete, class: "ui item"
 
-    - if @goomp&.persisted?
-      = render "layouts/goomp_header"
+    = render "layouts/goomp_header"
 
     .site-container
       = yield
