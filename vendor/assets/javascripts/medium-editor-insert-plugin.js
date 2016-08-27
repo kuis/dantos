@@ -1924,6 +1924,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
      */
 
     Images.prototype.uploadDone = function (e, data) {
+      console.log("server response", data)
         $.proxy(this, 'showImage', data.result.files[0].url, data)();
 
         this.core.clean();
@@ -2111,7 +2112,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
 
             if (images.length) {
                 for (i = 0; i < images.length; i++) {
-                    this.deleteFile(images[i].attr('src'));
+                    this.deleteFile(images[i].data("delete-url"));
 
                     $parent = images[i].closest('.medium-insert-images');
                     images[i].closest('figure').remove();
@@ -2146,14 +2147,13 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
      * @returns {void}
      */
 
-    Images.prototype.deleteFile = function (file) {
-        if (this.options.deleteScript) {
-            $.ajax($.extend(true, {}, {
-                url: this.options.deleteScript,
-                type: this.options.deleteMethod || 'POST',
-                data: { file: file }
-            }, this.options.fileDeleteOptions));
-        }
+    Images.prototype.deleteFile = function (url) {
+      if (url && url.length > 0) {
+        $.ajax({
+          url: url,
+          type: "DELETE",
+        })
+      }
     };
 
     /**

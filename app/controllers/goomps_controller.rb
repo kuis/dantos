@@ -78,11 +78,11 @@ class GoompsController < ApplicationController
   # DELETE /goomps/1
   # DELETE /goomps/1.json
   def destroy
-    @goomp.destroy
-    respond_to do |format|
-      format.html { redirect_to goomps_url, notice: 'Goomp was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # @goomp.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to goomps_url, notice: 'Goomp was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private

@@ -15,11 +15,10 @@
   = form_for Post.new, html: { class: "ui form", autocomplete: "off" } do |f|
     = f.hidden_field :goomp_id
 
-    = fields_for :link do |ff|
-      = ff.hidden_field :title
-      = ff.hidden_field :description
-      = ff.hidden_field :image
-      = ff.hidden_field :url
+    = f.hidden_field :link_title
+    = f.hidden_field :link_description
+    = f.hidden_field :link_image
+    = f.hidden_field :link_url
 
     = current_user.avatar
     = f.text_field :title, placeholder: "Give me a name", autofocus: true

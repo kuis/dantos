@@ -16,6 +16,10 @@ AppView = {
     $("#video-embed").off("input").on "input", @embedVideo
     $('form[method="get"][data-remote="true"]').off("submit").on "submit", @remoteSubmitGetForm
     $("[data-toggler]").off("click").on "click", @toggleToggler
+    $("#new_post input[type=text]").off("keypress keydown keyup").on "keypress keydown keyup", (e) ->
+      if e.which == 13
+        e.preventDefault()
+        return false
     $(document).off("ajax:error").on "ajax:error", (event, xhr, status, error) ->
       console.log xhr.responseText
       console.log error
@@ -317,6 +321,10 @@ AppView = {
       editor: @editor
       addons:
         images:
+          uploadCompleted: ($el, data) ->
+            deleteUrl = data.result.files[0].deleteUrl
+            console.log deleteUrl
+            $("img", $el).data("delete-url", deleteUrl)
           # label: '<span class="typcn typcn-camera"></span>'
           fileUploadOptions:
             url: "/photos"

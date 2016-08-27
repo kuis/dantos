@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'slim-rails'
 gem 'kaminari'
 gem 'carrierwave'
+gem "fog-aws"
 gem 'mini_magick'
 gem 'airbrake'
 gem 'dalli'
