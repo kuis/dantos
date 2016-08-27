@@ -12,13 +12,13 @@
 .ui.container.new-post
   .author-box-show
     .left
-      = image_tag current_user.picture, class: 'ui avatar image'
+      = image_tag @post.user.picture, class: 'ui image mini'
     .right
-      = link_to @post.user.full_name, @post.user, class: "user"
-      '  posted to
-      = link_to @post.goomp.name, @post.goomp, class: "goomp-primary"
-
-      .date
+      .summary
+        = link_to @post.user.full_name, @post.user, class: "user"
+        '  posted to
+        = link_to @post.goomp.name, @post.goomp, class: "goomp-primary"
+      span.date
         = time_ago_in_words @post.created_at
         '  ago
 
