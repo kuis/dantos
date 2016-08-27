@@ -26,7 +26,7 @@
         - if @goomp.reviews.size > 0
           .ratings
             ' Ratings
-            span class="ui star rating" data-rating=@goomp.rating.to_i data-unratable=true
+            span class="ui star rating" data-rating=@goomp.rating.round data-unratable=true
 
         = render "goomps/join_button", goomp: @goomp
 
