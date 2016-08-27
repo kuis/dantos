@@ -37,7 +37,7 @@ class User < ApplicationRecord
       end
     else
       if goomp.price > 0
-        StripeService.subscribe self, @goomp, token
+        StripeService.subscribe self, goomp, token
       end
 
       membership.save
