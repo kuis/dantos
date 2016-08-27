@@ -23,7 +23,7 @@
 //= require jquery.ui.widget
 //= require jquery.iframe-transport
 //= require jquery.fileupload
-//= require medium-editor-insert-plugin.min
+//= require medium-editor-insert-plugin
 
 
 //= require_tree .
