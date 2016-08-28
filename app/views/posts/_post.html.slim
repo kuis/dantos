@@ -13,10 +13,12 @@
   .extra.text
     = truncate_body_link post.body
 
-  .ui.divider
-    
+
   - if post.link_url.present?
     = render "posts/post_card", post: post
+
+  .ui.divider
+
   = render "posts/like_button", likable: post
 
   .ui.comments
