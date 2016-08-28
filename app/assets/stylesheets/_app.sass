@@ -327,7 +327,7 @@
   padding-bottom: 15px
 
 .border-bottom
-  border-bottom: 1px solid #eee
+  border-bottom: 1px solid $border_color
 
 .centered
   text-align: center
@@ -342,12 +342,16 @@
   .ui.fluid.card
     border-radius: 0
     box-shadow: none
-    border: 1px solid #eee
+    border: 1px solid $border_color
     .img
       max-height: 210px
       max-width: 600px
       overflow: hidden
       padding: 1rem
+
+  .extra.text
+    font-size: 1.1em
+    line-height: 1.3em
 
 .author-box-show
   &:after
@@ -369,14 +373,14 @@
         color: black
 
 #comment_body
-  border-color: #eee
+  border-color: $border_color
 
 hr
-  color: #eee
+  color: $border_color
 
 .ui.divider:not(.vertical):not(.horizontal)
-  border-top: 1px solid #eee
+  border-top: 1px solid $border_color
 
 .ui.segments.js-infinite--list
-  border: 1px solid #eee
+  border: 1px solid $border_color
   box-shadow: none
