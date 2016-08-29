@@ -1,6 +1,6 @@
 - if controller_name == "reviews" || (controller_name == "goomps" && action_name.in?(%w(show)))
-  .goomp-header style="height: 320px;margin-top: 56px"
-    - if current_user.is_manager_of? @goomp
+  - if current_user.is_manager_of? @goomp
+    .goomp-header
       .add-cover-button
         = link_to edit_goomp_path(@goomp), class: 'ui button basic blue' do
           - if @goomp.cover.present?
@@ -8,26 +8,18 @@
           - else
             ' Add Cover Image
 
-    .cover
-      = image_tag @goomp.cover.present? ? @goomp.cover : "http://placehold.it/1500x320", height: 320
+      .cover
+        = image_tag @goomp.cover.present? ? @goomp.cover : "http://placehold.it/1500x320", height: 320
 
-    .info
-      .name
-        / - if user_signed_in? && @goomp.logo
-        /   = link_to image_tag(@goomp.logo, alt: "Goomp", class: "ui", style: "height: 24px")
+        = render 'layouts/goomp_header_info'
 
-        = @goomp.name
-        small
-          span.typcn.typcn-group
-          = @goomp.memberships.size
-          '  Members
+  - else
+    .goomp-header.no-cover
+      - if @goomp.cover.present?
+        .cover
+          = image_tag @goomp.cover, height: 320
+      = render 'layouts/goomp_header_info'
 
-      .action
-        - if @goomp.reviews.size > 0
-          .ratings
-            ' Ratings
-            span class="ui star rating" data-rating=@goomp.rating.round data-unratable=true
 
-        = render "goomps/join_button", goomp: @goomp
 
-        / = @goomp.average_rating
+
