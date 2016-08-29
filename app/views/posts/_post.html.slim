@@ -6,7 +6,7 @@
       .summary
         = link_to post.user.full_name, post.user, class: "user"
         i.icon.right.caret
-        = link_to post.goomp.name, post.goomp, class: "goomp-primary"
+        = link_to post.goomp.name, post.goomp, class: "secondary"
       span.date
         = time_ago_in_words post.created_at
         '  ago
