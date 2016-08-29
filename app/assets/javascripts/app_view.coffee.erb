@@ -322,9 +322,9 @@ AppView = {
       addons:
         images:
           uploadCompleted: ($el, data) ->
-            deleteUrl = data.result.files[0].deleteUrl
-            console.log deleteUrl
-            $("img", $el).data("delete-url", deleteUrl)
+            photo = data.result.files[0]
+            $("img", $el).data("delete-url", photo.deleteUrl)
+            $("#post_link_image").val photo.url
           # label: '<span class="typcn typcn-camera"></span>'
           fileUploadOptions:
             url: "/photos"
