@@ -8,7 +8,7 @@ div class="ui stacked segment" style="width: 100%;max-width: 75%;margin:auto;pad
           = image_tag f.object.picture, id: "user-avatar"
         - else
           = image_tag "default-male.png", id: "user-avatar"
-      a.filepicker.ui.mini.primary.button Change Avatar
+      a.filepicker.ui.mini.primary.button data-ratio="1" Change Avatar
       = f.hidden_field :picture
 
     .field
