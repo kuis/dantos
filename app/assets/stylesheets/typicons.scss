@@ -2,6 +2,13 @@
 
 /* @FONT-FACE loads font into browser */
 @font-face {
+    font-family: 'AvenirNextLTPro-Regular';
+    font-weight: normal;
+    font-style: normal;
+    src: asset-url('AvenirNextLTPro-Regular.otf');
+}
+
+@font-face {
   font-family: 'typicons';
   font-weight: normal;
   font-style: normal;
