@@ -12,7 +12,7 @@
             = link_to "Sign out", destroy_user_session_path, method: :delete, class: "item"
             br
           - else
-            = link_to "Create Account", new_user_registration_path, class: "item"
+            a.ui.item data-modal="social-buttons-modal" Create Account
             = link_to "Sign In", new_user_session_path, class: "item"
 
   .masthead.segment.bg7
