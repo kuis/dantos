@@ -12,15 +12,15 @@
             = link_to "Sign out", destroy_user_session_path, method: :delete, class: "item"
             br
           - else
-            = link_to "Create new account", new_user_registration_path, class: "item"
-            = link_to "Sign in", new_user_session_path, class: "item"
+            = link_to "Create Account", new_user_registration_path, class: "item"
+            = link_to "Sign In", new_user_session_path, class: "item"
 
   .masthead.segment.bg7
     .ui.container
       .introduction
         h1.ui.inverted.header
           span.library = image_tag "logo-v.png", style: "height: 132px", alt: "Goomp Logo"
-          span.tagline A platform for Learning Groups
+          span.tagline A Platform for Learning Groups
         .ui.hidden.divider
         a.ui.huge.inverted.download.button data-modal="social-buttons-modal" Get Started
         = render "social_buttons_modal", modal_id: "social-buttons-modal"
@@ -30,7 +30,7 @@
       .sixteen.wide.column
         h2.ui.icon.header
           .content What is Goomp?
-        p.ui.aligned.center Goomp is a platform where people create learning groups to share network, mentorship and premium content for free or a small membership fee
+        p.ui.aligned.center Goomp is where people create learning groups to share their knowledge, network and mentorship through premium content for a membership fee
   .feature-content
     .ui.grid.page
       .sixteen.wide.column
@@ -41,14 +41,14 @@
             .ui.center.aligned
               .typcn.typcn-group style="font-size: 80px;line-height:80px"
             h3.ui.center.aligned.header Create Goomp
-            p.ui.aligned.center Our friendly Goomp Bot will guide you through the process of creating your first goomp
+            p.ui.aligned.center Creating Goomp is creating your learning community
           .column
             .ui.center.aligned
               .typcn.typcn-news style="font-size: 80px;line-height:80px"
-            h3.ui.center.aligned.header Seed Content
-            p.ui.aligned.center Group leaders and content are critical for the success of your learning group. Seed it with the right content that acts as a teaser
+            h3.ui.center.aligned.header Publish Content
+            p.ui.aligned.center Share or curate your content into chapters
           .column
             .ui.center.aligned
               .typcn.typcn-thumbs-up style="font-size: 80px;line-height:80px"
             h3.ui.center.aligned.header Monetize
-            p.ui.aligned.center Once you set a membership fee, you can grow members by leveraging Goomp's distribution platform. This builds identity and brings lot of traction to your learning group
+            p.ui.aligned.center Set a monthly membership fee that is marginally less, so you can grow subscribers by leveraging Goomp's distribution platform.
