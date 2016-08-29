@@ -1,7 +1,7 @@
 json.files [@photo] do |photo|
   json.url photo.data.url
-  json.deleteUrl photo_path(photo, format: :json)
-  json.deleteType "DELETE"
+  json.cover_url photo.data.url(:cover)
+  json.delete_url photo_path(photo, format: :json)
 end
 
 # {"files": [
