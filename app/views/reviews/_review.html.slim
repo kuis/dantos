@@ -5,7 +5,7 @@
     .content
       .summary
         = link_to review.user.full_name, review.user, class: "user"
-        span.helper '  posted to
+        span.helper posted to
         = link_to review.goomp.name, review.goomp, class: "goomp-primary"
       span.date
         = time_ago_in_words review.created_at
