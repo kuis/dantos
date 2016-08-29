@@ -15,11 +15,11 @@
   .ui.compact.secondary.pointing.menu
     - if assigns["goomp"]
       = link_to new_goomp_post_path(goomp), class: "item" do
-        i.sticky-note.icon
+        i.expand.icon
         ' Publish Story
     - else
       = link_to new_post_path, class: "item" do
-        i.sticky-note.icon
+        i.expand.icon
         ' Publish Story
 
   .field
