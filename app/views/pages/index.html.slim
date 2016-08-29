@@ -9,7 +9,7 @@
                 = image_tag 'square-logo.ico', class: 'ui image'
         .right.menu.inverted
           - if user_signed_in?
-            = link_to "Sign out", destroy_user_session_path, method: :delete, class: "item"
+            = link_to "Sign Out", destroy_user_session_path, method: :delete, class: "item"
             br
           - else
             a.ui.item data-modal="social-buttons-modal" Create Account
