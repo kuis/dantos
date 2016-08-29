@@ -1,4 +1,5 @@
 - if controller_name == "reviews" || (controller_name == "goomps" && action_name.in?(%w(show)))
+
   - if current_user.is_manager_of? @goomp
     .goomp-header
       .add-cover-button
@@ -14,12 +15,15 @@
         = render 'layouts/goomp_header_info'
 
   - else
-    .goomp-header.no-cover
-      - if @goomp.cover.present?
+    - if @goomp.cover.present?
+      .goomp-header
         .cover
           = image_tag @goomp.cover, height: 320
-      = render 'layouts/goomp_header_info'
+        = render 'layouts/goomp_header_info'
 
+    - else
+      .goomp-header.no-cover
+        = render 'layouts/goomp_header_info'
 
 
 
