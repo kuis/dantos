@@ -30,4 +30,4 @@
           = image_tag current_user.picture
         .content
           = form_for [post, Comment.new], html: {class: "ui text authorreply form"}, remote: true do |f|
-            = f.text_field :body, placeholder: "Add Something.."
+            = f.text_field :body, placeholder: "Write Something.."
