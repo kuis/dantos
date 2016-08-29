@@ -16,7 +16,7 @@ div class="ui secondary menu"
     = link_to "Create new account", new_user_registration_path, class: "item"
     = link_to "Sign in", new_user_session_path, class: "item"
 
-.ui.page.grid style="z-index:999999999;"
+.ui.page.grid.with-bg style="z-index:999999999;"
   .sixteen.wide.column
     h1.ui.center.aligned.header.grabber
       = image_tag "logo-v.png", alt: "Goomp Logo"
@@ -25,8 +25,9 @@ div class="ui secondary menu"
   .sixteen.wide.column
     .center.aligned.one.wide.column
       .column style="text-align: center"
-        button#call_to_action.ui.basic.button.huge data-modal="social-buttons-modal" Get Started
+        button#call_to_action.ui.inverted.button.huge data-modal="social-buttons-modal" Get Started
         = render "social_buttons_modal", modal_id: "social-buttons-modal"
+
 .about-content
   .ui.grid.page
     .sixteen.wide.column
