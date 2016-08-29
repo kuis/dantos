@@ -15,12 +15,12 @@
   .ui.compact.secondary.pointing.menu
     - if assigns["goomp"]
       = link_to new_goomp_post_path(goomp), class: "item" do
-        i.gamepad.icon
-        ' Write story
+        i.sticky-note.icon
+        ' Publish Story
     - else
       = link_to new_post_path, class: "item" do
-        i.gamepad.icon
-        ' Write story
+        i.sticky-note.icon
+        ' Publish Story
 
   .field
     = f.text_area :body, placeholder: "Ask a question or share a link", rows: 4
