@@ -15,5 +15,7 @@
  *= require medium-editor-insert-plugin.min
  *= require semantic
  *= require itcss
+ *= require docs
+ *= require home
  *= require_self
  */

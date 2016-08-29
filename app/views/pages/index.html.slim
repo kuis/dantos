@@ -1,156 +1,54 @@
-div class="ui secondary menu"
-  / a class="sidebar-toggle item"
-  /   i class="typco typco-th-menu icon"
-  /   ' Menu
-
-  .right.menu
-    a.ui.item href="#" data-modal="social-buttons-modal" Sign in
-
-/! Sidebar Menu
-.ui.vertical.inverted.sidebar.menu
-  a.active.item href="/"  Home
-  - if user_signed_in?
-    = link_to "Sign out", destroy_user_session_path, method: :delete, class: "item"
-    br
-  - else
-    = link_to "Create new account", new_user_registration_path, class: "item"
-    = link_to "Sign in", new_user_session_path, class: "item"
-
-.following.bar
-  .ui.container
-    .ui.large.secondary.network.menu.inverted
-      .item
-        .ui.logo.shape
-          .sides
-            .active.ui.side
-              img.ui.image src="/images/logo.png" /
-      a.view-ui.item
-        i.sidebar.icon
-        | Menu
-      .right.menu.inverted
+#example.index
+  .following.bar
+    .ui.container
+      .ui.large.secondary.network.menu.inverted
         .item
-          iframe#twitter-widget-0.twitter-share-button.twitter-share-button-rendered.twitter-tweet-button allowtransparency="true" data-url="http://semantic-ui.com" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.a9a07b811338df26287681bd6727fd0a.en.html#dnt=false&id=twitter-widget-0&lang=en&original_referer=http%3A%2F%2Fsemantic-ui.com%2F&size=m&text=Semantic%20UI%202.0%20is%20out!&time=1472444590509&type=share&url=http%3A%2F%2Fsemantic-ui.com&via=semanticui" style=("position: static; visibility: visible; width: 61px; height: 20px;") title=("Twitter Tweet Button")
-          javascript:
-            | window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
-          iframe.github allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=semantic-org&repo=semantic-ui&type=watch&count=true" width="100"
-        #languages.ui.language.floating.dropdown.link.item
-          i.world.icon
-          .text English
-          .menu.inverted
-            .header Search Languages
-            .ui.icon.search.input
-              i.search.icon
-              input placeholder=("Search languages...") type="text" /
-            .scrolling.menu.inverted
-              .item data-english="English" data-percent="100" data-text="English" data-value="en"
-                span.description English
-                | English
-              .item data-english="Danish" data-percent="94" data-text="dansk" data-value="da"
-                span.description dansk
-                | Danish
-              .item data-english="Spanish" data-percent="94" data-text="Espa\u00F1ol" data-value="es"
-                span.description Español
-                | Spanish
-              .item data-english="Chinese" data-percent="34" data-text="\u7B80\u4F53\u4E2D\u6587" data-value="zh"
-                span.description 简体中文
-                | Chinese
-              .item data-english=("Chinese (Taiwan)") data-percent="54" data-text=("\u4E2D\u6587 (\u81FA\u7063)") data-value="zh_TW"
-                span.description 中文 (臺灣)
-                | Chinese (Taiwan)
-              .item data-english="Persian" data-percent="79" data-text="\u067E\u0627\u0631\u0633\u06CC" data-value="fa"
-                span.description پارسی
-                | Persian
-              .item data-english="French" data-percent="41" data-text="Fran\u00E7ais" data-value="fr"
-                span.description Français
-                | French
-              .item data-english="Greek" data-percent="37" data-text="\u03B5\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC" data-value="el"
-                span.description ελληνικά
-                | Greek
-              .item data-english="Russian" data-percent="37" data-text="\u0420\u0443\u0441\u0441\u043A\u0438\u0439" data-value="ru"
-                span.description Русский
-                | Russian
-              .item data-english="German" data-percent="36" data-text="Deutsch" data-value="de"
-                span.description Deutsch
-                | German
-              .item data-english="Italian" data-percent="23" data-text="Italiano" data-value="it"
-                span.description Italiano
-                | Italian
-              .item data-english="Dutch" data-percent="21" data-text="Nederlands" data-value="nl"
-                span.description Nederlands
-                | Dutch
-              .item data-english="Portuguese" data-percent="19" data-text="Portugu\u00EAs(BR)" data-value="pt_BR"
-                span.description Português(BR)
-                | Portuguese
-              .item data-english="Indonesian" data-percent="17" data-text="Indonesian" data-value="id"
-                span.description Indonesian
-                | Indonesian
-              .item data-english="Lithuanian" data-percent="12" data-text="Lietuvi\u0173" data-value="lt"
-                span.description Lietuvių
-                | Lithuanian
-              .item data-english="Turkish" data-percent="11" data-text="T\u00FCrk\u00E7e" data-value="tr"
-                span.description Türkçe
-                | Turkish
-              .item data-english="Korean" data-percent="10" data-text="\uD55C\uAD6D\uC5B4" data-value="kr"
-                span.description 한국어
-                | Korean
-              .item data-english="Arabic" data-percent="7" data-text="\u0627\u0644\u0639\u0631\u0628\u064A\u0629" data-value="ar"
-                span.description العربية
-                | Arabic
-              .item data-english="Hungarian" data-percent="6" data-text="Magyar" data-value="hu"
-                span.description Magyar
-                | Hungarian
-              .item data-english="Vietnamese" data-percent="6" data-text=("ti\u1EBFng Vi\u1EC7t") data-value="vi"
-                span.description tiếng Việt
-                | Vietnamese
-              .item data-english="Swedish" data-percent="5" data-text="svenska" data-value="sv"
-                span.description svenska
-                | Swedish
-              .item data-english="Polish" data-precent="4" data-text="polski" data-value="pl"
-                span.description polski
-                | Polish
-              .item data-english="Japanese" data-percent="6" data-text="\u65E5\u672C\u8A9E" data-value="ja"
-                span.description 日本語
-                | Japanese
-              .item data-english="Romanian" data-percent="0" data-text="rom\u00E2ne\u0219te" data-value="ro"
-                span.description românește
-                | Romanian
+          .ui.logo.shape
+            .sides
+              .active.ui.side
+                = image_tag 'square-logo.ico', class: 'ui image'
+        .right.menu.inverted
+          - if user_signed_in?
+            = link_to "Sign out", destroy_user_session_path, method: :delete, class: "item"
+            br
+          - else
+            = link_to "Create new account", new_user_registration_path, class: "item"
+            = link_to "Sign in", new_user_session_path, class: "item"
 
-.ui.page.grid.with-bg style="z-index:999999999;"
-  .sixteen.wide.column
-    h1.ui.center.aligned.header.grabber
-      = image_tag "logo-v.png", alt: "Goomp Logo"
-    h2.ui.icon.header
-      .content style="font-size: 1.3em" A platform for Learning Groups
-  .sixteen.wide.column
-    .center.aligned.one.wide.column
-      .column style="text-align: center"
-        button#call_to_action.ui.inverted.button.huge data-modal="social-buttons-modal" Get Started
+  .masthead.segment.bg7
+    .ui.container
+      .introduction
+        h1.ui.inverted.header
+          span.library = image_tag "logo-v.png", style: "height: 132px", alt: "Goomp Logo"
+          span.tagline A platform for Learning Groups
+        .ui.hidden.divider
+        a.ui.huge.inverted.download.button data-modal="social-buttons-modal" Get Started
         = render "social_buttons_modal", modal_id: "social-buttons-modal"
 
-.about-content
-  .ui.grid.page
-    .sixteen.wide.column
-      h2.ui.icon.header
-        .content What is Goomp?
-      p.ui.aligned.center Goomp is a platform where people create learning groups to share network, mentorship and premium content for free or a small membership fee
-.feature-content
-  .ui.grid.page
-    .sixteen.wide.column
-      h2.ui.icon.header
-        .content How does it work?
-      .ui.three.column.grid
-        .column
-          .ui.center.aligned
-            .typcn.typcn-group style="font-size: 80px;line-height:80px"
-          h3.ui.center.aligned.header Create Goomp
-          p.ui.aligned.center Our friendly Goomp Bot will guide you through the process of creating your first goomp
-        .column
-          .ui.center.aligned
-            .typcn.typcn-news style="font-size: 80px;line-height:80px"
-          h3.ui.center.aligned.header Seed Content
-          p.ui.aligned.center Group leaders and content are critical for the success of your learning group. Seed it with the right content that acts as a teaser
-        .column
-          .ui.center.aligned
-            .typcn.typcn-thumbs-up style="font-size: 80px;line-height:80px"
-          h3.ui.center.aligned.header Monetize
-          p.ui.aligned.center Once you set a membership fee, you can grow members by leveraging Goomp's distribution platform. This builds identity and brings lot of traction to your learning group
+  .about-content
+    .ui.grid.page
+      .sixteen.wide.column
+        h2.ui.icon.header
+          .content What is Goomp?
+        p.ui.aligned.center Goomp is a platform where people create learning groups to share network, mentorship and premium content for free or a small membership fee
+  .feature-content
+    .ui.grid.page
+      .sixteen.wide.column
+        h2.ui.icon.header
+          .content How does it work?
+        .ui.three.column.grid
+          .column
+            .ui.center.aligned
+              .typcn.typcn-group style="font-size: 80px;line-height:80px"
+            h3.ui.center.aligned.header Create Goomp
+            p.ui.aligned.center Our friendly Goomp Bot will guide you through the process of creating your first goomp
+          .column
+            .ui.center.aligned
+              .typcn.typcn-news style="font-size: 80px;line-height:80px"
+            h3.ui.center.aligned.header Seed Content
+            p.ui.aligned.center Group leaders and content are critical for the success of your learning group. Seed it with the right content that acts as a teaser
+          .column
+            .ui.center.aligned
+              .typcn.typcn-thumbs-up style="font-size: 80px;line-height:80px"
+            h3.ui.center.aligned.header Monetize
+            p.ui.aligned.center Once you set a membership fee, you can grow members by leveraging Goomp's distribution platform. This builds identity and brings lot of traction to your learning group

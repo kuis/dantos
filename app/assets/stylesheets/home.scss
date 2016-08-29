@@ -64,46 +64,46 @@
   opacity: 0.45;
 }
 #example.index .masthead.bg1:after {
-  background-image: url("/images/backgrounds/1.jpg");
+  background-image: image-url("backgrounds/1.jpg");
 }
 #example.index .masthead.bg2:after {
-  background-image: url("/images/backgrounds/2.jpg");
+  background-image: image-url("backgrounds/2.jpg");
 }
 #example.index .masthead.bg3:after {
-  background-image: url("/images/backgrounds/3.jpg");
+  background-image: image-url("backgrounds/3.jpg");
 }
 #example.index .masthead.bg4:after {
-  background-image: url("/images/backgrounds/4.jpg");
+  background-image: image-url("backgrounds/4.jpg");
 }
 #example.index .masthead.bg5:after {
-  background-image: url("/images/backgrounds/5.jpg");
+  background-image: image-url("backgrounds/5.jpg");
 }
 #example.index .masthead.bg6:after {
-  background-image: url("/images/backgrounds/6.jpg");
+  background-image: image-url("backgrounds/6.jpg");
 }
 #example.index .masthead.bg7:after {
-  background-image: url("/images/backgrounds/7.jpg");
+  background-image: image-url("backgrounds/7.jpg");
 }
 #example.index .masthead.bg8:after {
-  background-image: url("/images/backgrounds/8.jpg");
+  background-image: image-url("backgrounds/8.jpg");
 }
 #example.index .masthead.bg9:after {
-  background-image: url("/images/backgrounds/9.jpg");
+  background-image: image-url("backgrounds/9.jpg");
 }
 #example.index .masthead.bg10:after {
-  background-image: url("/images/backgrounds/10.jpg");
+  background-image: image-url("backgrounds/10.jpg");
 }
 #example.index .masthead.bg11:after {
-  background-image: url("/images/backgrounds/11.jpg");
+  background-image: image-url("backgrounds/11.jpg");
 }
 #example.index .masthead.bg12:after {
-  background-image: url("/images/backgrounds/12.jpg");
+  background-image: image-url("backgrounds/12.jpg");
 }
 #example.index .masthead.bg13:after {
-  background-image: url("/images/backgrounds/13.jpg");
+  background-image: image-url("backgrounds/13.jpg");
 }
 #example.index .masthead.bg14:after {
-  background-image: url("/images/backgrounds/14.jpg");
+  background-image: image-url("backgrounds/14.jpg");
 }
 
 
@@ -354,7 +354,7 @@
 ---------------*/
 
 #example.index .following.bar {
-  position: fixed;
+  position: absolute;
   top: 0px;
   z-index: 900;
   left: 0%;
