@@ -8,7 +8,10 @@ class Post < ApplicationRecord
   validates :goomp, :user, presence: true
 
   def generate_link_for_story!
+    doc = Nokogiri::HTML(self.content)
+    doc.css('.medium-insert-buttons').remove
     self.update(
+      content: doc,
       link_description: Nokogiri::HTML(self.content).at_css("p").text,
       link_url: Rails.application.routes.url_helpers.post_path(self),
       link_title: self.title
