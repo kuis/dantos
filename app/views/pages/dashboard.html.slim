@@ -1,5 +1,5 @@
 .sidebar.sidebar--left
-  .ui.secondary.vertical.pointing.menu
+  .ui.secondary.vertical.pointing.menu.fluid
     = link_to "Home", root_path, class: "item teal active"
     - @joined_goomps.each do |goomp|
       = link_to goomp, class: "item" do
