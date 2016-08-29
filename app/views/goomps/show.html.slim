@@ -20,7 +20,7 @@
 
 .site-container.small
   .sidebar.sidebar--left
-    .ui.vertical.menu.fluid
+    .ui.secondary.vertical.pointing.menu.fluid
       = link_to "General", @goomp, class: "item teal active"
       - @subtopics.each do |subtopic|
         = link_to subtopic.name, params.merge(subtopic_id: subtopic.id).permit(:subtopic_id), class: "item"
