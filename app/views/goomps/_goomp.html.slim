@@ -1,4 +1,4 @@
-.ui.card
+.ui.card.goomp-card
   - if goomp.cover.present?
     = link_to image_tag(goomp.cover), goomp, class: "image"
   .content
@@ -7,17 +7,23 @@
       span.category
         '  Created by
         strong = link_to goomp.user.first_name, goomp.user
-    .ui.divider
+
     .description
       p = truncate(goomp.description, length: 100)
-    .meta.ui
-      span.members-count.left.floated #{goomp.memberships.size} Members
-      .right.floated.rating
-        | Ratings
-        span.ui.star.rating data-rating="5" data-unratable=true
-  .extra.content
-    left.floated.pricing
+
+    .subscription
       | Subscription:
       strong  Monthly
-    .right.floated.author
-      = render "goomps/join_button", goomp: goomp
+
+    .meta.ui
+      span.members-count.left.floated
+        i.icon.users
+        ' #{goomp.memberships.size} Members
+
+      - if goomp.rating
+        .right.floated.rating
+          | Ratings
+          span.ui.star.rating data-rating=goomp.rating data-unratable=true
+
+  .extra.content
+    = render "goomps/join_button", goomp: goomp
