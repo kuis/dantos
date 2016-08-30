@@ -1,6 +1,10 @@
 = form_tag join_goomp_path(goomp), style: "display: inline", remote: true, data: { "join-button": dom_id(goomp) } do
   - if goomp.has_member? current_user
-    = submit_tag "Joined", class: "ui diabled button"
+
+    button class="ui green basic button joined"
+      i.checkmark.icon
+      ' Joined
+
   - else
     - if goomp.price > 0
       div class="ui labeled button"
