@@ -12,9 +12,8 @@
   .twelve.wide.column
     h2 Goomps
     .ui.divider
-    .ui.segment
-      .ui.cards
-        = render @goomps
-      .ui.centered.grid
-        .column
-          = link_to "New goomp", new_goomp_path, class: "ui primary button"
+    .ui.cards
+      = render @goomps
+    .ui.centered.grid
+      .column
+        = link_to "New goomp", new_goomp_path, class: "ui primary button"
