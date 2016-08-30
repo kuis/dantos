@@ -1,6 +1,6 @@
 .sidebar.sidebar--left
   .ui.secondary.fluid.vertical.menu
-    = link_to "Home", @goomp, class: "active item"
+    = link_to "General", @goomp, class: "active item"
     - @goomp.subtopics.each do |subtopic|
       = link_to subtopic.name, subtopic, class: "item"
 
@@ -9,7 +9,7 @@
       a.item.blue-ink data-toggler="new-chapter" Add Chapter
       = form_for [@goomp, Subtopic.new], html: { class: "ui form", data: {"toggle-id" => "new-chapter"} } do |f|
         div class="field"
-          = f.text_field :name, placeholder: "Chapter name"
+          = f.text_field :name, placeholder: "Chapter Name"
 
 .sidebar.sidebar--right
   .ui.text.fluid.vertical.menu
