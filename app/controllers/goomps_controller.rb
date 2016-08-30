@@ -6,6 +6,7 @@ class GoompsController < ApplicationController
   # GET /goomps.json
   def index
     @goomps = Goomp.includes(:memberships, :user).page(params[:page])
+    @joined_goomps = current_user.joined_goomps
   end
 
   # GET /goomps/1
