@@ -6,7 +6,7 @@
 
   .ui.text.fluid.vertical.menu
     - if current_user&.is_manager_of?(@goomp)
-      a.item.blue-ink data-toggler="new-chapter" Add Chapter
+      a.item.blue-ink data-toggler="new-chapter" style="margin-left: 16px;" Add Chapter
       = form_for [@goomp, Subtopic.new], html: { class: "ui form", data: {"toggle-id" => "new-chapter"} } do |f|
         div class="field"
           = f.text_field :name, placeholder: "Chapter Name"
