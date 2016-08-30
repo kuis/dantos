@@ -6,7 +6,9 @@
   /       - @review.errors.full_messages.each do |message|
   /         li = message
 
-  = f.text_area :body
+  = f.text_area :body, rows: 4
+
+  .ui.hidden.divider
 
   .ui.field
     = f.hidden_field :rating, data: { "ratable-id" => "hidden-rating" }
