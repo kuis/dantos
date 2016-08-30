@@ -189,7 +189,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         n.forEach(function(n, s) {
           n.addEventListener("click", function(i) {
             t.animateResponse(n, n.cloneNode(!0), function() {
-              filepicker.pick({}, function(Blob) {
+              filepicker.pick({cropRatio: 4.6875}, function(Blob) {
                 $.ajax({
                   url: e.answers[s].url,
                   type: "patch",
