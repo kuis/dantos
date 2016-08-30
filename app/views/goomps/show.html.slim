@@ -41,11 +41,8 @@
 
   .main
     - if @goomp.has_member? current_user
-      - if @goomp.user == current_user
-        - if @goomp.cover.blank?
-          = render "goomp_bot/new_goomp", goomp: @goomp
-        - elsif !@posts.any?
-          = render "goomp_bot/new_post", goomp: @goomp
+      - if @goomp.user == current_user && @goomp.posts.size == 0
+        = render "goomp_bot/new_goomp", goomp: @goomp
 
       - else
         .ui.segment.narrow

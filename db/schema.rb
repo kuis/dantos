@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826224554) do
+ActiveRecord::Schema.define(version: 20160830030714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160826224554) do
     t.string   "price_currency",    default: "USD", null: false
     t.float    "rating"
     t.integer  "reviews_count",     default: 0
+    t.integer  "posts_count",       default: 0
     t.index ["slug"], name: "index_goomps_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_goomps_on_user_id", using: :btree
   end

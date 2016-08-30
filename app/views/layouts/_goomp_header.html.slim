@@ -2,7 +2,7 @@
   - if current_user&.is_manager_of? @goomp
     .goomp-header
       .add-cover-button
-        = link_to edit_goomp_path(@goomp), class: 'ui button basic blue' do
+        = link_to edit_goomp_path(@goomp), class: 'ui button basic blue', data: { "change-cover" => true, "goomp-id" => @goomp.id } do
           - if @goomp.cover.present?
             ' Change Cover Image
           - else

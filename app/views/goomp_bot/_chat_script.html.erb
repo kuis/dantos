@@ -1,0 +1,50 @@
+<script>
+  new Chat(
+    {
+      <% unless goomp.cover %>
+      greeting: [
+        "Hi #{current_user.first_name}!",
+        'Great work in creating a goomp.',
+        'Take some time to decorate it with a cover photo etc. I will guide you through the rest of the set-up. ',
+        {
+          type: 'change-cover',
+          answers: [{
+            text: "Upload Cover Photo",
+            url: '<%= goomp_path(goomp, format: :json) %>',
+            path: 'video'
+          }]
+        }
+      ],
+      video: [
+      <% else %>
+      greeting: [
+      <% end %>
+        'First, let’s create an introductory video so anyone visiting your Goomp page will get the preview. ',
+        '<input type="text" name="post[body]" id="video-embed" />' + '<div id="video-preview"></div>' + '<input type="submit" value="Add" class="ui button"></div>',
+        {
+          type: 'choose',
+          answers: [{
+            'text': 'I don’t have a video! ',
+            'path': 'write'
+          }]
+        }
+      ],
+
+      write: [
+        'No video?',
+        'Not a problem.',
+        'Let’s publish a detailed introductory post.',
+        'This will be a great chance for you to elaborate details of your group that can be used to promote your Goomp.',
+        {
+          type: 'visit',
+          answers: [{
+            'text': 'Write Story',
+            'path': '/posts/new'
+          }]
+        }
+      ],
+    }, {
+      targetNode: '#chat'
+    }
+  )
+</script>

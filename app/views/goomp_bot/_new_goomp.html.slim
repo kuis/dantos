@@ -8,22 +8,4 @@ div class="ui segment feed"
       #chat
       div class="extra text"
 
-javascript:
-  new Chat(
-    {
-      greeting: [
-        "Hi #{current_user.first_name}!",
-        'Great work in creating a goomp.',
-        'Take some time to decorate it with a cover photo etc. I will guide you through the rest of the set-up. ',
-        {
-          type: 'visit',
-          answers: [{
-            'text': "Upload Cover Photo",
-            'path': '#{edit_goomp_path(goomp)}'
-          }]
-        }
-      ]
-    }, {
-      targetNode: '#chat'
-    }
-  )
+= render "goomp_bot/chat_script", goomp: goomp

@@ -177,6 +177,44 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         })
       }
     }, {
+      key: "changeCover",
+      value: function(e) {
+        var t = this
+        var n = e.answers.map(function(e, n) {
+          return t.createAnswerButton(e, {
+            delay: 65 + 65 * n,
+            index: n
+          })
+        });
+        n.forEach(function(n, s) {
+          n.addEventListener("click", function(i) {
+            t.animateResponse(n, n.cloneNode(!0), function() {
+              filepicker.pick({}, function(Blob) {
+                $.ajax({
+                  url: e.answers[s].url,
+                  type: "patch",
+                  data: {
+                    goomp: {
+                      cover: Blob.url
+                    }
+                  },
+                  success: function(link) {
+                    $(".cover > img").attr('src', Blob.url)
+                    t.say(t.messages[e.answers[s].path]), t.emit("answer", {
+                      item: e.answers[s]
+                    })
+                  },
+                  error: function(resp) {
+                    var link = resp.data
+                    console.log('err', link)
+                  }
+                })
+              })
+            })
+          })
+        })
+      }
+    }, {
       key: "addSpeechBubble",
       value: function(e) {
         var t = this,
@@ -210,6 +248,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 return t.writeAnswer(e)
               case "visit":
                 return t.visitLink(e)
+              case "change-cover":
+                return t.changeCover(e)
             }
             var n = t.createSpeechBubble({
               text: e

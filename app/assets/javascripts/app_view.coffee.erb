@@ -4,19 +4,48 @@ extractURL = (textval) ->
   textval.replace(urlRegex, (url) -> urlFinal = url)
   urlFinal
 
+youtubeIframe = (vid) ->
+  """
+    <iframe width="480" height="270" src="https://www.youtube.com/embed/#{vid}?feature=oembed" frameborder="0" allowfullscreen></iframe>
+  """
+
+vimeoIframe = (vid) ->
+  """
+    <iframe src="https://player.vimeo.com/video/#{vid}" width="640" height="360" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  """
+
+extractVideoID = (url) ->
+  youtubeRegex = /(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/
+  vimeoRegex = /([a-z\:\/]*\/\/)(?:www\.)?vimeo\.com\/(?:channels\/[A-Za-z0-9]+\/)?([A-Za-z0-9]+)/
+  iframe = null
+
+  if url.length > 0
+    youtubeMatch = url.match(youtubeRegex)
+
+    iframe = if youtubeMatch
+      vid = youtubeMatch[youtubeMatch.length-1]
+      youtubeIframe(vid)
+    else
+      vimeoMatch = url.match(vimeoRegex)
+      vid = vimeoMatch[2]
+      vimeoIframe(vid)
+
+  return iframe
+
 filepickerKey = "Akt6oZj2YRamLQYtKyrhzz"
 
 AppView = {
   initialize: ->
-    $("#user_gender_female").off("change").on "change", @setFemaleAvatar
-    $("#user_gender_male").off("change").on "change", @setMaleAvatar
-    $("#post_body").off("input").on "input", @scrapeUrl
-    $(".filepicker").off("click").on "click", @pickFile
-    $("[data-modal]").off("click").on "click", @openModal.bind(this)
-    $("#video-embed").off("input").on "input", @embedVideo
-    $('form[method="get"][data-remote="true"]').off("submit").on "submit", @remoteSubmitGetForm
-    $("[data-toggler]").off("click").on "click", @toggleToggler
-    $("#new_post input[type=text]").off("keypress keydown keyup").on "keypress keydown keyup", (e) ->
+    $(document).off("change", "#user_gender_female").on "change", "#user_gender_female", @setFemaleAvatar
+    $(document).off("change", "#user_gender_male").on "change", "#user_gender_male", @setMaleAvatar
+    $(document).off("input", "#post_body").on "input", "#post_body", @scrapeUrl
+    $(document).off("click", ".filepicker").on "click", ".filepicker", @pickFile
+    $(document).off("click", "[data-modal]").on "click", "[data-modal]", @openModal.bind(this)
+    $(document).off("input", "#video-embed").on "input", "#video-embed", @embedVideo
+    $(document).off("click", "[data-change-cover]").on "click", "[data-change-cover]", @changeCover
+    $(document).off("submit", 'form[method="get"][data-remote="true"]').on "submit", 'form[method="get"][data-remote="true"]', @remoteSubmitGetForm
+    $(document).off("click", "[data-toggler]").on "click", "[data-toggler]", @toggleToggler
+    $(document).off("keypress keydown keyup", "#new_post input[type=text]").on "keypress keydown keyup", "#new_post input[type=text]", (e) ->
       if e.which == 13
         e.preventDefault()
         return false
@@ -75,6 +104,37 @@ AppView = {
     $(e.target).remove()
     $("[data-toggle-id=#{toggler_id}]").show()
     $("[data-toggle-id=#{toggler_id}] input").focus()
+
+  changeCover: (e) ->
+    e.preventDefault()
+    goomp_id = $(e.target).data("goomp-id")
+
+    options = {}
+    $el = $(e.target)
+
+    dimension = $el.data("dimension")
+    ratio = $el.data("ratio")
+
+    if dimension
+      options.cropDim = [parseInt(dimension.split(',')[0]), parseInt(dimension.split(',')[1])]
+
+    if ratio
+      options.cropRatio = ratio
+
+    filepicker.pick(options, (Blob) ->
+      $.ajax(
+        url: "/goomps/#{goomp_id}.json"
+        type: "patch"
+        data:
+          goomp:
+            cover: Blob.url
+        success: (link) ->
+          $(".cover > img").attr 'src', Blob.url
+        error: (resp) ->
+          link = resp.data
+          console.log 'err', link
+      )
+    )
 
   pickFile: (e) ->
     e.preventDefault()
@@ -226,34 +286,6 @@ AppView = {
     if val.length == 0 || val.indexOf("default-female") > -1
       $("#user-avatar").attr("src", url)
       $("#user_picture").val(url)
-
-  youtubeIframe: (vid) ->
-    """
-      <iframe width="480" height="270" src="https://www.youtube.com/embed/#{vid}?feature=oembed" frameborder="0" allowfullscreen></iframe>
-    """
-
-  vimeoIframe: (vid) ->
-    """
-      <iframe src="https://player.vimeo.com/video/#{vid}" width="640" height="360" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    """
-
-  extractVideoID: (url) ->
-    youtubeRegex = /(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/
-    vimeoRegex = /([a-z\:\/]*\/\/)(?:www\.)?vimeo\.com\/(?:channels\/[A-Za-z0-9]+\/)?([A-Za-z0-9]+)/
-    iframe = null
-
-    if url.length > 0
-      youtubeMatch = url.match(youtubeRegex)
-
-      iframe = if youtubeMatch
-        vid = youtubeMatch[youtubeMatch.length-1]
-        youtubeIframe(vid)
-      else
-        vimeoMatch = url.match(vimeoRegex)
-        vid = vimeoMatch[2]
-        vimeoIframe(vid)
-
-    return iframe
 
   embedVideo: (e) ->
     e.stopPropagation()
