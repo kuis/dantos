@@ -32,8 +32,6 @@ extractVideoID = (url) ->
 
   return iframe
 
-filepickerKey = "Akt6oZj2YRamLQYtKyrhzz"
-
 AppView = {
   initialize: ->
     $(document).off("change", "#user_gender_female").on "change", "#user_gender_female", @setFemaleAvatar
@@ -55,7 +53,6 @@ AppView = {
 
     $(document).off("turbolinks:before-cache").on("turbolinks:before-cache", @preparePageForTurbolinks)
 
-    @initComponents()
     @initSemanticUI()
     @initEditor()
     @initInfinitePage()
@@ -327,9 +324,6 @@ AppView = {
             link = resp.data
             console.log 'err', link
         )
-
-  initComponents: ->
-    filepicker?.setKey filepickerKey
 
   preparePageForTurbolinks: ->
     # Make sure chat board is clear if user go back
