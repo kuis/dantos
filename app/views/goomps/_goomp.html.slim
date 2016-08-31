@@ -1,6 +1,6 @@
 .ui.card.goomp-card
   - if goomp.cover.present?
-    = link_to image_tag(goomp.cover), goomp, class: "image"
+    = link_to image_tag(goomp.mini_cover), goomp, class: "image"
   .content
     = link_to goomp.name, goomp, class: "header"
     .meta

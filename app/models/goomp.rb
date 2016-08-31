@@ -15,4 +15,9 @@ class Goomp < ApplicationRecord
   def has_member? user
     user && memberships.any? { |m| m.user_id == user.id }
   end
+
+  def mini_cover
+    filestack_id = self.cover.split('/').last
+    "https://process.filestackapi.com/resize=width:290,height:130,fit:crop,align:center/#{filestack_id}"
+  end
 end
