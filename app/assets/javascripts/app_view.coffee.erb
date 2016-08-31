@@ -14,11 +14,11 @@ vimeoIframe = (vid) ->
     <iframe src="https://player.vimeo.com/video/#{vid}" width="640" height="360" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   """
 
-extractVideoID = (url) ->
+getVideo = (url) ->
   youtubeRegex = /(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/
   vimeoRegex = /([a-z\:\/]*\/\/)(?:www\.)?vimeo\.com\/(?:channels\/[A-Za-z0-9]+\/)?([A-Za-z0-9]+)/
   iframe = null
-
+  console.log url
   if url.length > 0
     youtubeMatch = url.match(youtubeRegex)
 
@@ -30,7 +30,9 @@ extractVideoID = (url) ->
       vid = vimeoMatch[2]
       vimeoIframe(vid)
 
-  return iframe
+  {
+    iframe: iframe
+  }
 
 AppView = {
   initialize: ->
@@ -282,7 +284,7 @@ AppView = {
     """
 
     if url.length > 0
-      $("#video-preview").html extractVideoID(url)
+      $("#video-preview").html getVideoIframe(url)
 
   scrapeUrl: (e) ->
     e.stopPropagation()
@@ -292,26 +294,29 @@ AppView = {
       text = $("#post_body").val()
 
       url = extractURL(text)
-      $("#post_link_url", $form).val url
 
       if url.length > 0
         # text = text.replace(url, '')
         # $("#post_body").val(text)
-
-        $.ajax(
-          url: "/scrapes.json"
-          type: "post"
-          data:
-            url: url
-          success: (link) ->
-            $("#post_link_title", $form).val link.title
-            $("#post_link_image", $form).val link.image
-            $("#post_link_description", $form).val link.description
-            $("#link-card").html link.card
-          error: (resp) ->
-            link = resp.data
-            console.log 'err', link
-        )
+        video = getVideo(url)
+        if video.iframe
+          $("#link-card").html video.iframe
+        else
+          $.ajax(
+            url: "/scrapes.json"
+            type: "post"
+            data:
+              url: url
+            success: (link) ->
+              $("#post_link_url", $form).val url
+              $("#post_link_title", $form).val link.title
+              $("#post_link_image", $form).val link.image
+              $("#post_link_description", $form).val link.description
+              $("#link-card").html link.card
+            error: (resp) ->
+              link = resp.data
+              console.log 'err', link
+          )
 
   preparePageForTurbolinks: ->
     # Make sure chat board is clear if user go back

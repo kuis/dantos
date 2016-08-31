@@ -43,6 +43,7 @@ gem 'addressable'
 gem 'stripe'
 gem 'money-rails'
 gem 'font-awesome-sass', '~> 4.6.2'
+gem 'typhoeus'
 
 group :development, :test do
   gem 'byebug'
