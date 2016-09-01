@@ -16,8 +16,10 @@
 
   - if post.link_url.present?
     = render "posts/post_card", post: post
+  - else
+    .ui.divider
 
-  .ui.divider
+
 
   = render "posts/like_button", likable: post
 
