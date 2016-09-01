@@ -8,8 +8,13 @@ body
   padding: 1rem
   .comment
     .content
-      color: $darkest-font-color !important
       font-size: 0.9rem !important
+      .author
+        color: $darkest-font-color !important
+      .text
+        color: $darkest-font-color !important
+
+
 
 .ui.comments .comment .actions a[data-like-comment-button]
   color: $primary-color
@@ -398,6 +403,7 @@ body
   .extra.text
     font-size: 1.1em
     line-height: 1.3em
+    padding-top: 0.5rem
 
 .author-box-show
   &:after
@@ -449,8 +455,6 @@ hr
   background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.30)), asset-url('bg.jpg')
   .ui.icon.header
     color: #fff
-.ui.card
-  margin: 0.5em 0em
 
 .ui.card.goomp-card
   .image
