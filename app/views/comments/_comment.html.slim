@@ -4,6 +4,8 @@
 
   .content
     a.author = comment.user.full_name
+    ' , 
+    span.headline = comment.user.headline
     div class="text"
       = comment.body
     div class="actions"
