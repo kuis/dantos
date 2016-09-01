@@ -395,9 +395,23 @@
     float: left
     color: rgba(0, 0, 0, 0.4)
     .summary
+      color: $light-font-color
+      font-weight: bold
+      font-size: 1.2em
+
       .user
         font-weight: bold
         color: black
+
+      span.helper
+        color: rgba(0,0,0,0.4)
+        font-size: 0.9em
+
+      span.helper:after
+        content: "\00a0"
+
+      span.helper:before
+        content: "\00a0"
 
 #comment_body
   border-color: $border-light-color
