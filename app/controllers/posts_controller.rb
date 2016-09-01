@@ -98,6 +98,7 @@ class PostsController < ApplicationController
         :link_title,
         :link_description,
         :link_image,
+        :link_video,
         :link_url,
       )
     end

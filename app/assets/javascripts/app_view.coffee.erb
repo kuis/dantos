@@ -14,25 +14,42 @@ vimeoIframe = (vid) ->
     <iframe src="https://player.vimeo.com/video/#{vid}" width="640" height="360" frameborder="0" title="" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   """
 
-getVideo = (url) ->
+getVideo = (url, callback) ->
   youtubeRegex = /(?:youtube\.com\/\S*(?:(?:\/e(?:mbed))?\/|watch\/?\?(?:\S*?&?v\=))|youtu\.be\/)([a-zA-Z0-9_-]{6,11})/
   vimeoRegex = /([a-z\:\/]*\/\/)(?:www\.)?vimeo\.com\/(?:channels\/[A-Za-z0-9]+\/)?([A-Za-z0-9]+)/
   iframe = null
-  console.log url
   if url.length > 0
     youtubeMatch = url.match(youtubeRegex)
 
-    iframe = if youtubeMatch
+    if youtubeMatch
       vid = youtubeMatch[youtubeMatch.length-1]
-      youtubeIframe(vid)
+      callback {
+        iframe: youtubeIframe(vid)
+      }
+
+      # oembed = "https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=#{vid}&format=json"
+      # $.get oembed, (data) ->
+      #   return {
+      #     image: data.thumbnail_url
+      #     title: data.title
+      #     iframe: youtubeIframe(vid)
+      #     description: data.author_name
+      #   }
     else
       vimeoMatch = url.match(vimeoRegex)
       vid = vimeoMatch[2]
-      vimeoIframe(vid)
+      callback {
+        iframe: vimeoIframe(vid)
+      }
 
-  {
-    iframe: iframe
-  }
+      # oembed = "https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/#{vid}"
+      # $.get oembed, (data) ->
+      #   return {
+      #     image: data.thumbnail_url
+      #     title: data.title
+      #     iframe: vimeoIframe(vid)
+      #     description: data.author_name
+      #   }
 
 AppView = {
   initialize: ->
@@ -45,6 +62,7 @@ AppView = {
     $(document).off("click", "[data-change-cover]").on "click", "[data-change-cover]", @changeCover
     $(document).off("submit", 'form[method="get"][data-remote="true"]').on "submit", 'form[method="get"][data-remote="true"]', @remoteSubmitGetForm
     $(document).off("click", "[data-toggler]").on "click", "[data-toggler]", @toggleToggler
+    $(document).off("click", "[data-video]").on "click", "[data-video]", @toggleVideo
     $(document).off("keypress keydown keyup", "#new_post input[type=text]").on "keypress keydown keyup", "#new_post input[type=text]", (e) ->
       if e.which == 13
         e.preventDefault()
@@ -99,7 +117,6 @@ AppView = {
   toggleToggler: (e) ->
     e.preventDefault()
     toggler_id = $(e.target).data("toggler")
-    console.log toggler_id
     $(e.target).remove()
     $("[data-toggle-id=#{toggler_id}]").show()
     $("[data-toggle-id=#{toggler_id}] input").focus()
@@ -154,7 +171,6 @@ AppView = {
       cleanContent = ""
       for k,v in @editor.serialize()
         cleanContent = v.value
-      console.log cleanContent
 
     $("[data-modal-id=#{modal_id}]").modal('show')
 
@@ -284,7 +300,11 @@ AppView = {
     """
 
     if url.length > 0
-      $("#video-preview").html getVideoIframe(url)
+      $("#video-preview").html getVideo(url).iframe
+
+  toggleVideo: (e) ->
+    e.preventDefault()
+    $('.img', this).replaceWith $(this).data('video')
 
   scrapeUrl: (e) ->
     e.stopPropagation()
@@ -296,27 +316,22 @@ AppView = {
       url = extractURL(text)
 
       if url.length > 0
-        # text = text.replace(url, '')
-        # $("#post_body").val(text)
-        video = getVideo(url)
-        if video.iframe
-          $("#link-card").html video.iframe
-        else
-          $.ajax(
-            url: "/scrapes.json"
-            type: "post"
-            data:
-              url: url
-            success: (link) ->
-              $("#post_link_url", $form).val url
-              $("#post_link_title", $form).val link.title
-              $("#post_link_image", $form).val link.image
-              $("#post_link_description", $form).val link.description
-              $("#link-card").html link.card
-            error: (resp) ->
-              link = resp.data
-              console.log 'err', link
-          )
+        $.ajax(
+          url: "/scrapes.json"
+          type: "post"
+          data:
+            url: url
+          success: (link) ->
+            $("#post_link_url", $form).val url
+            $("#post_link_title", $form).val link.title
+            $("#post_link_image", $form).val link.image
+            $("#post_link_description", $form).val link.description
+            $("#post_link_video", $form).val link.video
+            $("#link-card").html link.card
+          error: (resp) ->
+            link = resp.data
+            console.log 'err', link
+        )
 
   preparePageForTurbolinks: ->
     # Make sure chat board is clear if user go back

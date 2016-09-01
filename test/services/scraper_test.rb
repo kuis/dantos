@@ -7,7 +7,7 @@ class ScraperTest < ActiveSupport::TestCase
     VCR.use_cassette("scraper-url-1") do
       json = Scraper.scrape(url)
     end
-    assert_equal("Elixir /Phoenix— Lets code authentication. Todo application part 1. — Medium", json[:title])
+    assert_equal("Elixir /Phoenix— Lets code authentication. Todo application part 1. – Medium", json[:title])
   end
 
   test "#scrape #2" do
@@ -17,6 +17,15 @@ class ScraperTest < ActiveSupport::TestCase
       json = Scraper.scrape(url)
     end
     assert_equal("Active Record Query Interface — Ruby on Rails Guides", json[:title])
-    assert_equal("http://guides.rubyonrails.org/images/chapters_icon.gif", json[:image])
+  end
+
+  test "#scrape youtube 1" do
+    url = "https://www.youtube.com/watch?v=nrEALqTDQwQ"
+    json = {}
+    VCR.use_cassette("scraper-url-youtube-1") do
+      json = Scraper.scrape(url)
+    end
+    assert_equal(%Q(The Beatles  " It's For You " - YouTube), json[:title])
+    assert_equal(%Q(<iframe width="480" height="270" src="https://www.youtube.com/embed/nrEALqTDQwQ?feature=oembed&autoplay=1" frameborder="0" allowfullscreen></iframe>), json[:video])
   end
 end
