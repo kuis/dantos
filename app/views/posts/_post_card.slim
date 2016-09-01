@@ -7,7 +7,10 @@
     .img
       = image_tag post.link_image
       - if post.link_video.present?
-        i.fa.fa-play-circle-o
+        / i.fa.fa-play-circle-o
+        span class="fa-stack fa-lg"
+          i class="fa fa-circle-thin fa-stack-2x"
+          i class="fa fa-play fa-stack-1x"
   .content
     .header = post.link_title
     .meta = post.link_description
