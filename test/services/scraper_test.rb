@@ -26,6 +26,6 @@ class ScraperTest < ActiveSupport::TestCase
       json = Scraper.scrape(url)
     end
     assert_equal(%Q(The Beatles  " It's For You " - YouTube), json[:title])
-    assert_equal(%Q(<iframe width="480" height="270" src="https://www.youtube.com/embed/nrEALqTDQwQ?feature=oembed&autoplay=1" frameborder="0" allowfullscreen></iframe>), json[:video])
+    assert_equal(%Q(<iframe width="557" height="270" src="https://www.youtube.com/embed/nrEALqTDQwQ?feature=oembed&autoplay=1" frameborder="0" allowfullscreen></iframe>), json[:video])
   end
 end

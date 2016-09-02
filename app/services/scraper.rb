@@ -38,7 +38,7 @@ class Scraper
     if youtubeMatch
       vid = youtubeMatch[youtubeMatch.length-1]
       "https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=#{vid}&format=json"
-      %Q(<iframe width="480" height="270" src="https://www.youtube.com/embed/#{vid}?feature=oembed&autoplay=1" frameborder="0" allowfullscreen></iframe>)
+      %Q(<iframe width="557" height="270" src="https://www.youtube.com/embed/#{vid}?feature=oembed&autoplay=1" frameborder="0" allowfullscreen></iframe>)
     else
       vimeoMatch = url.match(vimeoRegex)
       if vimeoMatch
