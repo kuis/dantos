@@ -17,7 +17,7 @@
       .summary
         = link_to @post.user.full_name, @post.user, class: "user"
         span.helper
-          '  posted to
+          ' posted to
         = link_to @post.goomp.name, @post.goomp, class: "goomp-primary"
       span.date
         = time_ago_in_words @post.created_at
@@ -30,7 +30,19 @@
   / = @post.comments_count
   / = @post.subtopic
   .cf
+  .ui.divider
+
   = render "posts/like_button", likable: @post
 
+  .ui.comments
+    = render partial: "comments/comment", collection: @post.comments, cached: false
+
+    - if user_signed_in?
+      .comment
+        a.avatar
+          = image_tag current_user.picture
+        .content
+          = form_for [@post, Comment.new], html: {class: "ui text authorreply form"}, remote: true do |f|
+            = f.text_field :body, placeholder: "Write Something.."
 
 
