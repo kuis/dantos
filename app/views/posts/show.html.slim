@@ -9,7 +9,7 @@
       .item
         = link_to 'Edit', edit_post_path(@post), class: 'ui button basic blue'
 
-= content_tag :div, id: dom_id(post) do
+= content_tag :div, id: dom_id(@post) do
   .ui.container.new-post
     .author-box-show
       .left
