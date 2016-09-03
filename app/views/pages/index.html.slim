@@ -10,7 +10,9 @@
   .masthead.segment.bg7
     .ui.container
       .introduction
-        span.library = image_tag "logo-invert.png", style: "height: 50px", alt: "Goomp Logo"
-        = render "goomp_bot/new_user"
-      .ui.hidden.divider
-      = render "social_buttons_modal", modal_id: "social-buttons-modal"
+        h1.ui.inverted.header
+          span.library = image_tag "logo-invert.png", style: "height: 100px", alt: "Goomp Logo"
+          span.tagline Consider your work done!
+        .ui.hidden.divider
+        a.ui.huge.inverted.download.button data-modal="social-buttons-modal" Get Started
+        = render "social_buttons_modal", modal_id: "social-buttons-modal"
