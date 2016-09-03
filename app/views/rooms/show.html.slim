@@ -1,0 +1,22 @@
+p#notice = notice
+
+p
+  strong User:
+  = @room.user.email
+p
+  strong Manager:
+  = @room.manager.email
+
+- @messages.each do |msg|
+  p
+    = link_to msg.user.full_name, msg.user
+    ' :
+    = msg.body
+
+= simple_form_for [@room, Message.new], remote: true do |f|
+  = f.input :body, autofocus: true
+  = f.button :submit
+
+= link_to 'Edit', edit_room_path(@room)
+'|
+= link_to 'Back', rooms_path

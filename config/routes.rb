@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  resources :rooms do
+    resources :messages
+  end
   resources :photos
   resources :follows
   root to: "pages#index"

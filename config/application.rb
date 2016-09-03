@@ -6,10 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Fantos
+module Dantos
   class Application < Rails::Application
     config.generators do |g|
-      g.assets false
+      # g.assets false
       g.javascripts true
       g.stylesheets true
       g.stylesheet_engine :sass
