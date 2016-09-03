@@ -1,4 +1,4 @@
 = simple_form_for @room do |f|
-  = f.association :user
-  = f.association :manager
+  = f.association :user, label_method: :full_name
+  = f.association :manager, label_method: :full_name
   = f.button :submit

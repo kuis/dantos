@@ -334,6 +334,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redis (3.3.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rest-client (2.0.0)
@@ -465,6 +466,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails_admin (>= 1.0.0.rc)
   rails_autolink
+  redis
   remotipart!
   sass-rails
   semantic-ui-sass

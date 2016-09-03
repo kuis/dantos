@@ -13,7 +13,6 @@ App.room = App.cable.subscriptions.create channel: "RoomChannel",
     $('#messages').append(this.renderMessage(data));
     $('#message_body').val ''
 
-
   followCurrentMessage: ->
     if roomId = @collection().data('room-id')
       @perform 'follow', id: roomId
@@ -28,4 +27,4 @@ App.room = App.cable.subscriptions.create channel: "RoomChannel",
   installPageChangeCallback: ->
     unless @installedPageChangeCallback
       @installedPageChangeCallback = true
-      $(document).on 'page:change', -> App.room.followCurrentMessage()
+      $(document).on 'turbolinks:load', -> App.room.followCurrentMessage()
