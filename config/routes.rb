@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :rooms do
+  resources :rooms, shallow: true do
     resources :messages
   end
   resources :photos

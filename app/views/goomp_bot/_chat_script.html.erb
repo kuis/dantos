@@ -1,48 +1,29 @@
 <script>
   new Chat(
     {
-      <% unless goomp.cover %>
       greeting: [
-        "Hi <%= current_user.first_name %>!",
-        'Great work in creating a goomp.',
-        'Take some time to decorate it with a cover photo etc. I will guide you through the rest of the set-up. ',
+        "Great, now what’s the budget you are looking to get this task done by",
         {
-          type: 'change-cover',
-          answers: [{
-            text: "Upload Cover Photo",
-            url: '<%= goomp_path(goomp, format: :json) %>',
-            path: 'video'
-          }]
-        }
-      ],
-      video: [
-      <% else %>
-      greeting: [
-      <% end %>
-        'First, let’s create an introductory video so anyone visiting your Goomp page will get the preview. ',
-        '<div class="ui field"><input type="text" name="post[body]" placeholder="YouTube or Vimeo Links only" id="video-embed"/></div>' + '<div id="video-preview"></div>' + '<input type="submit" value="Add" class="ui button teal"></div>',
-        {
-          type: 'choose',
-          answers: [{
-            'text': 'I don’t have a video! ',
-            'path': 'write'
-          }]
+          type: 'write',
+          path: 'video'
         }
       ],
 
-      write: [
-        'No video?',
-        'Not a problem.',
-        'Let’s publish a detailed introductory post.',
-        'This will be a great chance for you to elaborate details of your group that can be used to promote your Goomp.',
+      video: [
+        'Please enter your credit card information while we pull the best resources for you and in the meanwhile I will ask more information in few minutes',
         {
-          type: 'visit',
-          answers: [{
-            'text': 'Write Story',
-            'path': '/posts/new'
-          }]
+          type: 'write',
+          path: 'notice'
         }
       ],
+
+      notice: [
+        'Please note that we will charge the card with the budget amount and will revert the charge if you are not convinced with the service',
+        {
+          type: 'visit',
+          path: '/'
+        }
+      ]
     }, {
       targetNode: '#chat'
     }

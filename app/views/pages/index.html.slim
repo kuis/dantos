@@ -21,11 +21,14 @@
         h1.ui.inverted.header
           span.library = image_tag "logo-invert.png", style: "height: 132px", alt: "Goomp Logo"
           span.tagline A Platform for Learning Groups
+
         .ui.hidden.divider
         a.ui.huge.inverted.download.button data-modal="social-buttons-modal" Get Started
         = render "social_buttons_modal", modal_id: "social-buttons-modal"
 
   .about-content
+    = render "goomp_bot/new_user"
+
     .ui.grid.page
       .sixteen.wide.column
         h2.ui.icon.header

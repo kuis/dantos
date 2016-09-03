@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+
 
   # GET /messages
   # GET /messages.json
@@ -25,20 +27,23 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(message_params)
-    @message.room_id = params[:room_id]
+    room = Room.find params[:room_id]
+    @message.room = room
     @message.user = current_user
 
     respond_to do |format|
       if @message.save
         format.html {
-          ActionCable.server.broadcast 'messages',
-             message: @message.body,
-             user: @message.user.full_name
+          ActionCable.server.broadcast "rooms:#{room.id}:messages", @message
+
           head :ok
         }
         format.json { render :show, status: :created, location: @message }
       else
-        format.html { render :new }
+        format.html {
+          logger.debug @message.errors.inspect
+          render :new
+        }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end
     end

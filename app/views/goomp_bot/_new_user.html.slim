@@ -6,24 +6,106 @@ div class="ui segment feed"
       div class="summary" Goomp Bot
       span class="date" Just Now
 
-      #chat data-name=current_user.first_name
+      #chat
       div class="extra text"
 
 javascript:
   new Chat({
     greeting: [
-      "Hi #{current_user.first_name}!",
-      'Welcome to Goomp. We are so excited to have you here.',
-      'Goomp is still in beta, so feel free to create a goomp or join existing ones!',
+      'Welcome to Taskforce. We are pleased to have you here. Please tell us what are you looking for?',
       {
-        type: 'visit',
+        type: 'choose',
         answers: [{
-          'text': 'Create Goomp',
+          'text': 'Login',
+          'path': 'login'
+        },
+        {
+          'text': 'Show Me Options',
+          'path': 'options'
+        }]
+      }
+    ],
+
+    options: [
+      'Great, we are Taskforce. We help getting your work done, like literally anything. Choose from the following (we are adding more options soon)',
+      {
+        type: 'choose',
+        answers: [{
+          'text': 'Engineering',
           'path': '/goomps/new'
         },
         {
-          'text': 'Explore Goomps',
+          'text': 'Product',
           'path': '/goomps'
+        },
+        {
+          'text': 'Design',
+          'path': '/goomps'
+        },
+        {
+          'text': 'Sales',
+          'path': '/goomps'
+        },
+        {
+          'text': 'Marketing',
+          'path': '/goomps'
+        }
+        ]
+      }
+    ],
+
+    eta: [
+      'When do you want it finished by?',
+      {
+        type: 'choose',
+        answers: [{
+          'text': 'Next Day',
+          'path': '/goomps/new'
+        },
+        {
+          'text': 'Three Days',
+          'path': '/goomps'
+        },
+        {
+          'text': 'Week',
+          'path': '/goomps'
+        },
+        {
+          'text': 'Two Weeks',
+          'path': '/goomps'
+        },
+        {
+          'text': 'One Month',
+          'path': '/goomps'
+        },
+        {
+          'text': 'Three Months',
+          'path': '/goomps'
+        },
+        {
+          'text': 'Six Months',
+          'path': '/goomps'
+        }
+        ]
+      }
+    ],
+
+    login: [
+      'Sounds good, please give us more information about you by signing up',
+      {
+        type: 'visit',
+        answers: [{
+          'text': 'Twitter',
+          'path': '/users/auth/twitter'
+        },{
+          'text': 'Facebook',
+          'path': '/users/auth/facebook'
+        },{
+          'text': 'LinkedIn',
+          'path': '/users/auth/linkedin'
+        },{
+          'text': 'Email',
+          'path': '/users/auth/facebook'
         }]
       }
     ]

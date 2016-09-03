@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  has_many :rooms
+
   validates :first_name, :last_name, :picture, :headline, presence: true
 
   extend FriendlyId
