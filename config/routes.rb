@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :rooms, shallow: true do
     resources :messages
