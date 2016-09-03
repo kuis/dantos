@@ -2,11 +2,6 @@
   .following.bar
     .ui.container
       .ui.large.secondary.network.menu.inverted
-        .item
-          .ui.logo.shape
-            .sides
-              .active.ui.side
-                = image_tag 'square-logo.ico', class: 'ui image'
         .right.menu.inverted
           - if user_signed_in?
             = link_to "Sign Out", destroy_user_session_path, method: :delete, class: "item"
@@ -15,9 +10,7 @@
   .masthead.segment.bg7
     .ui.container
       .introduction
-        h1.ui.inverted.header
-          span.library = image_tag "logo-invert.png", style: "height: 132px", alt: "Goomp Logo"
-          = render "goomp_bot/new_user"
-        .ui.hidden.divider
-        /a.ui.huge.inverted.download.button data-modal="social-buttons-modal" Get Started
-        = render "social_buttons_modal", modal_id: "social-buttons-modal"
+        span.library = image_tag "logo-invert.png", style: "height: 50px", alt: "Goomp Logo"
+        = render "goomp_bot/new_user"
+      .ui.hidden.divider
+      = render "social_buttons_modal", modal_id: "social-buttons-modal"
