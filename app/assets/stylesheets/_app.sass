@@ -19,19 +19,27 @@ body
 
 .site-container
   width: $main-content-width + 2 * $sidebar-width + 40px
-  margin: 90px auto 0 auto
+  top: 90px
+  position: relative
+  margin-right: auto
+  margin-left: auto
+  max-height: calc( 100vh - 150px)
 
   .main
+    float: left
+    width: $main-content-width
+    padding: 0
+    margin-left: 20px
+
     .ui.segment
       padding-left: 20px
       padding-right: 20px
+      #messages
+        max-height: calc( 100vh - 220px)
+        overflow-y: scroll
 
-    width: $main-content-width
-    padding: 0
-    margin: 0 auto
   &.small
     margin: 30px auto 0 auto
-
 
 .ui.aligned.center
   text-align: center

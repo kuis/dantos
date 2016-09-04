@@ -14,7 +14,7 @@
           = render @messages, user: current_user
 
         = form_for [@room, Message.new], remote: true, html: { class: "ui form" } do |f|
-          .ui.left.action.input
+          .ui.left.action.input.fluid
             .ui.teal.icon.button.fileinput-button
               = f.file_field :image
               i.plus.icon
