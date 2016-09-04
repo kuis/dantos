@@ -82,6 +82,8 @@ AppView = {
   initFileupload: ->
     $("#new_message").fileupload
       dataType: 'json'
+      progress: (e, data) ->
+        console.log data.loaded
 
   initStripe: ->
     key = $("meta[name=stripePublishableKey]").attr("content")
