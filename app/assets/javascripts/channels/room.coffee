@@ -10,7 +10,7 @@ App.room = App.cable.subscriptions.create channel: "RoomChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    $('#messages').append(this.renderMessage(data));
+    $('#messages').append(data.message)
     $('#message_body').val ''
 
   followCurrentMessage: ->

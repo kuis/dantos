@@ -116,9 +116,37 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
           });
         n.forEach(function(n, s) {
           n.addEventListener("click", function(i) {
+            if (e.answers[s].key !== undefined) {
+              localStorage.setItem(e.answers[s].key, e.answers[s].path)
+            }
             t.animateResponse(n, n.cloneNode(!0), function() {
               t.say(t.messages[e.answers[s].path]), t.emit("answer", {
                 item: e.answers[s]
+              })
+            })
+          })
+        })
+      }
+    }, {
+      key: "submitProject",
+      value: function(e) {
+        var t = this
+        var n = e.answers.map(function(e, n) {
+          return t.createAnswerButton(e, {
+            delay: 65 + 65 * n,
+            index: n
+          })
+        });
+        n.forEach(function(n, s) {
+          n.addEventListener("click", function(i) {
+            t.animateResponse(n, n.cloneNode(!0), function() {
+              $.post("/rooms", {
+                room: {
+                  budget: localStorage.getItem("budget")
+                }
+              }, function(data) {
+                console.log(data)
+                Turbolinks.visit(data.location)
               })
             })
           })
@@ -143,6 +171,10 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         var s = !1,
           i = function() {
             n.innerText.length && !s && (s = !0, t.animateResponse(n, n.cloneNode(!0), function(n) {
+              if (e.key !== undefined) {
+                localStorage.setItem(e.key, n.innerText)
+              }
+
               e.path && t.say(t.messages[e.path]), t.emit("answer", {
                 item: e,
                 text: n.innerHTML
@@ -248,6 +280,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 return t.writeAnswer(e)
               case "visit":
                 return t.visitLink(e)
+              case "submit":
+                return t.submitProject(e)
               case "change-cover":
                 return t.changeCover(e)
             }

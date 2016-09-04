@@ -1,9 +1,4 @@
-#messages data-room-id=@room.id
-  - @messages.each do |msg|
-    p
-      strong = msg.user.full_name
-      ' :
-      = msg.body
+#messages data-room-id=@room.id = render @messages
 
 = simple_form_for [@room, Message.new], remote: true do |f|
   = f.text_field :body, autofocus: true, autocomplete: 'off'

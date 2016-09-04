@@ -27,6 +27,8 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
+    @room.user = current_user
+    @room.manager = User.where.not(id: current_user.id).all.sample
 
     respond_to do |format|
       if @room.save

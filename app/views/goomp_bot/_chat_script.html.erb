@@ -5,7 +5,44 @@
         "Great, now what’s the budget you are looking to get this task done by",
         {
           type: 'write',
-          path: 'video'
+          path: 'video',
+          key: "budget"
+        }
+      ],
+
+      eta: [
+        'When do you want it finished by?',
+        {
+          type: 'choose',
+          answers: [{
+            'text': 'Next Day',
+            'path': '/goomps/new'
+          },
+          {
+            'text': 'Three Days',
+            'path': '/goomps'
+          },
+          {
+            'text': 'Week',
+            'path': '/goomps'
+          },
+          {
+            'text': 'Two Weeks',
+            'path': '/goomps'
+          },
+          {
+            'text': 'One Month',
+            'path': '/goomps'
+          },
+          {
+            'text': 'Three Months',
+            'path': '/goomps'
+          },
+          {
+            'text': 'Six Months',
+            'path': '/goomps'
+          }
+          ]
         }
       ],
 
@@ -13,15 +50,19 @@
         'Please enter your credit card information while we pull the best resources for you and in the meanwhile I will ask more information in few minutes',
         {
           type: 'write',
-          path: 'notice'
+          path: 'notice',
+          key: "credit-card"
         }
       ],
 
       notice: [
         'Please note that we will charge the card with the budget amount and will revert the charge if you are not convinced with the service',
         {
-          type: 'visit',
-          path: '/'
+          type: 'submit',
+          answers: [{
+            'text': 'Ok',
+            'path': '/goomps/new'
+          }],
         }
       ]
     }, {
