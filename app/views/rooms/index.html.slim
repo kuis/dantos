@@ -12,8 +12,8 @@ table
   tbody
     - @rooms.each do |room|
       tr
-        td = room.user
-        td = room.manager
+        td = room.user.full_name
+        td = room.manager.full_name
         td = link_to 'Show', room
         td = link_to 'Edit', edit_room_path(room)
         td = link_to 'Destroy', room, data: { confirm: 'Are you sure?' }, method: :delete
