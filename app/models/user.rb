@@ -14,6 +14,10 @@ class User < ApplicationRecord
 
   has_many :rooms
 
+  def joined_rooms
+    Room.where("user_id = ? OR manager_id = ?", self.id, self.id)
+  end
+
   validates :first_name, :last_name, :picture, :headline, presence: true
 
   extend FriendlyId

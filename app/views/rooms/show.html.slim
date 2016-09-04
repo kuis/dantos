@@ -1,9 +1,9 @@
 .sidebar.sidebar--left
   .ui.secondary.vertical.pointing.menu.fluid
     = link_to "Home", root_path, class: "item teal active"
-    / - @current_user.rooms.each do |room|
-    /   = link_to room, class: "item" do
-    /     = room.id
+    - @current_user.joined_rooms.each do |room|
+      = link_to room, class: "item" do
+        '  Room ##{room.id}
 
     / = link_to 'New Room', new_room_path, class: 'item'
 
@@ -11,7 +11,9 @@
   .twelve.wide.column
     - if @room
       .ui.segment.narrow
-        #messages data-room-id=@room.id = render @messages, user: current_user
+
+        #messages.ui.comments data-room-id=@room.id
+          = render @messages, user: current_user
 
         = form_for [@room, Message.new], remote: true, html: { class: "ui form" } do |f|
           .ui.left.action.input

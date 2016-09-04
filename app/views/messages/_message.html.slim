@@ -1,13 +1,20 @@
-p
-  strong
-    - if user == message.user
-      = user.full_name
-    - elsif user == message.room.manager
-      ' Client
-    - elsif user == message.room.user
-      ' TaskForce Agent
-  ' :
-  - if message.image.present?
-    = image_tag message.image.url(:thumb)
-  - else
-    = message.body
+.comment
+  - if message.user.picture
+    .avatar = image_tag message.user.picture
+  .content
+    a.author
+      - if user == message.user
+        = user.full_name
+      - elsif user == message.room.manager
+        ' Client
+      - elsif user == message.room.user
+        ' TaskForce Agent
+    .metadata
+      .date
+        = time_ago_in_words message.created_at
+        '  ago
+    .text
+      - if message.image.present?
+        = image_tag message.image.url(:thumb)
+      - else
+        = message.body
