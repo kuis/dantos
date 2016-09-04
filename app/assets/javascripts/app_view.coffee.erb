@@ -80,10 +80,22 @@ AppView = {
     @initFileupload()
 
   initFileupload: ->
-    $("#new_message").fileupload
+    $("#new_message").fileupload(
       dataType: 'json'
       progress: (e, data) ->
-        console.log data.loaded
+        progress = parseInt(data.loaded / data.total * 100, 10)
+        if progress == 100
+          $(".ui.progress .bar .progress").text "Processing uploaded files…"
+        else
+          $('.ui.progress .bar .progress').text "Uploading…#{progress}%"
+
+        $('.bar').css('width', progress + '%')
+    ).bind('fileuploadadd', (e, data) ->
+      $(".ui.progress").show()
+    ).bind('fileuploaddone', (e, data) ->
+      $(".ui.progress").hide()
+    )
+
 
   initStripe: ->
     key = $("meta[name=stripePublishableKey]").attr("content")

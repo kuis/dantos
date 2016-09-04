@@ -17,5 +17,6 @@
  *= require itcss
  *= require docs
  *= require home
+ *= require jquery.fileupload
  *= require_self
  */
