@@ -127,10 +127,12 @@
   ;
 }
 #example.index .masthead .container {
-  height: 55vh;
   margin-left: auto !important;
   margin-right: auto !important;
   min-height: 600px;
+
+  padding-top: 90px;
+  padding-bottom: 90px;
 
   -webkit-box-align: center;
   -webkit-align-items: center;
