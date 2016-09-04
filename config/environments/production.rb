@@ -39,7 +39,7 @@ Rails.application.configure do
   # config.action_cable.url = 'wss://dantos.herokuapp.com/cable'
   config.action_cable.allowed_request_origins = [
     'https://dantos.herokuapp.com',
-    /https:\/\/dantos.herokuapp.com.*/
+    /https:\/\/dantos.herokuapp.com.*/,
     'http://taskforce.goomp.co',
     /http:\/\/taskforce.goomp.co.*/
   ]
