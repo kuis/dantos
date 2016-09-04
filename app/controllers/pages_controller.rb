@@ -1,8 +1,7 @@
 class PagesController < ApplicationController
   def index
     if user_signed_in?
-      @joined_goomps = current_user.joined_goomps
-      @posts = FeedQuery.new(posts: current_user.posts_from_joined_goomps, page: params[:page]).posts
+      @room = current_user.rooms.first
 
       respond_to do |f|
         f.html { render "dashboard", layout: "application" }

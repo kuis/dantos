@@ -1,17 +1,20 @@
 .sidebar.sidebar--left
   .ui.secondary.vertical.pointing.menu.fluid
     = link_to "Home", root_path, class: "item teal active"
-    - @current_user.rooms.each do |room|
-      = link_to room, class: "item" do
-        = room.id
+    / - @current_user.rooms.each do |room|
+    /   = link_to room, class: "item" do
+    /     = room.id
 
-    = link_to 'New Room', new_room_path, class: 'item'
+    / = link_to 'New Room', new_room_path, class: 'item'
 
 .main
   .twelve.wide.column
-    - if @joined_goomps.any?
+    - if @room
       .ui.segment.narrow
-        = render "goomps/post_form", action_url: posts_path, joined_goomps: @joined_goomps
-      = render partial: "posts/infinite_posts", locals: { posts: @posts }
+        #messages data-room-id=@room.id = render @room.messages, user: current_user
+
+        = simple_form_for [@room, Message.new], remote: true do |f|
+          = f.text_field :body, autofocus: true, autocomplete: 'off'
+          = f.button :submit, "Send", data: {disable_with: "Send"}
     - else
       = render "goomp_bot/new_goomp"

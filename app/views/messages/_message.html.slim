@@ -1,4 +1,10 @@
 p
-  strong = message.user.full_name
+  strong
+    - if user == message.user
+      = user.full_name
+    - elsif user == message.manager
+      ' Client
+    - elsif user == message.user
+      ' TaskForce Agent
   ' :
   = message.body

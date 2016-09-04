@@ -35,7 +35,15 @@ class MessagesController < ApplicationController
       if @message.save
         format.html {
           # after_commit { CommentRelayJob.perform_later(self) }
-          ActionCable.server.broadcast "rooms:#{room.id}:messages", message: MessagesController.render(partial: 'messages/message', locals: { message: @message })
+          ActionCable.server.broadcast(
+            "rooms:#{room.id}:messages",
+            message: MessagesController.render(
+              partial: 'messages/message',
+              locals: {
+                message: @message, user: current_user
+              }
+            )
+          )
 
           head :ok
         }
