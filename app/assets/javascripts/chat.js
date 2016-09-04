@@ -145,8 +145,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                   budget: localStorage.getItem("budget")
                 }
               }, function(data) {
-                console.log(data)
-                Turbolinks.visit(data.location)
+                Turbolinks.visit('/')
+                // Turbolinks.visit(data.location)
               })
             })
           })
