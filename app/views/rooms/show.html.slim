@@ -1,11 +1,9 @@
 .sidebar.sidebar--left
   .ui.secondary.vertical.pointing.menu.fluid
-    = link_to "Home", root_path, class: "item teal active"
+    = link_to 'New Task', new_room_path, class: 'item'
     - @current_user.joined_rooms.each do |room|
-      = link_to room, class: "item" do
-        '  Room ##{room.id}
-
-    / = link_to 'New Room', new_room_path, class: 'item'
+      = link_to room, class: "item #{'active' if @room == room}" do
+        '  Task ##{room.id}
 
 .main
   .twelve.wide.column
