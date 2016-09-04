@@ -1,5 +1,28 @@
-#messages data-room-id=@room.id = render @messages, user: current_user
+.sidebar.sidebar--left
+  .ui.secondary.vertical.pointing.menu.fluid
+    = link_to "Home", root_path, class: "item teal active"
+    / - @current_user.rooms.each do |room|
+    /   = link_to room, class: "item" do
+    /     = room.id
 
-= simple_form_for [@room, Message.new], remote: true do |f|
-  = f.text_field :body, autofocus: true, autocomplete: 'off'
-  = f.button :submit, "Send", data: {disable_with: "Send"}
+    / = link_to 'New Room', new_room_path, class: 'item'
+
+.main
+  .twelve.wide.column
+    - if @room
+      .ui.segment.narrow
+        #messages data-room-id=@room.id = render @messages, user: current_user
+
+        = form_for [@room, Message.new], remote: true, html: { class: "ui form" } do |f|
+          .ui.left.action.input
+            .ui.teal.icon.button.fileinput-button
+              = f.file_field :image
+              i.plus.icon
+            = f.text_field :body, autofocus: true, autocomplete: 'off'
+
+          .ui.active.progress.teal style="display: none"
+            .bar
+              .progress
+
+    - else
+      = render "goomp_bot/new_goomp"
