@@ -77,6 +77,11 @@ AppView = {
     @initEditor()
     @initInfinitePage()
     @initStripe()
+    @initFileupload()
+
+  initFileupload: ->
+    $("#new_message").fileupload
+      dataType: 'json'
 
   initStripe: ->
     key = $("meta[name=stripePublishableKey]").attr("content")

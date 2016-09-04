@@ -25,6 +25,6 @@
 //= require jquery.iframe-transport
 //= require jquery.fileupload
 //= require medium-editor-insert-plugin
-
+//= require jquery-fileupload/basic
 
 //= require_tree .

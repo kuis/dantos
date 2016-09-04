@@ -11,10 +11,11 @@
   .twelve.wide.column
     - if @room
       .ui.segment.narrow
-        #messages data-room-id=@room.id = render @room.messages, user: current_user
+        #messages data-room-id=@room.id = render @messages, user: current_user
 
         = simple_form_for [@room, Message.new], remote: true do |f|
           = f.text_field :body, autofocus: true, autocomplete: 'off'
+          = f.file_field :image
           = f.button :submit, "Send", data: {disable_with: "Send"}
     - else
       = render "goomp_bot/new_goomp"

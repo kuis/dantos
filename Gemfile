@@ -47,6 +47,7 @@ gem 'simple_form'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'redis'
+gem "jquery-fileupload-rails"
 
 group :development, :test do
   gem 'byebug'

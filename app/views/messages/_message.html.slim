@@ -7,4 +7,7 @@ p
     - elsif user == message.user
       ' TaskForce Agent
   ' :
-  = message.body
+  - if message.image.present?
+    = image_tag message.image.url(:thumb)
+  - else
+    = message.body
