@@ -2,9 +2,9 @@ p
   strong
     - if user == message.user
       = user.full_name
-    - elsif user == message.manager
+    - elsif user == message.room.manager
       ' Client
-    - elsif user == message.user
+    - elsif user == message.room.user
       ' TaskForce Agent
   ' :
   - if message.image.present?
