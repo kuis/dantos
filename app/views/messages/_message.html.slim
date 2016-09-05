@@ -10,7 +10,7 @@
     .metadata
       .date
         = time_ago_in_words message.created_at
-        '  ago
+        ' ago
     .text
       - if message.image.present?
         = image_tag message.image.url(:thumb)
