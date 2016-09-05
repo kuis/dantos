@@ -32,7 +32,6 @@ gem 'omniauth-linkedin-oauth2'
 gem 'omniauth-oauth2', '~> 1.3.1'
 
 gem 'newrelic_rpm'
-# gem 'rinku'
 gem 'rails_autolink'
 
 gem 'factory_girl_rails'

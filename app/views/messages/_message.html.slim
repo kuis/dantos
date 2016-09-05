@@ -19,4 +19,4 @@
       - if message.image.present?
         = image_tag message.image.url(:thumb)
       - else
-        = message.body
+        = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
