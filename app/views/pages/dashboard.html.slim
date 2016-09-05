@@ -1,6 +1,6 @@
 .sidebar.sidebar--left
   .ui.secondary.vertical.pointing.menu.fluid
-    = link_to "Home", root_path, class: "item teal active"
+    = link_to 'New Task', new_room_path, class: 'item'
     - @current_user.rooms.each do |room|
       = link_to room, class: "item" do
         = room.id
