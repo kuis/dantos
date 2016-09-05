@@ -117,7 +117,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         n.forEach(function(n, s) {
           n.addEventListener("click", function(i) {
             if (e.answers[s].key !== undefined) {
-              localStorage.setItem(e.answers[s].key, e.answers[s].path)
+              localStorage.setItem(e.answers[s].key, e.answers[s].text)
             }
             t.animateResponse(n, n.cloneNode(!0), function() {
               t.say(t.messages[e.answers[s].path]), t.emit("answer", {

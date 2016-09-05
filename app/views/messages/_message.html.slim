@@ -3,9 +3,7 @@
     .avatar = image_tag message.user.picture
   .content
     a.author
-      - if user == message.user
-        = user.full_name
-      - elsif user == message.room.manager
+      - if user == message.room.manager
         ' Client
       - elsif user == message.room.user
         ' Kriya Bot
