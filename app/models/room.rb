@@ -3,4 +3,6 @@ class Room < ApplicationRecord
   belongs_to :user
   belongs_to :manager, class_name: "User"
   monetize :budget_cents
+
+  validates_presence_of :category_name
 end
