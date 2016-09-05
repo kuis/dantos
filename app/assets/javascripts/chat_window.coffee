@@ -13,10 +13,11 @@ window.ChatWindow =
 
   initialize: ->
     @el = document.getElementById "messages"
-    @el.scrollTop = @el.scrollHeight
-    @onScroll = @onScroll.bind(this)
-    $("#messages").off("scroll", @onScroll).on("scroll", @onScroll)
-    @shouldScrollBottom = (@el.scrollTop + @el.offsetHeight) == @el.scrollHeight
+    if @el
+      @el.scrollTop = @el.scrollHeight
+      @onScroll = @onScroll.bind(this)
+      $("#messages").off("scroll", @onScroll).on("scroll", @onScroll)
+      @shouldScrollBottom = (@el.scrollTop + @el.offsetHeight) == @el.scrollHeight
 
   update: ->
     @el.scrollTop = @el.scrollHeight
