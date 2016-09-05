@@ -1,9 +1,12 @@
 .sidebar.sidebar--left
   .ui.secondary.vertical.pointing.menu.fluid
     = link_to 'New Task', new_room_path, class: 'item'
-    - @current_user.joined_rooms.each do |room|
+    - current_user.joined_rooms.each do |room|
       = link_to room, class: "item teal #{'active' if @room == room}" do
-        '  #{room.category_name} Task ##{room.id}
+        - if current_user == room.user
+          '  #{room.category_name.downcase}-task-#{room.sequence}
+        - else current_user == room.manager
+          '  #{room.user.id}-#{room.category_name.downcase}-task-#{room.sequence}
 
 .main
   .twelve.wide.column
