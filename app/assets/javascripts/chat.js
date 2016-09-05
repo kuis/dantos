@@ -82,7 +82,6 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
     }, {
       key: "createSpeechBubble",
       value: function(e) {
-        console.log(e)
         var extra_class = e.index == 0 ? "primary" : "secondary"
         var t = document.createElement("div"),
           n = "response" === e.type ? "cui__bubble cui__bubble--response " + extra_class : "cui__bubble";
@@ -142,7 +141,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             t.animateResponse(n, n.cloneNode(!0), function() {
               $.post("/rooms", {
                 room: {
-                  budget: localStorage.getItem("budget")
+                  budget: localStorage.getItem("budget"),
+                  category_name: localStorage.getItem("type")
                 }
               }, function(data) {
                 Turbolinks.visit('/')
