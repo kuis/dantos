@@ -3,12 +3,4 @@ class Room < ApplicationRecord
   belongs_to :user
   belongs_to :manager, class_name: "User"
   monetize :budget_cents
-
-  before_create :generate_sequence_number
-  validates_presence_of :sequence
-
-  def generate_sequence_number
-    last_sequence = self.user.rooms.last&.sequence
-    self.sequence = last_sequence || 1
-  end
 end
