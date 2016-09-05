@@ -14,6 +14,7 @@ App.room = App.cable.subscriptions.create channel: "RoomChannel",
     $('#messages').append(data.message)
     $('#messages').imagesLoaded ->
       ChatWindow.update()
+      $(".ui.progress").hide()
 
   followCurrentMessage: ->
     if roomId = @collection().data('room-id')
