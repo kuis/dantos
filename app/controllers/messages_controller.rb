@@ -31,31 +31,18 @@ class MessagesController < ApplicationController
     @message.room = room
     @message.user = current_user
 
-    respond_to do |format|
-      if @message.save
-        ActionCable.server.broadcast(
-          "rooms:#{room.id}:messages",
-          message: MessagesController.render(
-            partial: 'messages/message',
-            locals: {
-              message: @message, user: current_user
-            }
-          )
+    if @message.save
+      ActionCable.server.broadcast(
+        "rooms:#{room.id}:messages",
+        message: MessagesController.render(
+          partial: 'messages/message',
+          locals: {
+            message: @message, user: current_user
+          }
         )
-
-        format.html {
-          # after_commit { CommentRelayJob.perform_later(self) }
-          head :ok
-        }
-        format.json { render :show, status: :created, location: @message }
-      else
-        format.html {
-          logger.debug @message.errors.inspect
-          render :new
-        }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
+      )
     end
+    head :ok
   end
 
   # PATCH/PUT /messages/1
