@@ -3,7 +3,6 @@ window.ChatWindow =
     console.log 'load more'
 
   onScroll: ->
-    console.log 'scrolling'
     if @el.scrollTop < 100
       @onLoadMore()
 

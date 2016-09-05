@@ -81,6 +81,15 @@ AppView = {
     ChatWindow.initialize()
 
   initFileupload: ->
+    $("#new_message").form
+      fields:
+        body:
+          identifier: 'message[body]'
+          rules: [{
+            type   : 'empty',
+            prompt : 'Please enter content'
+          }]
+
     $("#new_message").fileupload(
       dataType: 'json'
       progress: (e, data) ->
