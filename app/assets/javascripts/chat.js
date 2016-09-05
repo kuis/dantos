@@ -139,7 +139,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         n.forEach(function(n, s) {
           n.addEventListener("click", function(i) {
             t.animateResponse(n, n.cloneNode(!0), function() {
-              $.post("/rooms", {
+              $.post("/tasks", {
                 room: {
                   budget: localStorage.getItem("budget"),
                   category_name: localStorage.getItem("type")
