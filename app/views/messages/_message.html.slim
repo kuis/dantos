@@ -1,6 +1,10 @@
 .comment
   - if message.user.picture
-    .avatar = image_tag message.user.picture
+    .avatar
+      - if message.user == message.room.user
+        = image_tag message.user.picture
+      - elsif message.user == message.room.manager
+        = image_tag "square-logo.ico"
   .content
     a.author
       - if message.user == message.room.user

@@ -10,8 +10,8 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
-    @room = Room.includes(:user, :manager).find params[:id]
-    @messages = @room.messages.includes(:user)
+    @room = current_user.joined_rooms.find params[:id]
+    @messages = @room.messages.includes(:user).page(params[:page])
   end
 
   # GET /rooms/new

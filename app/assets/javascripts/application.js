@@ -26,6 +26,7 @@
 //= require jquery.fileupload
 //= require medium-editor-insert-plugin
 //= require jquery-fileupload/basic
+//= require imagesloaded.pkgd
 
 //= require chat_window
 //= require_tree .

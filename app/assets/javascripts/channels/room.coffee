@@ -10,9 +10,10 @@ App.room = App.cable.subscriptions.create channel: "RoomChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    $('#messages').append(data.message)
-    ChatWindow.update()
     $('#message_body').val ''
+    $('#messages').append(data.message)
+    $('#messages').imagesLoaded ->
+      ChatWindow.update()
 
   followCurrentMessage: ->
     if roomId = @collection().data('room-id')
