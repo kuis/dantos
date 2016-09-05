@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_many :rooms, dependent: :destroy
+  has_many :managed_rooms, dependent: :destroy, class_name: "Room", foreign_key: :manager_id
 
   def joined_rooms
     Room.where("user_id = ? OR manager_id = ?", self.id, self.id)
