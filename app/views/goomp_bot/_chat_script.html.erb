@@ -2,47 +2,72 @@
   new Chat(
     {
       greeting: [
-        "Great, now what’s the budget you are looking to get this task done at?",
-        {
-          type: 'write',
-          path: 'video',
-          key: "budget"
-        }
-      ],
-
-      eta: [
-        'When do you want it to be finished?',
+        'Please choose one your project timeline',
         {
           type: 'choose',
           answers: [{
-            'text': 'Next Day',
-            'path': '/goomps/new'
+            'text': '3 days',
+            'path': 'expertiseLevel',
+            'key': 'timeline'
           },
           {
-            'text': 'Three Days',
-            'path': '/goomps'
+            'text': '1 week',
+            'path': 'expertiseLevel',
+            'key': 'timeline'
           },
           {
-            'text': 'Week',
-            'path': '/goomps'
+            'text': '2 weeks',
+            'path': 'expertiseLevel',
+            'key': 'timeline'
           },
           {
-            'text': 'Two Weeks',
-            'path': '/goomps'
+            'text': '3 weeks',
+            'path': 'expertiseLevel',
+            'key': 'timeline'
           },
           {
-            'text': 'One Month',
-            'path': '/goomps'
+            'text': '1 month',
+            'path': 'expertiseLevel',
+            'key': 'timeline'
           },
           {
-            'text': 'Three Months',
-            'path': '/goomps'
-          },
-          {
-            'text': 'Six Months',
-            'path': '/goomps'
+            'text': '6 months',
+            'path': 'expertiseLevel',
+            'key': 'timeline'
           }
           ]
+        }
+      ],
+
+      expertiseLevel: [
+        'Please choose the expertise level',
+        {
+          type: 'choose',
+          answers: [{
+            'text': 'basic',
+            'path': 'description',
+            'key': 'expertiseLevel'
+          },
+          {
+            'text': 'intermediate',
+            'path': 'description',
+            'key': 'expertiseLevel'
+          },
+          {
+            'text': 'experienced',
+            'path': 'description',
+            'key': 'expertiseLevel'
+          }
+          ]
+        }
+      ],
+
+      description: [
+        'Please give detailed description of what needs to be done in a post and I will get this started immediately',
+        {
+          type: 'write',
+          path: 'notice',
+          key: "description"
         }
       ],
 

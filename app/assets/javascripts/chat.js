@@ -141,8 +141,9 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             t.animateResponse(n, n.cloneNode(!0), function() {
               $.post("/tasks", {
                 room: {
-                  budget: localStorage.getItem("budget"),
-                  category_name: localStorage.getItem("type")
+                  budget: localStorage.getItem("timeline"),
+                  category_name: localStorage.getItem("expertiseLevel")
+                  description: localStorage.getItem("description")
                 }
               }, function(data) {
                 Turbolinks.visit('/')
