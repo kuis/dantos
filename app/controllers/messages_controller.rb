@@ -2,7 +2,6 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-
   # GET /messages
   # GET /messages.json
   def index
@@ -31,17 +30,8 @@ class MessagesController < ApplicationController
     @message.room = room
     @message.user = current_user
 
-    if @message.save
-      ActionCable.server.broadcast(
-        "rooms:#{room.id}:messages",
-        message: MessagesController.render(
-          partial: 'messages/message',
-          locals: {
-            message: @message, user: current_user
-          }
-        )
-      )
-    end
+    @message.save
+    @message.process_command
     head :ok
   end
 

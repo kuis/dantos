@@ -12,7 +12,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1.json
   def show
     @room = current_user.joined_rooms.find params[:id]
-    @messages = @room.messages.includes(:user).page(params[:page])
+    @messages = @room.messages.includes(:user, :attachment).order(:created_at).page(params[:page])
   end
 
   # GET /rooms/new

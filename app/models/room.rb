@@ -5,4 +5,5 @@ class Room < ApplicationRecord
   monetize :budget_cents
 
   validates_presence_of :category_name
+  before_create { self.category_name ||= "Design" }
 end

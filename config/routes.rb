@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :payments
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :rooms, shallow: true, path: 'tasks' do
     resources :messages

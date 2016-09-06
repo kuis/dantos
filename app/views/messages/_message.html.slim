@@ -20,3 +20,6 @@
         = image_tag message.image.url(:thumb)
       - else
         = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
+
+      - if message.attachment
+        = message.attachment.html.html_safe

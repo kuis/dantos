@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :room do
-    user nil
-    manager nil
+    user
+    association :manager, factory: :user
+    category_name { Faker::Lorem.word }
   end
 end

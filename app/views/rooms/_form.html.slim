@@ -1,4 +1,22 @@
-= simple_form_for @room do |f|
-  = f.association :user, label_method: :full_name
-  = f.association :manager, label_method: :full_name
-  = f.button :submit
+= form_for @room, html: { class: "ui form" } do |f|
+  .ui.field
+    = f.label :category_name
+    = f.text_field :category_name
+
+  .ui.field
+    = f.label :quality
+    = f.text_field :quality
+
+  .ui.field
+    = f.label :timeline
+    = f.text_field :timeline
+
+  .ui.field
+    = f.label :description
+    = f.text_field :description
+
+  .ui.field
+    = f.label :budget
+    = f.number_field :budget
+
+  = f.submit "Create", class: "ui primary button"

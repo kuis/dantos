@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160905003626) do
+ActiveRecord::Schema.define(version: 20160906080819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: :cascade do |t|
+    t.text     "html"
+    t.integer  "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_attachments_on_message_id", using: :btree
+  end
 
   create_table "authorizations", force: :cascade do |t|
     t.string   "provider"
@@ -112,6 +120,13 @@ ActiveRecord::Schema.define(version: 20160905003626) do
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
+  end
+
   create_table "photos", force: :cascade do |t|
     t.text     "data"
     t.datetime "created_at", null: false
@@ -158,6 +173,9 @@ ActiveRecord::Schema.define(version: 20160905003626) do
     t.string   "category_name"
     t.integer  "budget_cents",    default: 0,     null: false
     t.string   "budget_currency", default: "USD", null: false
+    t.string   "timeline"
+    t.string   "quality"
+    t.text     "description"
     t.index ["manager_id"], name: "index_rooms_on_manager_id", using: :btree
     t.index ["user_id"], name: "index_rooms_on_user_id", using: :btree
   end
@@ -199,6 +217,7 @@ ActiveRecord::Schema.define(version: 20160905003626) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "attachments", "messages"
   add_foreign_key "authorizations", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
@@ -209,6 +228,7 @@ ActiveRecord::Schema.define(version: 20160905003626) do
   add_foreign_key "memberships", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "posts", "goomps"
   add_foreign_key "posts", "subtopics"
   add_foreign_key "posts", "users"

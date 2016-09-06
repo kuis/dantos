@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :message do
     body "MyString"
-    room nil
-    user nil
+    room
+    user
   end
 end
