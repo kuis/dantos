@@ -21,15 +21,16 @@
 
             / .ui.teal.icon.button.fileinput-button
             / = f.button class: "ui teal icon button fileinput-button", data: { disable_with: "<i class='plus icon'></i>" } do
-            /   = f.file_field :image
             /   i.plus.icon
 
             .ui.icon.bottom.left.pointing.dropdown.button.teal
               i.plus.icon
               .menu
                 .item Create Post
-                .item Charge User
-                .item Upload File/Photo
+                .item data-charge-user=true Charge User
+                .item.fileinput-button
+                  ' Upload File/Photo
+                  = f.file_field :image
 
             = f.text_field :body, autofocus: true, autocomplete: 'off', placeholder: "Start typing…"
 
