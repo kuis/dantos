@@ -17,7 +17,7 @@
         '  ago
     .text
       - if message.image.present?
-        = link_to image_tag(message.image.url(:thumb)), message.image.url(:thumb)
+        = link_to image_tag(message.image.url(:thumb)), message.image.url(:thumb), class: "fluidbox"
       - else
         = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
 

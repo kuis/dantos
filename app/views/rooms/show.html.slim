@@ -18,15 +18,10 @@
 
         = form_for [@room, Message.new], remote: true, html: { class: "ui form" } do |f|
           .ui.left.action.input.fluid
-
-            / .ui.teal.icon.button.fileinput-button
-            / = f.button class: "ui teal icon button fileinput-button", data: { disable_with: "<i class='plus icon'></i>" } do
-            /   i.plus.icon
-
             .ui.icon.bottom.left.pointing.dropdown.button.teal
               i.plus.icon
               .menu
-                .item Create Post
+                / .item Create Post
                 .item data-charge-user=true Charge User
                 .item.fileinput-button
                   ' Upload File/Photo
