@@ -74,6 +74,8 @@ AppView = {
 
     $(document).off("turbolinks:before-cache").on("turbolinks:before-cache", @preparePageForTurbolinks)
 
+    $(".ui.comments a").fluidbox()
+
     @initSemanticUI()
     @initEditor()
     @initInfinitePage()
@@ -83,6 +85,7 @@ AppView = {
 
   chargeUser: ->
     $("#message_body").val "/charge $100"
+    $("#message_body").focus()
 
   initFileupload: ->
     $("#new_message").form

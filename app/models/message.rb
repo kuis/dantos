@@ -12,13 +12,13 @@ class Message < ApplicationRecord
 
   def process_command
     if self.body =~ /\/charge \$?([\d\.]+)/
-      amount = $1.to_f*100
+      amount = $1
       self.create_attachment html: <<~HTML.squish
         <form action="/payments" method="POST">
           <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-            data-amount="#{amount.to_i}"
+            data-amount="#{(amount.to_f*100).to_i}"
             data-name="Kriya"
             data-image="/assets/square-logo.ico"
             data-locale="auto"
@@ -26,7 +26,7 @@ class Message < ApplicationRecord
           </script>
         </form>
       HTML
-      self.update body: nil
+      self.update body: "The charge for this task - $#{amount}, if you confirm we can get this started right away:"
       logger.debug self.inspect
       logger.debug self.errors.inspect
       logger.debug self.reload.inspect

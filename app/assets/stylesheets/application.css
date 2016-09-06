@@ -18,5 +18,6 @@
  *= require docs
  *= require home
  *= require jquery.fileupload
+ *= require fluidbox.min
  *= require_self
  */
