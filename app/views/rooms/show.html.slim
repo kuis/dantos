@@ -18,10 +18,19 @@
 
         = form_for [@room, Message.new], remote: true, html: { class: "ui form" } do |f|
           .ui.left.action.input.fluid
+
             / .ui.teal.icon.button.fileinput-button
-            = f.button class: "ui teal icon button fileinput-button", data: { disable_with: "<i class='plus icon'></i>" } do
-              = f.file_field :image
+            / = f.button class: "ui teal icon button fileinput-button", data: { disable_with: "<i class='plus icon'></i>" } do
+            /   = f.file_field :image
+            /   i.plus.icon
+
+            .ui.icon.bottom.left.pointing.dropdown.button.teal
               i.plus.icon
+              .menu
+                .item Create Post
+                .item Charge User
+                .item Upload File/Photo
+
             = f.text_field :body, autofocus: true, autocomplete: 'off', placeholder: "Start typing…"
 
           .ui.active.progress.teal style="display: none"
