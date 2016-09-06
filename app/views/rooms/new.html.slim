@@ -11,7 +11,9 @@
 .main
   .twelve.wide.column
     - if @room
-      .ui.segment.narrow = render 'form'
+      .ui.segment.narrow
+        #chat
+        = render 'form'
 
     - else
       = render "goomp_bot/new_goomp"

@@ -82,7 +82,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
     }, {
       key: "createSpeechBubble",
       value: function(e) {
-        var extra_class = e.index == 0 ? "primary" : "secondary"
+        var extra_class = e.index == 0 ? "secondary" : "secondary"
         var t = document.createElement("div"),
           n = "response" === e.type ? "cui__bubble cui__bubble--response " + extra_class : "cui__bubble";
         return t.setAttribute("class", n), t.innerHTML = e.text, t
@@ -141,11 +141,16 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             t.animateResponse(n, n.cloneNode(!0), function() {
               $.post("/tasks", {
                 room: {
-                  budget: localStorage.getItem("timeline"),
-                  category_name: localStorage.getItem("expertiseLevel")
+                  category_name: localStorage.getItem("category"),
+                  timeline: localStorage.getItem("timeline"),
+                  quality: localStorage.getItem("quality"),
                   description: localStorage.getItem("description")
                 }
               }, function(data) {
+                localStorage.removeItem('category'),
+                localStorage.removeItem('timeline'),
+                localStorage.removeItem('quality'),
+                localStorage.removeItem('description'),
                 Turbolinks.visit('/')
                 // Turbolinks.visit(data.location)
               })
