@@ -36,15 +36,6 @@ div class="ui stacked segment" style="width: 100%;max-width: 75%;margin:auto;pad
       = f.label :email, "Primary Email", class: "inline-label"
       = f.text_field :email, placeholder: "Primary Email (Ex: Joe@AppleSeed.com)"
 
-    - unless session["devise.oauth_data"]
-      .field
-        = f.label :password, "Choose Password"
-        = f.password_field :password, placeholder: "***************"
-
-      .field
-        = f.label :password_confirmation, "Confirm Password"
-        = f.password_field :password_confirmation, placeholder: "***************"
-
     .field
       = f.submit "Sign Up", class: "ui primary button"
 
