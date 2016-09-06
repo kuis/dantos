@@ -151,8 +151,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 localStorage.removeItem('timeline'),
                 localStorage.removeItem('quality'),
                 localStorage.removeItem('description'),
-                Turbolinks.visit('/')
-                // Turbolinks.visit(data.location)
+                // Turbolinks.visit('/')
+                Turbolinks.visit(data.location)
               })
             })
           })
