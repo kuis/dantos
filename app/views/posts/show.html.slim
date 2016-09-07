@@ -1,8 +1,8 @@
 .ui.borderless.fixed.menu
   - if @goomp
-    = link_to image_tag("logo.png", alt: "Goomp", class: "ui logo"), goomp_path(@goomp), class: "header item"
+    = link_to image_tag("logo.png", alt: "Kriya", class: "ui logo"), goomp_path(@goomp), class: "header item"
   - else
-    = link_to image_tag("logo.png", alt: "Goomp", class: "ui logo"), root_path, class: "header item"
+    = link_to image_tag("logo.png", alt: "Kriya", class: "ui logo"), root_path, class: "header item"
 
   - if current_user == @post.user
     .right.menu
