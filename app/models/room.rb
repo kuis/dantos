@@ -12,7 +12,7 @@ class Room < ApplicationRecord
   end
 
   def room_name_for_client user, index
-    "# #{self.category_name&.downcase}-#{index+1}""# #{self.category_name&.downcase}-#{index+1}"
+    "# #{self.category_name&.downcase}-#{index+1}"
   end
 
   def get_room_name_for_user user, index
