@@ -12,7 +12,7 @@
   .twelve.wide.column
     - if @room
       .ui.stacked.segment
-        - if current_user == room.user
+        - if current_user == @room.user
           h1  # #{@room.category_name&.downcase}-#{@room.id}
         - else current_user == @room.manager
           h1  # #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
