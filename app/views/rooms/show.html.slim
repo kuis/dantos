@@ -21,7 +21,7 @@
             .ui.icon.bottom.left.pointing.dropdown.button.teal
               i.plus.icon
               .menu
-                / .item Create Post
+                = link_to 'Create Post', new_post_path, class: "item"
                 .item data-charge-user=true Charge User
                 .item.fileinput-button
                   ' Upload File/Photo

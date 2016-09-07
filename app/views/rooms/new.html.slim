@@ -2,11 +2,7 @@
   #tasks.ui.secondary.vertical.pointing.menu.fluid
     = link_to 'New Task', new_room_path, class: 'active teal item'
     - current_user.joined_rooms.each_with_index do |room, index|
-      = link_to room, class: "item teal #{'active' if @room == room}" do
-        - if current_user == room.user
-          '  # #{room.category_name&.downcase}-#{index+1}
-        - else current_user == room.manager
-          '  # #{room.user.slug}-#{room.category_name.downcase}-#{index+1}
+      = link_to room.get_room_name_for_user(current_user), room, class: "item teal #{'active' if @room == room}"
 
 .main
   .twelve.wide.column
