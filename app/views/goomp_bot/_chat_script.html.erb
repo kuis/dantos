@@ -67,28 +67,8 @@
           'Please give detailed description of what needs to be done in a post and I will get this started immediately',
           {
             type: 'write',
-            path: 'notice',
+            path: '/posts/new',
             key: "description"
-          }
-        ],
-
-        video: [
-          'Please enter your credit card information while I pull the best resources and get this started soon. Remember that I give you a full refund for an unsatisfied service!',
-          {
-            type: 'write',
-            path: 'notice',
-            key: "credit-card"
-          }
-        ],
-
-        notice: [
-          'Please note that we are charging your card with the budget amount',
-          {
-            type: 'submit',
-            answers: [{
-              'text': 'Ok',
-              'path': '/goomps/new'
-            }],
           }
         ]
       }, {
@@ -192,31 +172,11 @@
         ],
 
         description: [
-          'Please give detailed description of what needs to be done in a post and I will get this started immediately',
+          'Please give detailed description of what needs to be done by creating a post, I will get this started immediately',
           {
             type: 'write',
-            path: 'notice',
+            path: '/posts/new',
             key: "description"
-          }
-        ],
-
-        video: [
-          'Please enter your credit card information while I pull the best resources and get this started soon. Remember that I give you a full refund for an unsatisfied service!',
-          {
-            type: 'write',
-            path: 'notice',
-            key: "credit-card"
-          }
-        ],
-
-        notice: [
-          'Please note that we are charging your card with the budget amount',
-          {
-            type: 'submit',
-            answers: [{
-              'text': 'Ok',
-              'path': '/goomps/new'
-            }],
           }
         ]
       }, {
