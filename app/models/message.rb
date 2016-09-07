@@ -20,7 +20,7 @@ class Message < ApplicationRecord
             data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
             data-amount="#{(amount.to_f*100).to_i}"
             data-name="Kriya"
-            data-image="/assets/square-logo.ico"
+            data-image="https://www.filestackapi.com/api/file/6hx3CLg3SQGoARFjNBGq"
             data-locale="auto"
             data-zip-code="true">
           </script>
