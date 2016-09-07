@@ -5,8 +5,6 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   include Likable
 
-  validates :goomp, :user, presence: true
-
   def generate_link_for_story!
     doc = Nokogiri::HTML(self.content)
     doc.css('.medium-insert-buttons').remove

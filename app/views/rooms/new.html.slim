@@ -17,6 +17,12 @@
             #chat
             = render 'form'
 
+      .ui.segment.narrow
+        #chat
+        = render 'post_modal'
+
+        = render 'form'
+
     - else
       = render "goomp_bot/new_goomp"
 

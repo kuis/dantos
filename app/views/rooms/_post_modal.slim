@@ -1,0 +1,8 @@
+.ui.basic.modal
+  i.close.icon
+  .header Description
+
+  .content
+    = form_for Post.new, html: { class: "ui form" }, remote: true do |f|
+      = f.text_area :body
+      = f.submit

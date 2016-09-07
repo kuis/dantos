@@ -158,6 +158,31 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         })
       }
     }, {
+      key: "openModal",
+      value: function(e) {
+        var t = this,
+          n = e.answers.map(function(e, n) {
+            return t.createAnswerButton(e, {
+              delay: 65 + 65 * n,
+              index: n
+            })
+          });
+        n.forEach(function(n, s) {
+          n.addEventListener("click", function(i) {
+            $('.ui.basic.modal').modal('show');
+
+            t.animateResponse(n, n.cloneNode(!0), function() {
+              t.say(t.messages[e.answers[s].path]), t.emit("answer", {
+                item: e.answers[s]
+              })
+            })
+          })
+        })
+      }
+
+    },
+
+    {
       key: "writeAnswer",
       value: function(e) {
         var t = this,
@@ -287,6 +312,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 return t.visitLink(e)
               case "submit":
                 return t.submitProject(e)
+              case "open-modal":
+                return t.openModal(e)
               case "change-cover":
                 return t.changeCover(e)
             }
