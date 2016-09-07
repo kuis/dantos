@@ -12,12 +12,11 @@
   .twelve.wide.column
     - if @room
       .ui.stacked.segment
-        h1
-          - if current_user == @room.user
-            '  # #{@room.category_name&.downcase}-#{@room.id}
-            - else current_user == @room.manager
-            '  # #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
-        ui.divider
+        - if current_user == @room.user
+          h1 # #{@room.category_name&.downcase}-#{@room.id}
+        - else current_user == @room.manager
+          h1 # #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
+      div.ui.divider
         #messages.ui.comments data-room-id=@room.id
           = render @messages, user: current_user
 
