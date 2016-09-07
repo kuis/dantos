@@ -1,6 +1,6 @@
 .sidebar.sidebar--left
   #tasks.ui.secondary.vertical.pointing.menu.fluid
-    = link_to 'New Task', new_room_path, class: 'item'
+    = link_to 'New Task', new_room_path, class: 'item blue-ink'
     - current_user.joined_rooms.each_with_index do |room, index|
       = link_to room, class: "item teal #{'active' if @room == room}" do
         - if current_user == room.user
