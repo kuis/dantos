@@ -27,11 +27,13 @@
                   ' Upload File/Photo
                   = f.file_field :image
 
+            .ui.active.progress.teal style="display: none"
+              .bar
+                .progress
+
             = f.text_field :body, autofocus: true, autocomplete: 'off', placeholder: "Start typing…"
 
-          .ui.active.progress.teal style="display: none"
-            .bar
-              .progress
+
 
     - else
       = render "goomp_bot/new_goomp"
