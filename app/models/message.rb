@@ -26,7 +26,7 @@ class Message < ApplicationRecord
           </script>
         </form>
       HTML
-      self.update body: "The charge for this task - $#{amount}, if you confirm we can get this started right away:"
+      self.update body: "The charge for this task is $#{amount}, can you confirm so we can get it started?"
       logger.debug self.inspect
       logger.debug self.errors.inspect
       logger.debug self.reload.inspect
