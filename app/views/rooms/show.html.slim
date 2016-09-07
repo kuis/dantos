@@ -4,18 +4,18 @@
     - current_user.joined_rooms.each_with_index do |room, index|
       = link_to room, class: "item teal #{'active' if @room == room}" do
         - if current_user == room.user
-          '  # #{room.category_name&.downcase}-#{index+1}
+          '  # #{room.category_name&.downcase}-#{room.id}
         - else current_user == room.manager
-          '  # #{room.user.slug}-#{room.category_name.downcase}-#{index+1}
+          '  # #{room.user.slug}-#{room.category_name.downcase}-#{room.id}
 
 .main
   .twelve.wide.column
     - if @room
       .ui.stacked.segment
         - if current_user == room.user
-          h1  # #{room.category_name&.downcase}-#{index+1}
-        - else current_user == room.manager
-          h1  # #{room.user.slug}-#{room.category_name.downcase}-#{index+1}
+          h1  # #{@room.category_name&.downcase}-#{@room.id}
+        - else current_user == @room.manager
+          h1  # #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
         div.ui.divider
         #messages.ui.comments data-room-id=@room.id
           = render @messages, user: current_user
