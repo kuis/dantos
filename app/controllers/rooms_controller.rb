@@ -34,10 +34,11 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
+        msg_body = params.dig(:room, :messages, :body)
+        @room.messages.create body: msg_body, user: current_user if msg_body
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
-        logger.debug @room.errors.full_messages
         format.html { render :new }
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end

@@ -1,12 +1,4 @@
-.sidebar.sidebar--left
-  #tasks.ui.secondary.vertical.pointing.menu.fluid
-    = link_to 'New Task', new_room_path, class: 'item blue-ink'
-    - current_user.joined_rooms.each_with_index do |room, index|
-      = link_to room, class: "item teal #{'active' if @room == room}" do
-        - if current_user == room.user
-          '  # #{room.category_name&.downcase}-#{room.id}
-        - else current_user == room.manager
-          '  # #{room.user.slug}-#{room.category_name.downcase}-#{room.id}
+= render 'left_sidebar'
 
 .main
   .twelve.wide.column

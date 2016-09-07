@@ -375,7 +375,7 @@ AppView = {
     $("#chat").html "" if $("#chat").length > 0
 
     # $(".ui.modals").remove() if $(".ui.modals").length > 0
-    $(".ui.modal").hide()
+    $(".ui.modals").remove()
 
   remoteSubmitGetForm: (e) ->
     separator = if this.action.indexOf('?') == -1 then '?' else '&'

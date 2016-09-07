@@ -143,13 +143,13 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             t.animateResponse(n, n.cloneNode(!0), function() {
               $.post("/tasks", {
                 room: {
-                  category_name: localStorage.getItem("category"),
+                  category_name: localStorage.getItem("category_name"),
                   timeline: localStorage.getItem("timeline"),
                   quality: localStorage.getItem("quality"),
                   description: localStorage.getItem("description")
                 }
               }, function(data) {
-                localStorage.removeItem('category'),
+                localStorage.removeItem('category_name'),
                 localStorage.removeItem('timeline'),
                 localStorage.removeItem('quality'),
                 localStorage.removeItem('description'),
