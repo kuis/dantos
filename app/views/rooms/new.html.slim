@@ -8,8 +8,14 @@
   .twelve.wide.column
     - if @room
       .ui.segment.narrow
-        #chat
-        = render 'form'
+        div class="event"
+          div class="label"
+            img src="/favicon.ico"
+          div class="content"
+            div class="summary" Kriya Bot
+            span class="date" Just Now
+            #chat
+            = render 'form'
 
     - else
       = render "goomp_bot/new_goomp"
