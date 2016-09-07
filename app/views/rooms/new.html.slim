@@ -15,13 +15,8 @@
             div class="summary" Kriya Bot
             span class="date" Just Now
             #chat
-            = render 'form'
-
-      .ui.segment.narrow
-        #chat
-        = render 'post_modal'
-
-        = render 'form'
+            = render 'post_modal'
+            = render 'rooms/chat_script'
 
     - else
       = render "goomp_bot/new_goomp"

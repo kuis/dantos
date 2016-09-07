@@ -117,6 +117,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
           n.addEventListener("click", function(i) {
             if (e.answers[s].key !== undefined) {
               localStorage.setItem(e.answers[s].key, e.answers[s].text)
+              console.log("key", e.answers[s].key)
+              $('#room_' + e.answers[s].key).val(e.answers[s].text)
             }
             t.animateResponse(n, n.cloneNode(!0), function() {
               t.say(t.messages[e.answers[s].path]), t.emit("answer", {
@@ -169,12 +171,11 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
           });
         n.forEach(function(n, s) {
           n.addEventListener("click", function(i) {
-            $('.ui.basic.modal').modal('show');
-
             t.animateResponse(n, n.cloneNode(!0), function() {
-              t.say(t.messages[e.answers[s].path]), t.emit("answer", {
-                item: e.answers[s]
-              })
+              $('.ui.modal').modal('show', {detachable: false});
+              // t.say(t.messages[e.answers[s].path]), t.emit("answer", {
+              //   item: e.answers[s]
+              // })
             })
           })
         })

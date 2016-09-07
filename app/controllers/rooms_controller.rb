@@ -18,6 +18,7 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    @room.messages.new
   end
 
   # GET /rooms/1/edit
@@ -36,6 +37,7 @@ class RoomsController < ApplicationController
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
+        logger.debug @room.errors.full_messages
         format.html { render :new }
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
@@ -74,6 +76,13 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:category_name, :budget, :timeline, :quality, :description)
+      params.require(:room).permit(
+        :category_name,
+        :budget,
+        :timeline,
+        :quality,
+        :description,
+        messages_attributes: [:id, :body]
+      )
     end
 end

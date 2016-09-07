@@ -1,8 +1,13 @@
-.ui.basic.modal
+.ui.modal
   i.close.icon
   .header Description
 
   .content
-    = form_for Post.new, html: { class: "ui form" }, remote: true do |f|
-      = f.text_area :body
-      = f.submit
+    = form_for @room, html: { class: "ui form" }, remote: true do |f|
+      = f.hidden_field :category_name
+      = f.hidden_field :timeline
+      = f.hidden_field :quality
+
+      = f.fields_for :messages do |ff|
+        .ui.fields = ff.text_area :body
+      = f.submit :create, class: "ui primary button"

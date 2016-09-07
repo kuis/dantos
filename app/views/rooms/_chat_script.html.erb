@@ -1,5 +1,6 @@
 <script>
   if(localStorage.getItem("category_name") !== null) {
+    $("#room_category_name").val(localStorage.getItem("category_name"))
     new Chat(
       {
         greeting: [
@@ -109,27 +110,27 @@
             type: 'choose',
             answers: [{
               'text': 'Engineering',
-              'key': 'category',
+              'key': 'category_name',
               'path': 'timeline'
             },
             {
               'text': 'Product',
-              'key': 'category',
+              'key': 'category_name',
               'path': 'timeline'
             },
             {
               'text': 'Design',
-              'key': 'category',
+              'key': 'category_name',
               'path': 'timeline'
             },
             {
               'text': 'Sales',
-              'key': 'category',
+              'key': 'category_name',
               'path': 'timeline'
             },
             {
               'text': 'Marketing',
-              'key': 'category',
+              'key': 'category_name',
               'path': 'timeline'
             },
             ]
