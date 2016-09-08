@@ -12,6 +12,10 @@
         #messages.ui.comments data-room-id=@room.id
           = render @messages, user: current_user
 
+        .ui.active.progress.teal style="display: none"
+          .bar
+            .progress
+
         = form_for [@room, Message.new], remote: true, html: { class: "ui form" } do |f|
           .ui.left.action.input.fluid
             .ui.icon.bottom.left.pointing.dropdown.button.teal
@@ -22,10 +26,6 @@
                 .item.fileinput-button
                   ' Upload File/Photo
                   = f.file_field :image
-
-            .ui.active.progress.teal style="display: none"
-              .bar
-                .progress
 
             = f.text_field :body, autofocus: true, autocomplete: 'off', placeholder: "Start typing…"
 
