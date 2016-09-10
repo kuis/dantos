@@ -179,13 +179,10 @@
         description: [
           'Please give detailed description of what needs to be done by creating a post, I will get this started immediately',
           {
-            type: 'open-modal',
-            path: 'notice',
-            key: "description",
+            type: 'description',
             answers: [{
-              'text': 'Ok',
-              'path': 'description',
-              'key': 'quality'
+              'text': 'Write Post',
+              'path': '/posts/new'
             }]
           }
         ]
