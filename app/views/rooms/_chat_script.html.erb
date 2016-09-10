@@ -200,9 +200,14 @@
         description: [
           'Please give detailed description of what needs to be done in a post, it helps me getting started',
           {
-            type: 'Write Post',
-            path: '/posts/new',
-            key: "description"
+            type: 'open-modal',
+            path: 'notice',
+            key: "description",
+            answers: [{
+              'text': 'Ok',
+              'path': 'description',
+              'key': 'quality'
+            }]
           }
         ]
       }, {
