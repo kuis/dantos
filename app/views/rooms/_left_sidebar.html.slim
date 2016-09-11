@@ -1,10 +1,10 @@
 .sidebar.sidebar--left
   #tasks.ui.vertical.inverted.fluid.menu
-    = link_to 'New Task', new_room_path, class:"item ui button primary  #{'active teal' if action_name == 'new'}"
+    = link_to 'Create Task', new_room_path, class:"item ui  #{'active teal' if action_name == 'new'}"
 
     - current_user.joined_rooms.includes(:user).each_with_index do |room, index|
       = link_to room, class: "item teal #{'active' if @room == room}" do
         - if current_user == room.user
-          '  # #{room.category_name&.downcase}-#{room.id}
+          '  #{room.category_name&.downcase}-#{room.id}
         - else current_user == room.manager
-          '  # #{room.user.slug}-#{room.category_name.downcase}-#{room.id}
+          '  #{room.user.slug}-#{room.category_name.downcase}-#{room.id}
