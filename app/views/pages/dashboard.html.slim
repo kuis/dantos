@@ -1,5 +1,5 @@
 .sidebar.sidebar--left
-  .ui.secondary.vertical.pointing.menu.fluid
+  .ui.vertical.inverted.fluid.menu
     = link_to 'New Task', new_room_path, class: 'item'
     - @current_user.rooms.each do |room|
       = link_to room, class: "item" do
