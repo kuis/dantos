@@ -9,6 +9,7 @@
         - else current_user == @room.manager
           h3  # #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
         div.ui.divider
+        div.min-room-height
         #messages.ui.comments data-room-id=@room.id
           = render @messages, user: current_user
 
