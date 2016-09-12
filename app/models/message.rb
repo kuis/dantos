@@ -10,7 +10,7 @@ class Message < ApplicationRecord
 
   ################## Validations ##########################
   validates :room, :user, presence: true
-  validate :body_xor_asset
+  validate :body_or_asset_required
 
   ################## Callbacks ############################
   after_create :process_command
@@ -49,9 +49,7 @@ class Message < ApplicationRecord
     )
   end
 
-  def body_xor_asset
-    unless body.blank? ^ asset.blank?
-      errors.add(:body, 'Please write something')
-    end
+  def body_or_asset_required
+    errors.add(:body, 'Please write something') if (body.blank? && asset.blank?)
   end
 end
