@@ -1,6 +1,3 @@
-body
-  background: $body-background
-
 // #tasks
 //   .item
 //     &:before
@@ -46,6 +43,7 @@ body
       padding-left: 20px
       padding-right: 20px
       border-radius: 0
+      box-shadow: none
       border: none
 
       #messages
@@ -348,10 +346,12 @@ a.fluidbox
     text-align: left
     line-height: 20px
     font-weight: bold
+    color: $light-font-color
+
 
 .sidebar.sidebar--left
   .ui.vertical.menu.fluid > .item.new
-    color: $light-font-color
+    color: $lightest-color
 
 .blue-ink
   color: $blue-ink !important
@@ -397,7 +397,13 @@ a.fluidbox
 .js-infinite
   width: $main-content-width
 
+.ui.stacked.segment
+  padding-bottom: 0
+
 .ui.segment.narrow
+  width: $main-content-width
+
+.ui.segment.feed.new
   width: $main-content-width
 
 .ui.segment.feed
