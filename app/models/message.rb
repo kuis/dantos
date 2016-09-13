@@ -1,14 +1,20 @@
 class Message < ApplicationRecord
-  mount_uploader :image, ImageUploader
+
+  ################## CarrierWave uploads ##################
+  mount_uploader :asset, AssetUploader
+
+  ################## Associations #########################
   belongs_to :room
   belongs_to :user
   has_one :attachment, dependent: :destroy
 
-  validates_presence_of :room, :user
+  ################## Validations ##########################
+  validates :room, :user, presence: true
+  validate :body_or_asset_required
 
-  # validate :body_or_image_present
+  ################## Callbacks ############################
+  after_create :process_command
 
-  # after_create :process_command
 
   def process_command
     if self.body =~ /\/charge \$?([\d\.]+)/
@@ -33,19 +39,17 @@ class Message < ApplicationRecord
     end
 
     ActionCable.server.broadcast(
-      "rooms:#{room.id}:messages",
-      message: MessagesController.render(
-        partial: 'messages/message',
-        locals: {
-          message: self, user: user
-        }
-      )
+        "rooms:#{room.id}:messages",
+        message: MessagesController.render(
+            partial: 'messages/message',
+            locals: {
+                message: self, user: user
+            }
+        )
     )
   end
 
-  def body_or_image_present
-    if self.body.blank? && self.image.blank? && self.attachment.blank?
-      errors[:body] << ("Please write something")
-    end
+  def body_or_asset_required
+    errors.add(:body, 'Please write something') if (body.blank? && asset.blank?)
   end
 end
