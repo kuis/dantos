@@ -16,10 +16,13 @@
         = time_ago_in_words message.created_at
         '  ago
     .text
-      - if message.image.present?
-        = link_to image_tag(message.image.url(:thumb)), message.image.url(:thumb), class: "fluidbox"
+      - if message.image.file.present? && !(message.image.content_type.include? 'image')
+        = link_to message.image.file.filename, message.image.url
+        = "( " + message.image.size.to_s + "KB )" 
       - else
-        = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
-
+        - if message.image.url(:thumb).present?
+          = link_to image_tag(message.image.url(:thumb)), message.image.url(:thumb), class: "fluidbox"
+        - else
+          = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
       - if message.attachment
         = message.attachment.html.html_safe
