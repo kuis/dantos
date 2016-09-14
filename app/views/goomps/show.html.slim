@@ -23,7 +23,7 @@
 .site-container.small
   .sidebar.sidebar--left
     .ui.secondary.vertical.pointing.menu.fluid
-      = link_to "General", @goomp, class: "item #{'active teal' unless params[:subtopic_id]}"
+      = link_to "General", @goomp, class: "item #{'active primary' unless params[:subtopic_id]}"
       - @subtopics.each do |subtopic|
         = link_to subtopic.name, params.merge(subtopic_id: subtopic.id).permit(:subtopic_id), class: "item #{'active teal' if subtopic.id == params[:subtopic_id].to_i}"
 

@@ -12,13 +12,13 @@
         #messages.ui.comments data-room-id=@room.id
           = render @messages, user: current_user
 
-        .ui.active.progress.teal style="display: none"
+        .ui.active.progress.primary style="display: none"
           .bar
             .progress
 
         = form_for [@room, Message.new], remote: true, html: { class: "ui form" } do |f|
           .ui.left.action.input.fluid
-            .ui.icon.bottom.left.pointing.dropdown.button.teal
+            .ui.icon.bottom.left.pointing.dropdown.button.primary
               i.plus.icon
               .menu
                 = link_to 'Create Post', new_post_path, class: "item"
