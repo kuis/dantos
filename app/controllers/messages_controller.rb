@@ -31,6 +31,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
 
     @message.save
+    @message.process_command
     head :ok
   end
 
@@ -66,6 +67,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:body, :asset)
+      params.require(:message).permit(:body, :image)
     end
 end

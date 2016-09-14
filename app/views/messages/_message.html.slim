@@ -16,7 +16,10 @@
         = time_ago_in_words message.created_at
         '  ago
     .text
-      = body_asset_pre(message)
+      - if message.image.present?
+        = link_to image_tag(message.image.url(:thumb)), message.image.url(:thumb), class: "fluidbox"
+      - else
+        = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
 
       - if message.attachment
         = message.attachment.html.html_safe
