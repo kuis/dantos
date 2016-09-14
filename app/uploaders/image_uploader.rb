@@ -1,10 +1,15 @@
-# encoding: utf-8
+class ImageUploader < CarrierWave::Uploader::Base
 
-class AssetUploader < CarrierWave::Uploader::Base
-
-  include CarrierWave::MimeTypes
+  # Include RMagick or MiniMagick support:
+  # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+  include CarrierWave::MimeTypes
 
+  # Call method
+  process :set_content_type
+
+  # Choose what kind of storage to use for this uploader:
+  # storage :file
   storage :fog
 
   # Override the directory where uploaded files will be stored.
@@ -22,7 +27,6 @@ class AssetUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :set_content_type
   # process :scale => [200, 300]
   #
   # def scale(width, height)
@@ -33,6 +37,16 @@ class AssetUploader < CarrierWave::Uploader::Base
   version :thumb, :if => :image? do
     process :resize_to_fit => [360, 360]
   end
+
+  # version :thumb do
+  #   nil
+  # end
+
+  # # Create different versions of your uploaded files:
+  # version :cover do
+  #   # process :resize_to_fit => [556, 210]
+  #   process crop: 'x182+0+0'
+  # end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -46,7 +60,7 @@ class AssetUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-  private
+private
   def crop(geometry)
     manipulate! do |img|
       img.combine_options do |image|
@@ -57,10 +71,11 @@ class AssetUploader < CarrierWave::Uploader::Base
       img
     end
   end
-
+protected
   def image?(new_file)
-    new_file.content_type.start_with? 'image'
+    new_file.content_type.include? 'image'
   end
-
-
+  def not_image?(new_file)
+    !(new_file.content_type.include? 'image')
+  end
 end

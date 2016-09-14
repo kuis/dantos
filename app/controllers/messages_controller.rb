@@ -25,12 +25,15 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
+    #debugger
     @message = Message.new(message_params)
     room = Room.find params[:room_id]
     @message.room = room
     @message.user = current_user
 
     @message.save
+    @message.process_command
+    debugger
     head :ok
   end
 
@@ -66,6 +69,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:body, :asset)
+      params.require(:message).permit(:body, :image)
     end
 end

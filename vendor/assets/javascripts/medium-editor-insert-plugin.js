@@ -1591,6 +1591,7 @@ this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handl
             fileUploadOptions: { // See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
                 url: null,
                 acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+                //   acceptFileTypes: 
             },
             fileDeleteOptions: {},
             styles: {
