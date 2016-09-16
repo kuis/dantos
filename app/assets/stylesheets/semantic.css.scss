@@ -3,7 +3,16 @@
 
 // $font-url: 'https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin';
 
-$font-family: "AvenirNextLTPro-Regular";
+//$font-family: "AvenirNextLTPro-Regular";
+
+sfont-face {
+  font-family: "AvenirNextLTPro-Regular";
+}
+
+@font-face {
+  font-family: "AvenirNextLTPro-Bold";
+  font-weight: bold;
+}
 
 @import 'semantic-ui';
 
