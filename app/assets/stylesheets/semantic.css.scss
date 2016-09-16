@@ -6,3 +6,14 @@
 $font-family: "AvenirNextLTPro-Regular";
 
 @import 'semantic-ui';
+
+.ui.comments .comment.inline {
+
+  margin: 0em;
+  padding: 0em;
+
+  .content {
+    margin-left: 3.5em;
+  }
+
+}

@@ -48,4 +48,22 @@ class Message < ApplicationRecord
       errors[:body] << ("Please write something")
     end
   end
+
+  def within_60_secs_from_previous?
+    message = previous_message
+    !message.nil? && seconds_from_message(message) <= 60
+  end
+
+  def seconds_from_message(message = previous_message)
+    (self.created_at.to_f - message.created_at.to_f)
+  end
+
+  def previous_message
+    room.messages.where('id < ?', self.id).last
+  end
+
+  def next_message
+    room.messages.where('id > ?', self.id).first
+  end
+
 end
