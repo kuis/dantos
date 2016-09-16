@@ -5,13 +5,17 @@
 
 //$font-family: "AvenirNextLTPro-Regular";
 
-sfont-face {
-  font-family: "AvenirNextLTPro-Regular";
+@font-face {
+  font-family: 'AvenirNextLTPro-Regular';
+  font-weight: normal;
+  font-style: normal;
+  src: asset-url('AvenirNextLTPro-Regular.otf');
 }
 
 @font-face {
   font-family: "AvenirNextLTPro-Bold";
   font-weight: bold;
+  src: asset-url('AvenirNextLTPro-Bold.otf');
 }
 
 @import 'semantic-ui';
