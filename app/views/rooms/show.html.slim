@@ -10,24 +10,25 @@
           h3  #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
         div.ui.divider
         #messages.ui.comments data-room-id=@room.id
-          = render @messages, user: current_user
+          = render @messages, :user => current_user
 
         .ui.active.progress.primary style="display: none"
           .bar
             .progress
 
-        = form_for [@room, Message.new], remote: true, html: { class: "ui form" } do |f|
+        = form_for [@room, Message.new], :remote => true, :html => { :class => "ui form" } do |f|
           .ui.left.action.input.fluid
-            .ui.icon.bottom.left.pointing.dropdown.button.primary
+            .ui.icon.bottom.left.floating.dropdown.button.primary
               i.plus.icon
               .menu
-                = link_to 'Create Post', new_post_path, class: "item"
-                .item data-charge-user=true Charge User
+                = link_to 'Create Post', new_post_path, :class => "item"
+                - if current_user == @room.manager
+                  .item data-charge-user=true Charge User
                 .item.fileinput-button
                   ' Upload File/Photo
                   = f.file_field :image
 
-            = f.text_field :body, autofocus: true, autocomplete: 'off', placeholder: "Start typing…"
+            = f.text_field :body, :autofocus => true, :autocomplete => 'off', :placeholder => "Start typing…"
 
 
 
