@@ -16,7 +16,7 @@ class Message < ApplicationRecord
       self.create_attachment html: <<~HTML.squish
       <script src="https://checkout.stripe.com/checkout.js"></script>
       <br/>
-      <button id="customButton" class="ui primary button">Pay with Card</button>
+      <button id="customButton" class="tiny ui primary button">Pay with Card</button>
         <script>
           var key = $("meta[name=stripePublishableKey]").attr("content");
           var handler = StripeCheckout.configure({
