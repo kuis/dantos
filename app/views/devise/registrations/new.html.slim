@@ -1,15 +1,14 @@
-div class="main"
-  div class="ui stacked feed" style="width: 100%;max-width: 75%;margin:auto;padding: 51px 224px"
-    div class="event"
-      div class="label"
+.main
+  .ui.stacked.feed style="width: 100%;max-width: 75%;margin:auto;padding: 51px 224px;padding-right:100px;"
+    .event
+      .label
         img src="/favicon.ico"
-      div class="content"
-        div class="summary" Kriya Bot
-        span class="date" Just Now
+      .content
+        .summary Kriya Bot
+        span.date Just Now
         #chat
-          div class="extra text"
-
-    = form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "ui form" } do |f|
+          .extra.text
+    = form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "ui form" } do |f|
       = devise_error_messages!
 
       .center.aligned.field
@@ -21,13 +20,14 @@ div class="main"
         a.filepicker.ui.mini.primary.button data-ratio="1" Change Avatar
         = f.hidden_field :picture
 
-      .field
-        = f.label :first_name
-        = f.text_field :first_name, placeholder: "First Name"
+      .two.fields
+        .field
+          = f.label :first_name
+          = f.text_field :first_name, placeholder: "First Name"
 
-      .field
-        = f.label :last_name
-        = f.text_field :last_name, placeholder: "Last Name"
+        .field
+          = f.label :last_name
+          = f.text_field :last_name, placeholder: "Last Name"
 
       .field
         = f.label :gender
@@ -45,6 +45,15 @@ div class="main"
       .field
         = f.label :email, "Primary Email", class: "inline-label"
         = f.text_field :email, placeholder: "Primary Email (Ex: Joe@AppleSeed.com)"
+
+      .two.fields
+        .field
+          = f.label :password, "Password", class: "inline-label"
+          = f.password_field :password, placeholder: "Password"
+
+        .field
+          = f.label :password_confirmation, "Confirm Password", class: "inline-label"
+          = f.password_field :password_confirmation, placeholder: "Password Confirmation"
 
       .field
         = f.submit "Sign Up", class: "ui primary button"
