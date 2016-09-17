@@ -6,8 +6,6 @@
       .content
         .summary Kriya Bot
         span.date Just Now
-        #chat
-          .extra.text
 
     = form_for resource, :as => resource_name, :url => session_path(resource_name), :method => :post, :html => { :class => "ui form" } do |f|
       = devise_error_messages!
@@ -29,12 +27,3 @@
         = f.submit "Log in", :class => 'ui button primary'
 
     = render "devise/shared/links"
-
-javascript:
-  new Chat({
-    greeting: [
-      'Give us some information about you..'
-    ],
-
-    targetNode: "#chat"
-  });
