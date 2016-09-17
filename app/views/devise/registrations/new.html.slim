@@ -18,14 +18,13 @@
         a.filepicker.ui.mini.primary.button data-ratio="1" Change Avatar
         = f.hidden_field :picture
 
-      .two.fields
-        .field
-          = f.label :first_name
-          = f.text_field :first_name, placeholder: "First Name"
+      .field
+        = f.label :first_name
+        = f.text_field :first_name, placeholder: "First Name"
 
-        .field
-          = f.label :last_name
-          = f.text_field :last_name, placeholder: "Last Name"
+      .field
+        = f.label :last_name
+        = f.text_field :last_name, placeholder: "Last Name"
 
       .field
         = f.label :gender
@@ -44,14 +43,13 @@
         = f.label :email, "Primary Email", class: "inline-label"
         = f.text_field :email, placeholder: "Primary Email (Ex: Joe@AppleSeed.com)"
 
-      .two.fields
-        .field
-          = f.label :password, "Password", class: "inline-label"
-          = f.password_field :password, placeholder: "Password"
+      .field
+        = f.label :password, "Password", class: "inline-label"
+        = f.password_field :password, placeholder: "Password"
 
-        .field
-          = f.label :password_confirmation, "Confirm Password", class: "inline-label"
-          = f.password_field :password_confirmation, placeholder: "Password Confirmation"
+      .field
+        = f.label :password_confirmation, "Confirm Password", class: "inline-label"
+        = f.password_field :password_confirmation, placeholder: "Password Confirmation"
 
       .field
         = f.submit "Sign Up", class: "ui primary button"
