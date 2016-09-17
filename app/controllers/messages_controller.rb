@@ -25,7 +25,6 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    #debugger
     @message = Message.new(message_params)
     room = Room.find params[:room_id]
     @message.room = room
@@ -33,7 +32,6 @@ class MessagesController < ApplicationController
 
     @message.save
     @message.process_command
-    debugger
     head :ok
   end
 

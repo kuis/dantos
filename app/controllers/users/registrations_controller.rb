@@ -19,17 +19,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    debugger
     authdata = session["devise.oauth_data"]
 
     super do |user|
       if authdata
         resource.email ||= authdata["email"]
-        resource.password = SecureRandom.hex(10)
-        resource.password_confirmation = resource.password
+        resource.password = authdata["password"]
+        resource.password_confirmation = authdata["password_confirmation"]
         resource.save
       end
-      debugger
       if resource.persisted? && authdata
         resource.authorizations.create!(
           uid: authdata["uid"],
