@@ -29,3 +29,17 @@
           = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
       - if message.attachment
         = message.attachment.html.html_safe
+      - if message.post
+        .post-dialog
+          .title
+            = message.post.title
+          hr
+          .content
+            = link_to message.post.content.html_safe, edit_post_path(message.post), data:{modal:true}
+
+css:
+  .post-dialog{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+  }

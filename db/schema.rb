@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906080819) do
+ActiveRecord::Schema.define(version: 20160918040219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,21 @@ ActiveRecord::Schema.define(version: 20160906080819) do
     t.index ["provider"], name: "index_authorizations_on_provider", using: :btree
     t.index ["uid"], name: "index_authorizations_on_uid", using: :btree
     t.index ["user_id"], name: "index_authorizations_on_user_id", using: :btree
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+    t.index ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|
@@ -116,6 +131,8 @@ ActiveRecord::Schema.define(version: 20160906080819) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "image"
+    t.integer  "post_id"
+    t.index ["post_id"], name: "index_messages_on_post_id", using: :btree
     t.index ["room_id"], name: "index_messages_on_room_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
@@ -226,6 +243,7 @@ ActiveRecord::Schema.define(version: 20160906080819) do
   add_foreign_key "likes", "users"
   add_foreign_key "memberships", "goomps"
   add_foreign_key "memberships", "users"
+  add_foreign_key "messages", "posts"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "payments", "users"

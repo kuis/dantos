@@ -30,4 +30,10 @@
 //= require jquery.fluidbox.min
 
 //= require chat_window
+//= require froala_editor.min.js
+//= require plugins/video.min.js
+//= require plugins/image.min.js
+//= require plugins/image_manager.min.js
+
+//= require modals
 //= require_tree .

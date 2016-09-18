@@ -12,7 +12,7 @@
     = image_tag current_user.picture, class: 'ui avatar image'
     span = current_user.full_name
 
-  = form_for @post, html: { class: "ui form", autocomplete: "off" } do |f|
+  = form_for @post, html: { class: "ui form", autocomplete: "off"} do |f|
     = f.hidden_field :goomp_id
 
     = f.hidden_field :link_title

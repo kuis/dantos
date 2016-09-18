@@ -28,6 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.password = authdata["password"] || Devise.friendly_token[0,20]
         resource.save
       end
+      #debugger
       if resource.persisted? && authdata
         resource.authorizations.create!(
           uid: authdata["uid"],

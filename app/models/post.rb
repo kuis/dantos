@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   belongs_to :user, touch: true
   belongs_to :subtopic, optional: true, touch: true
   has_many :comments, dependent: :destroy
+  has_one :message, dependent: :destroy
+  
   include Likable
 
   def generate_link_for_story!
