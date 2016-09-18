@@ -63,6 +63,7 @@ AppView = {
     $(document).off("submit", 'form[method="get"][data-remote="true"]').on "submit", 'form[method="get"][data-remote="true"]', @remoteSubmitGetForm
     $(document).off("click", "[data-toggler]").on "click", "[data-toggler]", @toggleToggler
     $(document).off("click", "[data-video]").on "click", "[data-video]", @toggleVideo
+    $(document).off("click", "[data-create-post]").on "click", "[data-create-post]", @createPost
     $(document).off("click", "[data-charge-user]").on "click", "[data-charge-user]", @chargeUser
     $(document).off("keypress keydown keyup", "#new_post input[type=text]").on "keypress keydown keyup", "#new_post input[type=text]", (e) ->
       if e.which == 13
@@ -83,6 +84,8 @@ AppView = {
     @initFileupload()
     ChatWindow.initialize()
 
+  createPost: ->
+    
   chargeUser: ->
     $("#message_body").val "/charge $100"
     $("#message_body").focus()
@@ -198,7 +201,6 @@ AppView = {
 
   openModal: (e) ->
     e.preventDefault()
-
     modal_id = $(e.target).data('modal')
     if modal_id == "post-modal"
       $("[data-modal-id=#{modal_id}]").modal(

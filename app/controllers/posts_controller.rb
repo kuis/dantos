@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_goomp, only: [:new]
   before_action :authenticate_user!
-
+  respond_to :html, :json
   # GET /posts
   # GET /posts.json
   def index
@@ -23,11 +23,14 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-    render layout: "pages"
+    # render layout: "pages"
+    respond_modal_with @post and return
   end
 
   # GET /posts/1/edit
   def edit
+    @post = Post.find params[:id]
+    respond_modal_with @post and return
   end
 
   # POST /posts
@@ -35,30 +38,46 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     @post.goomp = Goomp.friendly.find params[:goomp_id] if params[:goomp_id].present?
+    if @post.save
+      debugger
+      @message = Message.new
+      @message.post = @post
+      room = Room.find request.referer.split('/').last
+      @message.room = room
+      @message.user = current_user
 
-    respond_to do |format|
-      if @post.save
-        format.html do
-          # It's a full-size story
-          if @post.content
-            @post.generate_link_for_story!
-            redirect_to @post.goomp, notice: 'Post was successfully created.'
-          else
-            redirect_back fallback_location: @post.goomp, notice: 'Post was successfully created.'
-          end
-        end
-        format.json { render :show, status: :created, location: @post }
-        format.js
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+      @message.save
+
+      respond_modal_with @post, location: request.referer and return
     end
+    # respond_to do |format|
+    #   if @post.save
+    #     debugger
+    #     format.html do
+    #       # It's a full-size story
+    #       debugger
+    #       if @post.content
+    #         @post.generate_link_for_story!
+    #         redirect_to @post.goomp, notice: 'Post was successfully created.'
+    #       else
+    #         redirect_back fallback_location: @post.goomp, notice: 'Post was successfully created.'
+    #       end
+    #     end
+    #     format.json { render :show, status: :created, location: @post }
+    #     format.js
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @post.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    if @post.update(post_params)
+      respond_modal_with @post, location: request.referer and return
+    end
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }

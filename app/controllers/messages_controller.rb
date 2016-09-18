@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
   # GET /messages/1
   # GET /messages/1.json
   def show
+    debugger
   end
 
   # GET /messages/new
@@ -20,12 +21,12 @@ class MessagesController < ApplicationController
 
   # GET /messages/1/edit
   def edit
+
   end
 
   # POST /messages
   # POST /messages.json
   def create
-    #debugger
     @message = Message.new(message_params)
     room = Room.find params[:room_id]
     @message.room = room
@@ -33,7 +34,7 @@ class MessagesController < ApplicationController
 
     @message.save
     @message.process_command
-    debugger
+    #debugger
     head :ok
   end
 

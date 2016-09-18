@@ -21,7 +21,7 @@
             .ui.icon.bottom.left.pointing.dropdown.button.primary
               i.plus.icon
               .menu
-                = link_to 'Create Post', new_post_path, class: "item"
+                = link_to 'Create Post', new_post_path, data:{modal:true}, class: "item"
                 .item data-charge-user=true Charge User
                 .item.fileinput-button
                   ' Upload File/Photo
@@ -33,3 +33,5 @@
 
     - else
       = render "goomp_bot/new_goomp"
+
+  

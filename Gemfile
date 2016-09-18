@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-ruby "2.3.1"
-
+#ruby "2.3.1"
+ruby "2.3.0"
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
@@ -47,6 +47,9 @@ gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'redis'
 gem "jquery-fileupload-rails"
+
+gem "wysiwyg-rails"
+gem 'bootstrap-sass', '~> 3.2.0'
 
 group :development, :test do
   gem 'byebug'

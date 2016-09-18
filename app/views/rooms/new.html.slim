@@ -17,4 +17,30 @@
     - else
       = render "goomp_bot/new_goomp"
 
+javascript:
+  this.editor = new MediumEditor('#new-post-edit', {
+    placeholder: {
+      text: 'Start writing..',
+      hideOnClick: false
+    }
+  });
+  $('#new-post-edit').mediumInsert({
+    editor: this.editor,
+    addons: {
+      images: {
+        uploadCompleted: function($el, data) {
+          var photo;
+          photo = data.result.files[0];
+          $("img", $el).data("delete-url", photo.delete_url);
+          if (!($("#post_link_image").val().length > 0)) {
+            return $("#post_link_image").val(photo.cover_url);
+          }
+        },
+        fileUploadOptions: {
+          url: "/photos"
+        }
+      }
+    }
+  });
+
 

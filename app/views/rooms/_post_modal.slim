@@ -9,5 +9,5 @@
       = f.hidden_field :quality
 
       = f.fields_for :messages do |ff|
-        .ui.fields = ff.text_area :body
+        .ui.fields = ff.text_area :body, id: "new-post-edit"
       = f.submit :create, class: "ui primary button"
