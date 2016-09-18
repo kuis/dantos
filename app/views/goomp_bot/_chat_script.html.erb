@@ -3,7 +3,7 @@
     new Chat(
       {
         greeting: [
-          'Please choose one your project timeline',
+          'Please choose your task timeline',
           {
             type: 'choose',
             answers: [{
@@ -41,7 +41,7 @@
         ],
 
         expertiseLevel: [
-          'Please choose the expertise level',
+          'Please choose the expertise level, we charge you based on that',
           {
             type: 'choose',
             answers: [{
@@ -64,7 +64,7 @@
         ],
 
         description: [
-          'Please give detailed description of what needs to be done in a post and I will get this started immediately',
+          'Please write a detailed description of the task in this post, the more details the better we can understand it',
           {
             type: 'open-modal',
             path: 'notice',
@@ -111,7 +111,7 @@
               'text': 'Marketing',
               'key': 'category',
               'path': 'timeline'
-            },
+            }
             ]
           }
         ],

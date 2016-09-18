@@ -29,36 +29,110 @@ javascript:
     ],
 
     options: [
-      'I am Kriya Bot, here get your work done by a large pool of talented people with a full refund guarantee!  Please create a task by choosing one of the following -',
+      'I am your bot that gets your work done by a large pool of talented people. Please create a task by choosing one of the following, we have a full refund policy -',
       {
         type: 'choose',
         answers: [{
           'text': 'Engineering',
           'key': 'category',
-          'path': 'signup'
+          'path': 'timeline'
         },
         {
           'text': 'Product',
           'key': 'category',
-          'path': 'signup'
+          'path': 'timeline'
         },
         {
           'text': 'Design',
           'key': 'category',
-          'path': 'signup'
+          'path': 'timeline'
         },
         {
           'text': 'Sales',
           'key': 'category',
-          'path': 'signup'
+          'path': 'timeline'
         },
         {
           'text': 'Marketing',
           'key': 'category',
-          'path': 'signup'
+          'path': 'timeline'
         }
         ]
       }
+    ],
+    timeline: [
+     'Please choose one your project timeline',
+     {
+       type: 'choose',
+       answers: [{
+         'text': '3 days',
+         'path': 'expertiseLevel',
+         'key': 'timeline'
+       },
+       {
+         'text': '1 week',
+         'path': 'expertiseLevel',
+         'key': 'timeline'
+       },
+       {
+         'text': '2 weeks',
+         'path': 'expertiseLevel',
+         'key': 'timeline'
+       },
+       {
+         'text': '3 weeks',
+         'path': 'expertiseLevel',
+         'key': 'timeline'
+       },
+       {
+         'text': '1 month',
+         'path': 'expertiseLevel',
+         'key': 'timeline'
+       },
+       {
+         'text': '6 months',
+         'path': 'expertiseLevel',
+         'key': 'timeline'
+       }
+       ]
+     }
+    ],
+
+    expertiseLevel: [
+     'Please choose the expertise level',
+     {
+       type: 'choose',
+       answers: [{
+         'text': 'basic',
+         'path': 'description',
+         'key': 'quality'
+       },
+       {
+         'text': 'intermediate',
+         'path': 'description',
+         'key': 'quality'
+       },
+       {
+         'text': 'experienced',
+         'path': 'description',
+         'key': 'quality'
+       }
+       ]
+     }
+    ],
+
+    description: [
+     'Please give detailed description of what needs to be done by creating a post, I will get this started immediately',
+     {
+       type: 'open-modal',
+       path: 'notice',
+       key: "description",
+       answers: [{
+         'text': 'Ok',
+         'path': 'description',
+         'key': 'quality'
+       }]
+     }
     ],
 
     signup: [
@@ -74,7 +148,10 @@ javascript:
         },{
           'text': 'LinkedIn',
           'path': '/users/auth/linkedin'
-        }]
+        },{
+           'text': 'Email',
+           'path': '/users/sign_up'
+         }]
       }
     ],
 
@@ -93,7 +170,7 @@ javascript:
           'path': '/users/auth/linkedin'
         },{
           'text': 'Email',
-          'path': '/users/sign_up'
+          'path': '/users/sign_in'
         }]
       }
     ]

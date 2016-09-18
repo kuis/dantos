@@ -34,7 +34,6 @@ class MessagesController < ApplicationController
 
     @message.save
     @message.process_command
-    #debugger
     head :ok
   end
 

@@ -3,6 +3,35 @@
 
 // $font-url: 'https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin';
 
-$font-family: "AvenirNextLTPro-Regular";
+//$font-family: "AvenirNextLTPro-Regular";
+
+@font-face {
+  font-family: 'AvenirNextLTPro-Regular';
+  font-weight: normal;
+  font-style: normal;
+  src: asset-url('AvenirNextLTPro-Regular.otf');
+}
+
+@font-face {
+  font-family: "AvenirNextLTPro-Bold";
+  font-weight: bold;
+  src: asset-url('AvenirNextLTPro-Bold.otf');
+}
 
 @import 'semantic-ui';
+
+.ui {
+  font-family: 'AvenirNextLTPro-Regular';
+}
+
+
+.ui.comments .comment.inline {
+
+  margin: 0em;
+  padding: 0em;
+
+  .content {
+    margin-left: 3.5em;
+  }
+
+}
