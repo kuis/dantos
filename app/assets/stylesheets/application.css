@@ -19,14 +19,5 @@
  *= require home
  *= require jquery.fileupload
  *= require fluidbox.min
- *= require froala_editor.min.css
- *= require froala_style.min.css
- *= require font-awesome
- *= require plugins/image_manager.min.css
- *= require plugins/image.min.css
- *= require plugins/video.min.css
  *= require_self
  */
-
-@import "bootstrap"
-@import "bootstrap-sprockets"

@@ -48,9 +48,6 @@ gem 'rails_admin', '>= 1.0.0.rc'
 gem 'redis'
 gem "jquery-fileupload-rails"
 
-gem "wysiwyg-rails"
-gem 'bootstrap-sass', '~> 3.2.0'
-
 group :development, :test do
   gem 'byebug'
 end
