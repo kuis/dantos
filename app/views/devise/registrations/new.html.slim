@@ -1,5 +1,5 @@
 .main
-  .ui.stacked.feed style="width: 100%;max-width: 75%;margin:auto;padding: 51px 224px;padding-right:100px;"
+  .ui.stacked.feed style="width: 100%;max-width: 75%;margin:auto;padding: 51px 224px"
     .event
       .label
         img src="/favicon.ico"
@@ -43,13 +43,14 @@
         = f.label :email, "Primary Email", class: "inline-label"
         = f.text_field :email, placeholder: "Primary Email (Ex: Joe@AppleSeed.com)"
 
-      .field
-        = f.label :password, "Password", class: "inline-label"
-        = f.password_field :password, placeholder: "Password"
+      - unless @oauth
+        .field
+          = f.label :password, "Password", class: "inline-label"
+          = f.password_field :password, placeholder: "Password"
 
-      .field
-        = f.label :password_confirmation, "Confirm Password", class: "inline-label"
-        = f.password_field :password_confirmation, placeholder: "Password Confirmation"
+        .field
+          = f.label :password_confirmation, "Confirm Password", class: "inline-label"
+          = f.password_field :password_confirmation, placeholder: "Password Confirmation"
 
       .field
         = f.submit "Sign Up", class: "ui primary button"

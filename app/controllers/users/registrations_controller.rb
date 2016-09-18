@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         user.email = authdata["email"]
         user.gender = "male"
       end
+      @oauth = !authdata.nil?
     end
   end
 
@@ -24,8 +25,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do |user|
       if authdata
         resource.email ||= authdata["email"]
-        resource.password = authdata["password"]
-        resource.password_confirmation = authdata["password_confirmation"]
+        resource.password = authdata["password"] || Devise.friendly_token[0,20]
         resource.save
       end
       if resource.persisted? && authdata
@@ -37,6 +37,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           # expires_at: authdata["expires_at"],
         )
       end
+      @oauth = !authdata.nil?
     end
   end
 
