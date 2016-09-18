@@ -28,10 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.password_confirmation = authdata["password_confirmation"]
         resource.save
       end
-<<<<<<< HEAD
       #debugger
-=======
->>>>>>> master
       if resource.persisted? && authdata
         resource.authorizations.create!(
           uid: authdata["uid"],
