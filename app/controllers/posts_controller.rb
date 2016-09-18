@@ -39,7 +39,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     @post.goomp = Goomp.friendly.find params[:goomp_id] if params[:goomp_id].present?
     if @post.save
-      debugger
+      #debugger
       @message = Message.new
       @message.post = @post
       room = Room.find request.referer.split('/').last
