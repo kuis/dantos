@@ -33,7 +33,7 @@ class RoomsController < ApplicationController
     #debugger
     @room = Room.new(room_params)
     @room.user = current_user
-    @room.manager = User.where.not(id: current_user.id).all.sample
+    @room.manager = User.where(:email => 'manager@goomp.co').first || User.where.not(id: current_user.id).all.sample
 
     respond_to do |format|
       if @room.save
@@ -63,7 +63,7 @@ class RoomsController < ApplicationController
     if session_dummy
       @room = Room.new(session_dummy)
       @room.user = current_user
-      @room.manager = User.where.not(:id => current_user.id).all.sample
+      @room.manager = User.where(:email => 'manager@goomp.co').first || User.where.not(id: current_user.id).all.sample
 
       @room.messages.new({:body => 'Welcome to Kriya. We are pleased to have you here. Please select from the following options', :room => @room, :user => @room.manager})
       @room.messages.new({:body => 'Create Task', :room => @room, :user => @room.user})
