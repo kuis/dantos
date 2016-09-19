@@ -1,9 +1,3 @@
-.ui.borderless.fixed.menu
-  - if current_user == @post.user
-    .right.menu
-      .item
-        = link_to 'Edit', edit_post_path(@post), :data => {:modal => true}, :class => 'ui button basic blue'
-
 = content_tag :div, id: dom_id(@post) do
   .ui.container.new-post
     .author-box-show
@@ -18,6 +12,11 @@
         span.date
           = time_ago_in_words @post.created_at
           '  ago
+      .right[style="float:right"]
+        - if current_user == @post.user
+          .right.menu
+            .item
+              = link_to 'Edit', edit_post_path(@post), :data => {:modal => true}, :class => 'ui button basic blue'
 
     h1 = @post.title
 
@@ -28,7 +27,7 @@
     .cf
     .ui.divider
 
-    = render "posts/like_button", likable: @post
+    = render "posts/like_button", likable: @post unless @post.user == current_user
 
     .ui.comments
       = render partial: "comments/comment", collection: @post.comments, cached: false
