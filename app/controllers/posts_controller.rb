@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find params[:id]
-    render layout: 'pages'
+    respond_modal_with @post and return
   end
 
   def like
