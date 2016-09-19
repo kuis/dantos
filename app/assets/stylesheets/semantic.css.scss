@@ -18,13 +18,15 @@
   src: asset-url('AvenirNextLTPro-Bold.otf');
 }
 
-@import 'semantic-ui';
-
-
 html *
 {
   font-family: 'AvenirNextLTPro-Regular', 'AvenirNextLTPro-Bold';
 }
+
+@import 'semantic-ui';
+
+
+
 
 
 .ui.comments .comment.inline {
