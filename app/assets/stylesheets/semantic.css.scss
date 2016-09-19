@@ -18,15 +18,12 @@
   src: asset-url('AvenirNextLTPro-Bold.otf');
 }
 
+html *
+{
+  font-family: 'AvenirNextLTPro-Regular', 'AvenirNextLTPro-Bold';
+}
+
 @import 'semantic-ui';
-
-.ui.menu {
-  font-family: 'AvenirNextLTPro-Regular';
-}
-
-.ui.header{
-  font-family: 'AvenirNextLTPro-Regular';
-}
 
 .ui.comments .comment.inline {
 
@@ -51,3 +48,4 @@
 .post-dialog > .title {
   font-weight: bold;
 }
+
