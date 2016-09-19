@@ -104,21 +104,30 @@ javascript:
        type: 'choose',
        answers: [{
          'text': 'basic',
-         'path': 'signup',
+         'path': 'dummy',
          'key': 'quality'
        },
        {
          'text': 'intermediate',
-         'path': 'signup',
+         'path': 'dummy',
          'key': 'quality'
        },
        {
          'text': 'experienced',
-         'path': 'signup',
+         'path': 'dummy',
          'key': 'quality'
        }
        ]
      }
+    ],
+
+    dummy: [
+      '',
+      {
+        type: 'submitDummy',
+        path: 'signup',
+        key: 'submit-dummy'
+      }
     ],
 
     description: [

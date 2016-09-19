@@ -160,6 +160,23 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         })
       }
     }, {
+      key: "submitDummy",
+      value: function(e) {
+        var t = this;
+        $.ajax("/tasks/dummy", {
+          method: 'POST',
+          data: {
+            room: {
+              category_name: localStorage.getItem("category_name"),
+              timeline: localStorage.getItem("timeline"),
+              quality: localStorage.getItem("quality"),
+              description: localStorage.getItem("description")
+            }
+          }
+        });
+        t.say(t.messages[e.path]), t.emit("answer", {});
+      }
+    }, {
       key: "openModal",
       value: function(e) {
         var t = this,
@@ -313,6 +330,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 return t.visitLink(e)
               case "submit":
                 return t.submitProject(e)
+              case "submitDummy":
+                return t.submitDummy(e)
               case "open-modal":
                 return t.openModal(e)
               case "change-cover":

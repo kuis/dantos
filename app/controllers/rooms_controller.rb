@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => :create_dummy
 
   # GET /rooms
   # GET /rooms.json
@@ -43,6 +43,39 @@ class RoomsController < ApplicationController
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # POST /tasks/dummy
+  def create_dummy
+    session[:sign_up_dummy_room] = Room.new(room_params)
+
+    respond_to do |format|
+      format.json { head :no_content}
+    end
+  end
+
+  #GET /tasks/from_sign_up
+  def create_room_from_sign_up
+    session_dummy = session.delete(:sign_up_dummy_room)
+    if session_dummy
+      @room = Room.new(session_dummy)
+      @room.user = current_user
+      @room.manager = User.where.not(:id => current_user.id).all.sample
+
+      @room.messages.new({:body => 'Welcome to Kriya. We are pleased to have you here. Please select from the following options', :room => @room, :user => @room.manager})
+      @room.messages.new({:body => 'Create Task', :room => @room, :user => @room.user})
+      @room.messages.new({:body => 'I am your bot that gets your work done by a large pool of talented people. Please create a task by choosing one of the following, we have a full refund policy -', :room => @room, :user => @room.manager})
+      @room.messages.new({:body => @room.category_name, :room => @room, :user => @room.user})
+      @room.messages.new({:body => 'Please choose one your project timeline', :room => @room, :user => @room.manager})
+      @room.messages.new({:body => @room.timeline, :room => @room, :user => @room.user})
+      @room.messages.new({:body => 'Please choose the expertise level', :room => @room, :user => @room.manager})
+      @room.messages.new({:body => @room.quality, :room => @room, :user => @room.user})
+
+      if @room.save!
+        redirect_to @room and return
+      end
+    end
+    redirect_to root_path
   end
 
   # PATCH/PUT /rooms/1
