@@ -20,7 +20,11 @@
 
 @import 'semantic-ui';
 
-.ui {
+.ui.menu {
+  font-family: 'AvenirNextLTPro-Regular';
+}
+
+.ui.header {
   font-family: 'AvenirNextLTPro-Regular';
 }
 
