@@ -69,7 +69,7 @@ class Message < ApplicationRecord
 
   def within_60_secs_from_previous?
     message = previous_message
-    !message.nil? && seconds_from_message(message) <= 60
+    !message.nil? && message.user == self.user && seconds_from_message(message) <= 60
   end
 
   def seconds_from_message(message = previous_message)
