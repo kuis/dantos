@@ -18,8 +18,8 @@
   src: asset-url('AvenirNextLTPro-Bold.otf');
 }
 
+$font-name: 'Avenir';
 @import 'semantic-ui';
-$font-name: 'Avenir' !default;
 
 .ui.comments .comment.inline {
 
