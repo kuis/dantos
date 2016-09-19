@@ -18,16 +18,11 @@
   src: asset-url('AvenirNextLTPro-Bold.otf');
 }
 
+@import 'semantic-ui';
 
-body {
-  font-family: 'AvenirNextLTPro-Regular';
-}
 
-.ui.menu {
-  font-family: 'AvenirNextLTPro-Regular';
-}
-
-.ui.header {
+html *
+{
   font-family: 'AvenirNextLTPro-Regular';
 }
 
@@ -43,4 +38,3 @@ body {
 
 }
 
-@import 'semantic-ui';
