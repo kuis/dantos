@@ -25,10 +25,6 @@ html *
 
 @import 'semantic-ui';
 
-
-
-
-
 .ui.comments .comment.inline {
 
   margin: 0em;
@@ -38,5 +34,18 @@ html *
     margin-left: 3.5em;
   }
 
+}
+
+.post-dialog {
+  width: 50%;
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.post-dialog > .title {
+  font-weight: bold;
 }
 

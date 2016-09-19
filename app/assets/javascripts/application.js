@@ -30,4 +30,6 @@
 //= require jquery.fluidbox.min
 
 //= require chat_window
+
+//= require modals
 //= require_tree .

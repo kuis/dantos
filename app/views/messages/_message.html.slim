@@ -29,3 +29,11 @@
           = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
       - if message.attachment
         = message.attachment.html.html_safe
+      - if message.post
+        = link_to edit_post_path(message.post), :data => {:modal => true} do
+          .post-dialog
+            .title
+              = message.post.title
+            hr
+            .content
+              = message.post.content.html_safe
