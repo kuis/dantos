@@ -163,10 +163,6 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
       key: "submitDummy",
       value: function(e) {
         var t = this;
-        console.log ("localStorage.getItem(\"category\") " + localStorage.getItem("category"));
-        console.log ("localStorage.getItem(\"timeline\") " + localStorage.getItem("timeline"));
-        console.log ("localStorage.getItem(\"quality\") " + localStorage.getItem("quality"));
-        console.log ("localStorage.getItem(\"description\") " + localStorage.getItem("description"));
         $.ajax("/tasks/dummy", {
           method: 'POST',
           data: {
