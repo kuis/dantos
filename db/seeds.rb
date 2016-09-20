@@ -1,3 +1,5 @@
+User.destroy_all
+
 FactoryGirl.create(
   :user,
   :email => 'manager@goomp.co',
