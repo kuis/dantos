@@ -81,7 +81,7 @@ class RoomsController < ApplicationController
 
       @room.messages.new({:body => 'Welcome to Kriya. We are pleased to have you here. Please select from the following options', :room => @room, :user => @room.manager})
       @room.messages.new({:body => 'Create Task', :room => @room, :user => @room.user})
-      @room.messages.new({:body => 'I am your bot that gets your work done by a large pool of talented people. Please create a task by choosing one of the following, we have a full refund policy -', :room => @room, :user => @room.manager})
+      @room.messages.new({:body => 'Hi! I am Kriya, helping startups and businesses to get their work done with the help of top skilled freelancers across the world. Choose one of the fields below:', :room => @room, :user => @room.manager})
       @room.messages.new({:body => @room.category_name, :room => @room, :user => @room.user})
       @room.messages.new({:body => 'Please choose one your project timeline', :room => @room, :user => @room.manager})
       @room.messages.new({:body => @room.timeline, :room => @room, :user => @room.user})
