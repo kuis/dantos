@@ -17,11 +17,11 @@
     - else
       = render "goomp_bot/new_goomp"
 
-javascript:
+/javascript:
   this.editor = new MediumEditor('#new-post-edit', {
     placeholder: {
       text: 'Start writing..',
-      hideOnClick: false
+      hideOnClick: true
     }
   });
   $('#new-post-edit').mediumInsert({

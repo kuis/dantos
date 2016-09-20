@@ -1,16 +1,11 @@
-.ui.borderless.fixed.menu data-modal=true
-  - if @goomp
-    = link_to image_tag("logo.png", alt: "Kriya",  class: "ui logo"), goomp_path(@goomp), class: "header item"
-  - else
-    = link_to image_tag("logo.png", alt: "Kriya",  class: "ui logo"), root_path, class: "header item"
-  .right.menu
-    .item
-      a.ui.button data-modal="post-modal" Publish
-
 .ui.container.new-post
   .author-box
     = image_tag current_user.picture, class: 'ui avatar image'
     span = current_user.full_name
+    .right[style="float:right"]
+      .right.menu data-modal=true
+        .item
+          a.ui.button data-modal="post-modal" Publish
 
   = form_for Post.new, html: { class: "ui form", autocomplete: "off" } do |f|
     = f.hidden_field :goomp_id

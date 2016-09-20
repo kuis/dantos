@@ -32,7 +32,7 @@
     .ui.comments
       = render partial: "comments/comment", collection: @post.comments, cached: false
 
-      - if user_signed_in?
+      - if user_signed_in? && @post.user != current_user
         .comment
           a.avatar
             = image_tag current_user.picture

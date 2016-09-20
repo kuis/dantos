@@ -38,7 +38,21 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         msg_body = params.dig(:room, :messages, :body)
-        @room.messages.create body: msg_body, user: current_user if msg_body
+        post_body = params.dig(:room, :messages, :post, :content)
+        post_title = params.dig(:room, :messages, :post, :title)
+
+        @room.messages.create({:body => 'Please choose one your project timeline', :room => @room, :user => @room.manager})
+        @room.messages.create({:body => @room.timeline, :room => @room, :user => @room.user})
+        @room.messages.create({:body => 'Please choose the expertise level', :room => @room, :user => @room.manager})
+        @room.messages.create({:body => @room.quality, :room => @room, :user => @room.user})
+        @room.messages.create({:body => 'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce', :room => @room, :user => @room.manager})
+
+        if post_body
+          message = @room.messages.create :body => msg_body, :user => @room.user
+          message.post = Post.new(:content => post_body, :title => post_title, :user => @room.user)
+          message.post.save!
+        end
+
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
         format.json { render :show, status: :created, location: @room }
       else
@@ -73,8 +87,11 @@ class RoomsController < ApplicationController
       @room.messages.new({:body => @room.timeline, :room => @room, :user => @room.user})
       @room.messages.new({:body => 'Please choose the expertise level', :room => @room, :user => @room.manager})
       @room.messages.new({:body => @room.quality, :room => @room, :user => @room.user})
+      @room.messages.new({:body => 'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce', :room => @room, :user => @room.manager})
 
-      if @room.save!
+      session[:add_description] = true
+
+      if @room.save
         redirect_to @room and return
       end
     end
@@ -119,7 +136,8 @@ class RoomsController < ApplicationController
         :timeline,
         :quality,
         :description,
-        messages_attributes: [:id, :body]
+        :messages_attributes => [:id, :body,
+                              :posts_attributes => [:id, :content, :title]]
       )
     end
 end
