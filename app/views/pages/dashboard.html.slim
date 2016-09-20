@@ -1,9 +1,12 @@
 .sidebar.sidebar--left
   .ui.vertical.inverted.fluid.menu
     = link_to 'Create Task', new_room_path, class: 'item new'
-    - @current_user.rooms.each do |room|
-      = link_to room, class: "item" do
-        = room.id
+    - current_user.joined_rooms.includes(:user).each_with_index do |room, index|
+      = link_to room, class: "item primary #{'active' if @room == room}" do
+        - if current_user == room.user
+          '  #{room.category_name&.downcase}-#{room.id}
+        - elsif current_user == room.manager
+          '  #{room.user.slug}-#{room.category_name.downcase}-#{room.id}
 
     / = link_to 'New Room', new_room_path, class: 'item'
 
