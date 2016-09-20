@@ -3,36 +3,56 @@
 .main
   .twelve.wide.column
     - if @room
-      .ui.stacked.segment
-        - if current_user == @room.user
-          h3  #{@room.category_name&.downcase}-#{@room.id}
-        - else current_user == @room.manager
-          h3  #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
-        div.ui.divider
-        #messages.ui.comments data-room-id=@room.id
-          = render @messages, :user => current_user
+      .ui.divided.grid
+        .twelve.wide.column
+          .ui.stacked.segment
+            - if current_user == @room.user
+              h3  #{@room.category_name&.downcase}-#{@room.id}
+            - else current_user == @room.manager
+              h3  #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
+            .ui.divider
+            #messages.ui.comments data-room-id=@room.id
+              = render @messages, :user => current_user
 
-        .ui.active.progress.primary style="display: none"
-          .bar
-            .progress
+            .ui.active.progress.primary style="display: none"
+              .bar
+                .progress
 
-        = form_for [@room, Message.new], :remote => true, :html => { :class => "ui form" } do |f|
-          .ui.left.action.input.fluid
-            .ui.icon.bottom.left.pointing.dropdown.button.primary
-              i.plus.icon
-              .menu
-                = link_to 'Create Post', new_post_path, :data => {:modal => true}, :class => "item"
-                - if current_user == @room.manager
-                  .item data-charge-user=true Charge User
-                .item.fileinput-button
-                  ' Upload File/Photo
-                  = f.file_field :image
+            = form_for [@room, Message.new], :remote => true, :html => { :class => "ui form" } do |f|
+              .ui.left.action.input.fluid
+                .ui.icon.bottom.left.pointing.dropdown.button.primary
+                  i.plus.icon
+                  .menu
+                    = link_to 'Create Post', new_post_path, :data => {:modal => true}, :class => "item"
+                    - if current_user == @room.manager
+                      .item data-charge-user=true Charge User
+                    .item.fileinput-button
+                      ' Upload File/Photo
+                      = f.file_field :image
 
-            = f.text_field :body, :autofocus => true, :autocomplete => 'off', :placeholder => "Start typing…"
-
-
+                = f.text_field :body, :autofocus => true, :autocomplete => 'off', :placeholder => "Start typing…"
+        .ui.vertical.divider
+        .four.wide.column
+          .ui.segment
+            h3 Task details
+            .ui.divider
+            - if @room.posts.first
+              = link_to post_path(@room.posts.first), :data => {:modal => true}, :style => 'color: rgba(0, 0, 0, 0.87);' do
+                .post-dialog[style="width:100%"]
+                  .title = @room.posts.first.title
+                  .ui.divider
+                  .content
+                    = truncate(@room.posts.first.content.html_safe, :length => 100, :escape => false)
+              /= link_to post_path(@room.posts.first), :data => {:modal => true}, :style => 'color: rgba(0, 0, 0, 0.87);' do
+                h4 Description
+                p = @room.posts.first.content.html_safe
+            .ui.divider
+            h4 Expertise level
+            p = @room.quality.capitalize
+            .ui.divider
+            h4 Timeline
+            = @room.timeline
+            .ui.divider
 
     - else
       = render "goomp_bot/new_goomp"
-
-  

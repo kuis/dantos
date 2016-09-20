@@ -29,11 +29,11 @@
           = auto_link message.body, html: { target: '_blank', rel: "nofollow" }
       - if message.attachment
         = message.attachment.html.html_safe
-      - if message.post
+      - unless message.post.nil?
         = link_to post_path(message.post), :data => {:modal => true} do
           .post-dialog
             .title
               = message.post.title
             hr
             .content
-              = message.post.content.html_safe
+              = truncate(message.post.content.html_safe, :length => 100, :escape => false)

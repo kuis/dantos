@@ -4,6 +4,8 @@ class Room < ApplicationRecord
   belongs_to :manager, class_name: "User"
   monetize :budget_cents
 
+  has_many :posts, :through => :messages
+
   validates_presence_of :category_name
   before_create { self.category_name ||= "Design" }
 
