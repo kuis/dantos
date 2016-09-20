@@ -41,6 +41,8 @@ Rails.application.configure do
     /https?:\/\/dantos-production.kta86kespy.us-west-2.elasticbeanstalk.com.*/,
     /https?:\/\/goomp.co.*/,
     /https?:\/\/www.goomp.co.*/,
+    /https?:\/\/kriya.ai.*/,
+    /https?:\/\/www.kriya.ai.*/,
     'https://dantos.herokuapp.com',
     /https:\/\/dantos.herokuapp.com.*/,
     'http://taskforce.goomp.co',

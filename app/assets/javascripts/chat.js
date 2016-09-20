@@ -163,7 +163,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
       key: "submitDummy",
       value: function(e) {
         var t = this;
-        console.log ("localStorage.getItem(\"category_name\") " + localStorage.getItem("category_name"));
+        console.log ("localStorage.getItem(\"category\") " + localStorage.getItem("category"));
         console.log ("localStorage.getItem(\"timeline\") " + localStorage.getItem("timeline"));
         console.log ("localStorage.getItem(\"quality\") " + localStorage.getItem("quality"));
         console.log ("localStorage.getItem(\"description\") " + localStorage.getItem("description"));
@@ -171,7 +171,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
           method: 'POST',
           data: {
             room: {
-              category_name: localStorage.getItem("category_name"),
+              category_name: localStorage.getItem("category"),
               timeline: localStorage.getItem("timeline"),
               quality: localStorage.getItem("quality"),
               description: localStorage.getItem("description")
@@ -223,8 +223,9 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         var s = !1,
           i = function() {
             n.innerText.length && !s && (s = !0, t.animateResponse(n, n.cloneNode(!0), function(n) {
+              console.log("key/value" + e.key + "/" + n.innerText);
               if (e.key !== undefined) {
-                localStorage.setItem(e.key, n.innerText)
+                localStorage.setItem(e.key, n.innerText);
               }
 
               e.path && t.say(t.messages[e.path]), t.emit("answer", {
