@@ -198,12 +198,17 @@
         ],
 
         description: [
-          'Please give detailed description of what needs to be done in a post, it helps me getting started',
-          {
-            type: 'Write Post',
-            path: '/posts/new',
-            key: "description"
-          }
+        'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce',
+        {
+            type: 'open-modal',
+            path: 'notice',
+            key: "description",
+            answers: [{
+                'text': 'Ok',
+                'path': 'description',
+                'key': 'quality'
+            }]
+        }
         ]
       }, {
         targetNode: '#chat'
