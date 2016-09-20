@@ -42,7 +42,7 @@
                   .title = @room.posts.first.title
                   .ui.divider
                   .content
-                    = truncate(@room.posts.first.content.html_safe, :length => 100, :escape => false)
+                    = Sanitize.fragment(truncate(@room.posts.first.content, :length => 100, :escape => false), Sanitize::Config::RELAXED).html_safe
               /= link_to post_path(@room.posts.first), :data => {:modal => true}, :style => 'color: rgba(0, 0, 0, 0.87);' do
                 h4 Description
                 p = @room.posts.first.content.html_safe

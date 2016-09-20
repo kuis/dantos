@@ -36,4 +36,4 @@
               = message.post.title
             hr
             .content
-              = truncate(message.post.content.html_safe, :length => 100, :escape => false)
+              = Sanitize.fragment(truncate(message.post.content, :length => 100, :escape => false), Sanitize::Config::RELAXED).html_safe
