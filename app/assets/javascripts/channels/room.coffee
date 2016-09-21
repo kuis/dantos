@@ -1,33 +1,38 @@
-App.room = App.cable.subscriptions.create channel: "RoomChannel",
-  collection: -> $("#messages")
+#$(document).on 'turbolinks:load', ()->
+setTimeout =>
+  numberOfChannels = $("#tasks>a").length-1
+  for num in [1..numberOfChannels]
+    App.cable.subscriptions.create channel: "RoomChannel", room:"#{num}",
+      collection: -> $("#messages")
 
-  connected: (data) ->
-    # Called when the subscription is ready for use on the server
-    setTimeout =>
-      @followCurrentMessage()
-      @installPageChangeCallback()
-    , 1000
+      connected: (data) ->
+        # Called when the subscription is ready for use on the server
+        $('a[href="/tasks/'+@collection().data('room-id')+'"] > div.unread_message_number').text('')
+        setTimeout =>
+          @followCurrentMessage()
+        , 1000
 
-  received: (data) ->
-    # Called when there's incoming data on the websocket for this channel
-    $('#message_body').val ''
-    $('#messages').append(data.message)
-    $('#messages').imagesLoaded ->
-      ChatWindow.update()
-      $(".ui.progress").hide()
-
-  followCurrentMessage: ->
-    if roomId = @collection().data('room-id')
-      @perform 'follow', id: roomId
-    else
-      @perform 'unfollow'
-
-  renderMessage: (msg) ->
-    """
-      <p> <b>#{msg.user_id}: </b>#{msg.body}</p>
-    """
-
-  installPageChangeCallback: ->
-    unless @installedPageChangeCallback
-      @installedPageChangeCallback = true
-      $(document).on 'turbolinks:load', -> App.room.followCurrentMessage()
+      received: (data) ->
+        # Called when there's incoming data on the websocket for this channel
+        identifier = JSON.parse this.identifier
+        room_id = identifier.room
+        if (@collection().data('room-id') == data.room_id) && (@collection().data('room-id') == parseInt room_id)
+          $('#message_body').val ''
+          $('#messages').append(data.message)
+          $('#messages').imagesLoaded ->
+            ChatWindow.update()
+            $(".ui.progress").hide()
+        else
+          count = $('a[href="/tasks/'+room_id+'"]').val()
+          if count == ''
+             $('a[href="/tasks/'+room_id+'"]').val(1)
+           else
+             $('a[href="/tasks/'+room_id+'"]').val(parseInt(count)+1)
+          $('a[href="/tasks/'+room_id+'"] > div.unread_message_number').removeClass("ui teal left pointing label").addClass("ui teal left pointing label")
+          $('a[href="/tasks/'+room_id+'"] > div.unread_message_number').text($('a[href="/tasks/'+room_id+'"]').val())
+          $.cookie(room_id, $('a[href="/tasks/'+room_id+'"]').val());
+      followCurrentMessage: ->
+        identifier = JSON.parse this.identifier
+        room_id = identifier.room
+        @perform "follow", id: "#{room_id}"
+,100
