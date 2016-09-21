@@ -24,6 +24,7 @@
 //= require jquery.ui.widget
 //= require jquery.iframe-transport
 //= require jquery.fileupload
+//= require jquery.cookie
 //= require medium-editor-insert-plugin
 //= require jquery-fileupload/basic
 //= require imagesloaded.pkgd

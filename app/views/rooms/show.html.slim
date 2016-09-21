@@ -12,7 +12,8 @@
               h3  #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
             .ui.divider
             #messages.ui.comments data-room-id=@room.id
-              = render @messages, :user => current_user
+              .chat-content
+                = render @messages, :user => current_user
 
             .ui.active.progress.primary style="display: none"
               .bar
