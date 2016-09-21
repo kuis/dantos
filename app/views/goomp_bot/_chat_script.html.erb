@@ -1,9 +1,10 @@
 <script>
-  if(localStorage.getItem("category_name") !== null) {
+  if(localStorage.getItem("category") !== null) {
+    $("#room_category_name").val(localStorage.getItem("category"))
     new Chat(
       {
         greeting: [
-          'Please choose your task timeline',
+          'Please choose one your project timeline',
           {
             type: 'choose',
             answers: [{
@@ -41,7 +42,7 @@
         ],
 
         expertiseLevel: [
-          'Please choose the expertise level, we charge you based on that',
+          'Please choose the expertise level',
           {
             type: 'choose',
             answers: [{
@@ -64,13 +65,13 @@
         ],
 
         description: [
-          'Please write a detailed description of the task in this post, the more details the better we can understand it',
+          'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce',
           {
             type: 'open-modal',
             path: 'notice',
             key: "description",
             answers: [{
-              'text': 'Ok',
+              'text': 'Add Description',
               'path': 'description',
               'key': 'quality'
             }]
@@ -183,7 +184,7 @@
             path: 'notice',
             key: "description",
             answers: [{
-              'text': 'Ok',
+              'text': 'Add Description',
               'path': 'description',
               'key': 'quality'
             }]

@@ -126,7 +126,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
               })
             })
           })
-        })
+        });
       }
     }, {
       key: "submitProject",
@@ -143,13 +143,13 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             t.animateResponse(n, n.cloneNode(!0), function() {
               $.post("/tasks", {
                 room: {
-                  category_name: localStorage.getItem("category_name"),
+                  category_name: localStorage.getItem("category"),
                   timeline: localStorage.getItem("timeline"),
                   quality: localStorage.getItem("quality"),
                   description: localStorage.getItem("description")
                 }
               }, function(data) {
-                localStorage.removeItem('category_name'),
+                localStorage.removeItem('category'),
                 localStorage.removeItem('timeline'),
                 localStorage.removeItem('quality'),
                 localStorage.removeItem('description'),
@@ -341,7 +341,8 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             var n = t.createSpeechBubble({
               text: e
             });
-            t.addSpeechBubble(n)
+            t.addSpeechBubble(n);
+            $('html,body').animate({scrollTop: ($(".main").offset().top)}, 2000);
           }, t.config.chatDelay * n + n * n * 70)
         })
       }

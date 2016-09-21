@@ -1,6 +1,6 @@
 <script>
-  if(localStorage.getItem("category_name") !== null) {
-    $("#room_category_name").val(localStorage.getItem("category_name"))
+  if(localStorage.getItem("category") !== null) {
+    $("#room_category_name").val(localStorage.getItem("category"));
     new Chat(
       {
         greeting: [
@@ -71,7 +71,7 @@
             path: 'notice',
             key: "description",
             answers: [{
-              'text': 'Ok',
+              'text': 'Add Description',
               'path': 'description',
               'key': 'quality'
             }]
@@ -110,27 +110,27 @@
             type: 'choose',
             answers: [{
               'text': 'Engineering',
-              'key': 'category_name',
+              'key': 'category',
               'path': 'timeline'
             },
             {
               'text': 'Product',
-              'key': 'category_name',
+              'key': 'category',
               'path': 'timeline'
             },
             {
               'text': 'Design',
-              'key': 'category_name',
+              'key': 'category',
               'path': 'timeline'
             },
             {
               'text': 'Sales',
-              'key': 'category_name',
+              'key': 'category',
               'path': 'timeline'
             },
             {
               'text': 'Marketing',
-              'key': 'category_name',
+              'key': 'category',
               'path': 'timeline'
             }
             ]
@@ -204,7 +204,7 @@
             path: 'notice',
             key: "description",
             answers: [{
-                'text': 'Ok',
+                'text': 'Add Description',
                 'path': 'description',
                 'key': 'quality'
             }]
