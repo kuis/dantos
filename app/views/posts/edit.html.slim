@@ -12,10 +12,6 @@
       span.date
         = time_ago_in_words @post.created_at
         '  ago
-    .right[style="float:right;"]
-      .right.menu
-        .item
-          a.ui.button.basic.blue data-modal="post-modal" Publish
 
   = form_for @post, html: { class: "ui form", autocomplete: "off" } do |f|
     = f.hidden_field :goomp_id
@@ -29,4 +25,4 @@
     = f.text_field :title, placeholder: "Title", autofocus: true
     = f.text_area :content, class: "editable"
 
-    = render "submit_modal", modal_id: "post-modal", f: f
+    = f.submit 'Publish', class: "ui button basic blue"

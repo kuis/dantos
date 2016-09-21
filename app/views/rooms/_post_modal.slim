@@ -2,10 +2,6 @@
   .author-box
     = image_tag current_user.picture, class: 'ui avatar image'
     span = current_user.full_name
-    /.right[style="float:right"]
-      .right.menu data-modal=true
-        .item
-          a.ui.button data-modal="post-modal" Publish
 
   = form_for @room, html: { class: "ui form", autocomplete: "off" }, remote: true do |f|
     = f.hidden_field :category_name
@@ -16,4 +12,4 @@
       = ff.fields_for :post do |pf|
         = pf.text_field :title, :placeholder => 'Title', autofocus: true
         = pf.text_area :content, :class => 'editable'
-    = f.submit 'Publish', class: "ui button"
+    = f.submit 'Publish', class: "ui button basic blue"
