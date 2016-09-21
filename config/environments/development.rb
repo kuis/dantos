@@ -56,4 +56,7 @@ Rails.application.configure do
   # For sassc-rails
   config.sass.inline_source_maps = true
   config.sass.line_comments = false
+
+  config.assets.precompile += %w( channels/room.coffee )
+
 end

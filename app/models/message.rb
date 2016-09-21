@@ -58,7 +58,8 @@ class Message < ApplicationRecord
         locals: {
           message: self, user: user
         }
-      )
+      ),
+      room_id: room.id,
     )
   end
 
