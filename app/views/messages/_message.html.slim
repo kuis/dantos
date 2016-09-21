@@ -11,7 +11,10 @@
     - unless within_60_secs_from_previous
       a.author
         - if message.user == message.room.user
-          ' Client
+          - if current_user != message.room.manager
+            = message.user.first_name
+          - else
+            ' Client
         - elsif message.user == message.room.manager
           ' Kriya Bot
       .metadata
