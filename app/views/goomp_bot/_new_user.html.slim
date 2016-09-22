@@ -34,27 +34,27 @@ javascript:
         type: 'choose',
         answers: [{
           'text': 'Engineering',
-          'key': 'category',
+          'key': 'category_name',
           'path': 'timeline'
         },
         {
           'text': 'Product',
-          'key': 'category',
+          'key': 'category_name',
           'path': 'timeline'
         },
         {
           'text': 'Design',
-          'key': 'category',
+          'key': 'category_name',
           'path': 'timeline'
         },
         {
           'text': 'Sales',
-          'key': 'category',
+          'key': 'category_name',
           'path': 'timeline'
         },
         {
           'text': 'Marketing',
-          'key': 'category',
+          'key': 'category_name',
           'path': 'timeline'
         }
         ]
@@ -104,23 +104,30 @@ javascript:
        type: 'choose',
        answers: [{
          'text': 'basic',
-         'path': 'dummy',
+         'path': 'budget',
          'key': 'quality'
        },
        {
          'text': 'intermediate',
-         'path': 'dummy',
+         'path': 'budget',
          'key': 'quality'
        },
        {
          'text': 'experienced',
-         'path': 'dummy',
+         'path': 'budget',
          'key': 'quality'
        }
        ]
      }
     ],
-
+    budget: [
+      'What is your budge estimate for this task?',
+      {
+        type: 'write',
+        path: 'dummy',
+        key: "budget"
+      }
+    ],
     dummy: [
       '',
       {

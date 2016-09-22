@@ -1,218 +1,136 @@
 <script>
-  if(localStorage.getItem("category") !== null) {
-    $("#room_category_name").val(localStorage.getItem("category"));
-    new Chat(
+  new Chat({
+    greeting: [
+      'Please choose one of the following -',
       {
-        greeting: [
-          'Please choose one your project timeline',
-          {
-            type: 'choose',
-            answers: [{
-              'text': '3 days',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '1 week',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '2 weeks',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '3 weeks',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '1 month',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '6 months',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            }
-            ]
-          }
-        ],
-
-        expertiseLevel: [
-          'Please choose the expertise level',
-          {
-            type: 'choose',
-            answers: [{
-              'text': 'basic',
-              'path': 'description',
-              'key': 'quality'
-            },
-            {
-              'text': 'intermediate',
-              'path': 'description',
-              'key': 'quality'
-            },
-            {
-              'text': 'experienced',
-              'path': 'description',
-              'key': 'quality'
-            }
-            ]
-          }
-        ],
-
-        description: [
-          'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce',
-          {
-            type: 'open-modal',
-            path: 'notice',
-            key: "description",
-            answers: [{
-              'text': 'Add Description',
-              'path': 'description',
-              'key': 'quality'
-            }]
-          }
-        ],
-
-        video: [
-          'Please enter your credit card information while I pull the best resources and get this started soon. Remember that I give you a full refund for an unsatisfied service!',
-          {
-            type: 'write',
-            path: 'notice',
-            key: "credit-card"
-          }
-        ],
-
-        notice: [
-          'Please note that we are charging your card with the budget amount',
-          {
-            type: 'submit',
-            answers: [{
-              'text': 'Ok',
-              'path': '/goomps/new'
-            }]
-          }
-        ]
-      }, {
-        targetNode: '#chat'
-      }
-    )
-  } else {
-    new Chat(
-      {
-        greeting: [
-          'Please choose one of the following -',
-          {
-            type: 'choose',
-            answers: [{
-              'text': 'Engineering',
-              'key': 'category',
-              'path': 'timeline'
-            },
-            {
-              'text': 'Product',
-              'key': 'category',
-              'path': 'timeline'
-            },
-            {
-              'text': 'Design',
-              'key': 'category',
-              'path': 'timeline'
-            },
-            {
-              'text': 'Sales',
-              'key': 'category',
-              'path': 'timeline'
-            },
-            {
-              'text': 'Marketing',
-              'key': 'category',
-              'path': 'timeline'
-            }
-            ]
-          }
-        ],
-        timeline: [
-          'Please choose one your project timeline',
-          {
-            type: 'choose',
-            answers: [{
-              'text': '3 days',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '1 week',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '2 weeks',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '3 weeks',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '1 month',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            },
-            {
-              'text': '6 months',
-              'path': 'expertiseLevel',
-              'key': 'timeline'
-            }
-            ]
-          }
-        ],
-
-        expertiseLevel: [
-          'Please choose the expertise level',
-          {
-            type: 'choose',
-            answers: [{
-              'text': 'basic',
-              'path': 'description',
-              'key': 'quality'
-            },
-            {
-              'text': 'intermediate',
-              'path': 'description',
-              'key': 'quality'
-            },
-            {
-              'text': 'experienced',
-              'path': 'description',
-              'key': 'quality'
-            }
-            ]
-          }
-        ],
-
-        description: [
-        'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce',
+        type: 'choose',
+        answers: [{
+          'text': 'Engineering',
+          'key': 'category_name',
+          'path': 'timeline'
+        },
         {
-            type: 'open-modal',
-            path: 'notice',
-            key: "description",
-            answers: [{
-                'text': 'Add Description',
-                'path': 'description',
-                'key': 'quality'
-            }]
+          'text': 'Product',
+          'key': 'category_name',
+          'path': 'timeline'
+        },
+        {
+          'text': 'Design',
+          'key': 'category_name',
+          'path': 'timeline'
+        },
+        {
+          'text': 'Sales',
+          'key': 'category_name',
+          'path': 'timeline'
+        },
+        {
+          'text': 'Marketing',
+          'key': 'category_name',
+          'path': 'timeline'
         }
         ]
-      }, {
-        targetNode: '#chat'
       }
-    )
-  }
+    ],
+    timeline: [
+      'Please choose one your project timeline',
+      {
+        type: 'choose',
+        answers: [{
+          'text': '3 days',
+          'path': 'expertiseLevel',
+          'key': 'timeline'
+        },
+        {
+          'text': '1 week',
+          'path': 'expertiseLevel',
+          'key': 'timeline'
+        },
+        {
+          'text': '2 weeks',
+          'path': 'expertiseLevel',
+          'key': 'timeline'
+        },
+        {
+          'text': '3 weeks',
+          'path': 'expertiseLevel',
+          'key': 'timeline'
+        },
+        {
+          'text': '1 month',
+          'path': 'expertiseLevel',
+          'key': 'timeline'
+        },
+        {
+          'text': '6 months',
+          'path': 'expertiseLevel',
+          'key': 'timeline'
+        }
+        ]
+      }
+    ],
+    expertiseLevel: [
+      'Please choose the expertise level',
+      {
+        type: 'choose',
+        answers: [{
+          'text': 'basic',
+          'path': 'budget',
+          'key': 'quality'
+        },
+        {
+          'text': 'intermediate',
+          'path': 'budget',
+          'key': 'quality'
+        },
+        {
+          'text': 'experienced',
+          'path': 'budget',
+          'key': 'quality'
+        }
+        ]
+      }
+    ],
+    budget: [
+      'What is your budge estimate for this task?',
+      {
+        type: 'write',
+        path: 'description',
+        key: "budget"
+      }
+    ],
+    description: [
+      'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce',
+      {
+        type: 'open-modal',
+        path: 'notice',
+        key: "description",
+        answers: [{
+          'text': 'Add Description',
+          'path': 'description',
+          'key': 'quality'
+        }]
+      }
+    ],
+    video: [
+      'Please enter your credit card information while I pull the best resources and get this started soon. Remember that I give you a full refund for an unsatisfied service!',
+      {
+        type: 'write',
+        path: 'notice',
+        key: "credit-card"
+      }
+    ],
+    notice: [
+      'Please note that we are charging your card with the budget amount',
+      {
+        type: 'submit',
+        answers: [{
+          'text': 'Ok',
+          'path': '/goomps/new'
+        }]
+      }
+    ]
+  }, {
+    targetNode: '#chat'
+  });
 </script>

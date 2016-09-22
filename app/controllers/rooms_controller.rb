@@ -45,6 +45,8 @@ class RoomsController < ApplicationController
         @room.messages.create({:body => @room.timeline, :room => @room, :user => @room.user})
         @room.messages.create({:body => 'Please choose the expertise level', :room => @room, :user => @room.manager})
         @room.messages.create({:body => @room.quality, :room => @room, :user => @room.user})
+        @room.messages.create({:body => 'What is your budge estimate for this task?', :room => @room, :user => @room.manager})
+        @room.messages.create({:body => @room.budget, :room => @room, :user => @room.user})
         @room.messages.create({:body => 'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce', :room => @room, :user => @room.manager})
 
         if post_body
@@ -87,11 +89,13 @@ class RoomsController < ApplicationController
       @room.messages.new({:body => @room.timeline, :room => @room, :user => @room.user})
       @room.messages.new({:body => 'Please choose the expertise level', :room => @room, :user => @room.manager})
       @room.messages.new({:body => @room.quality, :room => @room, :user => @room.user})
+      @room.messages.new({:body => 'What is your budge estimate for this task?', :room => @room, :user => @room.manager})
+      @room.messages.new({:body => @room.budget, :room => @room, :user => @room.user})
       @room.messages.new({:body => 'Please give detailed description of what needs to be done by creating a post, meanwhile I\'ll get this started with our workforce', :room => @room, :user => @room.manager})
 
       session[:add_description] = true
 
-      if @room.save
+      if @room.save!
         redirect_to @room and return
       end
     end
@@ -137,7 +141,7 @@ class RoomsController < ApplicationController
         :quality,
         :description,
         :messages_attributes => [:id, :body,
-                              :posts_attributes => [:id, :content, :title]]
+                              :post_attributes => [:id, :content, :title]]
       )
     end
 end

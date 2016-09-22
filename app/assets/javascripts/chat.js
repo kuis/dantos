@@ -117,7 +117,6 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
           n.addEventListener("click", function(i) {
             if (e.answers[s].key !== undefined) {
               localStorage.setItem(e.answers[s].key, e.answers[s].text)
-              console.log("key", e.answers[s].key)
               $('#room_' + e.answers[s].key).val(e.answers[s].text)
             }
             t.animateResponse(n, n.cloneNode(!0), function() {
@@ -143,16 +142,18 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
             t.animateResponse(n, n.cloneNode(!0), function() {
               $.post("/tasks", {
                 room: {
-                  category_name: localStorage.getItem("category"),
+                  category_name: localStorage.getItem("category_name"),
                   timeline: localStorage.getItem("timeline"),
                   quality: localStorage.getItem("quality"),
-                  description: localStorage.getItem("description")
+                  description: localStorage.getItem("description"),
+                  budget: localStorage.getItem("budget")
                 }
               }, function(data) {
-                localStorage.removeItem('category'),
+                localStorage.removeItem('category_name'),
                 localStorage.removeItem('timeline'),
                 localStorage.removeItem('quality'),
                 localStorage.removeItem('description'),
+                localStorage.removeItem('budget'),
                 Turbolinks.visit(data.location)
               })
             })
@@ -167,10 +168,11 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
           method: 'POST',
           data: {
             room: {
-              category_name: localStorage.getItem("category"),
+              category_name: localStorage.getItem("category_name"),
               timeline: localStorage.getItem("timeline"),
               quality: localStorage.getItem("quality"),
-              description: localStorage.getItem("description")
+              description: localStorage.getItem("description"),
+              budget: localStorage.getItem("budget")
             }
           }
         });
@@ -219,9 +221,9 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         var s = !1,
           i = function() {
             n.innerText.length && !s && (s = !0, t.animateResponse(n, n.cloneNode(!0), function(n) {
-              console.log("key/value" + e.key + "/" + n.innerText);
               if (e.key !== undefined) {
                 localStorage.setItem(e.key, n.innerText);
+                $('#room_' + e.key).val(n.innerText);
               }
 
               e.path && t.say(t.messages[e.path]), t.emit("answer", {
@@ -342,7 +344,7 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
               text: e
             });
             t.addSpeechBubble(n);
-            $('html,body').animate({scrollTop: ($(".main").offset().top)}, 2000);
+//            $('html,body').animate({scrollTop: ($(".main").offset().top)}, 2000);
           }, t.config.chatDelay * n + n * n * 70)
         })
       }
