@@ -124,6 +124,9 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
                 item: e.answers[s]
               })
             })
+            setTimeout(function() {
+              $('#blah').animate({scrollTop: document.getElementById("blah").scrollHeight}, 2000);
+            }, 2000);
           })
         });
       }
@@ -177,6 +180,9 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
           }
         });
         t.say(t.messages[e.path]), t.emit("answer", {});
+        setTimeout(function() {
+          $('#blah').animate({scrollTop: document.getElementById("blah").scrollHeight}, 2000);
+        }, 2000);
       }
     }, {
       key: "openModal",
@@ -237,6 +243,9 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
         }), n.addEventListener("keypress", function(e) {
           n.innerText.length > t.config.maxCharsResponse && (e.preventDefault(), t.state.hasSeenMaxCharResponse || (t.state.hasSeenMaxCharResponse = !0, t.say([t.config.maxCharsResponseText])))
         })
+        setTimeout(function() {
+          $('#blah').animate({scrollTop: document.getElementById("blah").scrollHeight}, 2000);
+        }, 2000);
       }
     }, {
       key: "visitLink",
@@ -344,7 +353,6 @@ var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator 
               text: e
             });
             t.addSpeechBubble(n);
-//            $('html,body').animate({scrollTop: ($(".main").offset().top)}, 2000);
           }, t.config.chatDelay * n + n * n * 70)
         })
       }
