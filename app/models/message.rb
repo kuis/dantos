@@ -19,14 +19,18 @@ class Message < ApplicationRecord
       <br/>
       <button id="customButton" class="tiny ui primary button">Pay with Card</button>
         <script>
-          var key = $("meta[name=stripePublishableKey]").attr("content");
           var handler = StripeCheckout.configure({
-            key: key,
+            key: $("meta[name=stripePublishableKey]").attr("content"),
             image: 'https://www.filestackapi.com/api/file/6hx3CLg3SQGoARFjNBGq',
             locale: 'auto',
+            amount: "#{(amount.to_f*100).to_i}",
             token: function(token) {
-              return $.post("/payments/", {
-                token: token
+              return $.post("/payments.json", {
+                token: token,
+                amount: #{(amount.to_f*100).to_i},
+                payment: {
+                  user_id: #{self.room.user.id}
+                }
               });
             }
           });

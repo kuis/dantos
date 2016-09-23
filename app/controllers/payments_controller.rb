@@ -24,12 +24,13 @@ class PaymentsController < ApplicationController
   # POST /payments
   # POST /payments.json
   def create
-    token = params[:stripeToken]
+    token = params[:token][:id]
+    amount = params[:amount]
 
     # Create a charge: this will charge the user's card
     begin
       charge = Stripe::Charge.create(
-        :amount => 1000, # Amount in cents
+        :amount => amount, # Amount in cents
         :currency => "usd",
         :source => token,
         :description => "Example charge"
@@ -43,7 +44,7 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       if @payment.save
         format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
-        format.json { render :show, status: :created, location: @payment }
+        format.json { head :no_content }
       else
         format.html { render :new }
         format.json { render json: @payment.errors, status: :unprocessable_entity }
