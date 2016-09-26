@@ -8,7 +8,7 @@
         '
         span.helper
           ' posted to
-        = link_to "#{@post.message.room.category_name&.downcase}-#{@post.message.room.id}", @post.message.room, :class => "goomp-primary"
+        = link_to "#{@post.message.room.get_room_name_for_user(current_user)}", @post.message.room, :class => "goomp-primary"
       span.date
         = time_ago_in_words @post.created_at
         '  ago
@@ -25,4 +25,10 @@
     = f.text_field :title, placeholder: "Title", autofocus: true
     = f.text_area :content, class: "editable"
 
-    = f.submit 'Publish', class: "ui button basic blue"
+    .ui.divider
+    .field#submit_field = f.submit 'Publish', class: "ui button basic blue"
+
+css:
+  #submit_field {
+    text-align: center;
+  }

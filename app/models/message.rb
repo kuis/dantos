@@ -17,7 +17,7 @@ class Message < ApplicationRecord
       self.create_attachment html: <<~HTML.squish
       <script src="https://checkout.stripe.com/checkout.js"></script>
       <br/>
-      <button id="customButton" class="tiny ui primary button">Pay with Card</button>
+      <button id="customButton-#{self.id}" class="tiny ui primary button custom-padding">Pay with Card</button>
         <script>
           var handler = StripeCheckout.configure({
             key: $("meta[name=stripePublishableKey]").attr("content"),
@@ -35,7 +35,7 @@ class Message < ApplicationRecord
             }
           });
 
-          document.getElementById('customButton').addEventListener('click', function(e) {
+          document.getElementById("customButton-#{self.id}").addEventListener('click', function(e) {
             handler.open({
               name: 'Kriya',
               zipCode: true,

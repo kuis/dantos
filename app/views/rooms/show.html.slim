@@ -6,10 +6,7 @@
       .ui.divided.grid
         .twelve.wide.column
           .ui.stacked.segment
-            - if current_user == @room.user
-              h3  #{@room.category_name&.downcase}-#{@room.id}
-            - else current_user == @room.manager
-              h3  #{@room.user.slug}-#{@room.category_name.downcase}-#{@room.id}
+            h3 = @room.get_room_name_for_user current_user
             .ui.divider
             #messages.ui.comments data-room-id=@room.id
               .chat-content
@@ -24,7 +21,7 @@
                 .ui.icon.bottom.left.pointing.dropdown.button.primary
                   i.plus.icon
                   .menu
-                    = link_to 'Create Post', new_post_path, :data => {:modal => true}, :class => "item", :id => 'create_post'
+                    = link_to 'Create Post', new_post_path, :data => {:modal => true}, :class => "item"
                     - if current_user == @room.manager
                       .item data-charge-user=true Charge User
                     .item.fileinput-button
@@ -60,13 +57,3 @@
 
     - else
       = render "goomp_bot/new_goomp"
-
-
-- if session.delete(:add_description)
-  javascript:
-    $(document).on('turbolinks:load', function() {
-      setTimeout( function() {
-        $('#create_post').click();
-      }, 3000 );
-
-    });

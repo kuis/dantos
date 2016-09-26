@@ -1,9 +1,9 @@
 .ui.container.new-post
   .author-box
-    = image_tag current_user.picture, class: 'ui avatar image'
+    = image_tag current_user.picture, :class => 'ui avatar image'
     span = current_user.full_name
 
-  = form_for Post.new, html: { class: "ui form", autocomplete: "off" } do |f|
+  = form_for Post.new, :html => { :class => "ui form", :autocomplete => "off" } do |f|
     = f.hidden_field :goomp_id
 
     = f.hidden_field :link_title
@@ -12,7 +12,12 @@
     = f.hidden_field :link_url
 
     = current_user.avatar
-    = f.text_field :title, placeholder: "Title", autofocus: true
-    = f.text_area :content, class: "editable"
+    = f.text_field :title, :placeholder => "Title", :autofocus => true
+    = f.text_area :content, :class => "editable"
 
-    = f.submit 'Publish', class: "ui button basic blue"
+    .ui.divider
+    .field#submit_field = f.submit 'Publish', :class => "ui button basic blue"
+css:
+  #submit_field {
+    text-align: center;
+  }

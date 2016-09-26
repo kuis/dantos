@@ -4,11 +4,7 @@
 
     - current_user.joined_rooms.includes(:user).each_with_index do |room, index|
       = link_to room, class: "item primary #{'active' if @room == room}" do
-        .category_name
-          - if current_user == room.user
-            '  #{room.category_name&.downcase}-#{room.id}
-          - else current_user == room.manager
-            '  #{room.user.slug}-#{room.category_name.downcase}-#{room.id}
+        = room.get_room_name_for_user current_user, index
         .unread_message_number
 
 coffee:
