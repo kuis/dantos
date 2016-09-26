@@ -2,7 +2,7 @@
 <script>
 
   var category = [
-    "<%= new_user ? 'Hi! I am Kriya, helping startups and businesses to get their work done with the help of top skilled freelancers across the world. Choose one of the fields below:' : 'Please choose one of the following -' %>",
+    "<%= new_user ? 'Please choose one of the fields below:' : 'Please choose one of the following -' %>",
     {
       type: 'choose',
       answers: [{
@@ -184,7 +184,7 @@
   <%- if new_user %>
     var configs = {
       greeting: [
-        'Welcome to Kriya. We are pleased to have you here. We help startups, smaller teams, and individuals get their work done with the help of low-cost, high-quality freelancers.',
+        'Hi, Welcome to Kriya, we are pleased to have you here! I am Kriya Bot. I help startups, individual teams and other businesses to get their work done with the help of top skilled, low cost freelancers from across the world.',
         {
           type: 'choose',
           answers: [
