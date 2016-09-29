@@ -17,6 +17,7 @@ gem 'kaminari'
 gem 'carrierwave'
 gem "fog-aws"
 gem 'mini_magick'
+gem 'airbrake'
 gem 'dalli'
 gem 'rack-mini-profiler'
 # gem 'meta_tags-rails'
